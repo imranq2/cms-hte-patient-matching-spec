@@ -1,0 +1,35 @@
+---
+title: "Summary and Purpose"
+excerpt: "Specification v3.4.0, section Executive Summary; I (Purpose)"
+hidden: true
+---
+
+*Specification v3.4.0, section Executive Summary; I (Purpose)*
+
+## Executive Summary
+
+The challenge of patient matching in healthcare is well documented. According to a 2020 eHealth Initiative/NextGate survey, approximately 38% of U.S. providers experienced an adverse event in the prior two years attributable to incorrect patient matching. Studies cite that patient matching rates between organizations is low at around 50%, and some CMS health tech ecosystem pledgees report that it is closer to 40% in real data exchange and worse for patient-initiated access. The CMS Health Tech Ecosystem has convened a working group over the last several months to address this problem. The working group, which includes CMS alongside ecosystem participants, has conducted testing against real datasets within their respective organizations and, as a group, developed this proposal collaboratively.
+
+Stated simply, If the identity attributes in a query correspond to a field combination listed in Table 2 of this document, and the query produces a unique candidate subject, the responding entity SHALL return matching records for that patient within the permitted scope for that query context.
+
+Table 2, incorporated directly into this document, lists validated combinations of identity attributes whose conservative Probability of Collision, P(collision), is less than or equal to 2e-12, or 0.0000000002% and satisfies additional administrative controls. P(collision) is the probability that two distinct individuals in the population share identical values for a given combination of fields. It measures the inherent discriminating power of the field combination itself, independent of any specific matching algorithm or vendor implementation.
+
+Table 2 now separates into Category 1 rules (30 rules that already carry a genuine individuating field and are evaluated in one step, unchanged from v3.3.0) and Category 2 rules (8 rules — 7 amended, 1 new — evaluated in two disjoint steps: first a Household Match, then an Individual Match within that household), per Proposal v3.3.1. Two new rules (39, 40\) address guardian-verified minors and newborn matching via maternal linkage, per Proposal v3.3.3. Placeholder-value handling is extended from names to every field Table 2 relies on, per Proposal v3.3.4. Compliance is now bifurcated into Path A (Assumed Compliance, rules-based) and Path B (Empirical Compliance, performance-based), per Proposal v3.3.2, backed by a new commitment to an empirically validated accuracy floor, per Proposal v3.3.5.
+
+The proposal has three parts:
+
+1. Data Handling and Cleaning: Requirements for normalizing identity attributes, including the principle that each field represents a set of all known values (current and prior).
+
+2. Matching Rules Based on Probability of Collision: A single threshold of P(collision) &lt;= 2e-12, equivalent to 0.0000000002%, is applied to every candidate combination of identity attributes. Combinations that clear the threshold are listed in Table 2\.
+
+3. Testing and Validation: Requirements ensuring implementations produce expected results, validated against standardized test datasets and ongoing monitoring.
+
+CMS intends to publish this proposal as part of the CMS Interoperability Framework, which ecosystem pledgees agree to follow. Because Medicare is also a respondent in the Payer pledge category, and will respond to patient, provider, and as appropriate payer requests, CMS will also be a direct implementer of this proposal, not solely its sponsor.
+
+Failure to return records when a query satisfies a Table 2-listed combination and produces a unique candidate is non-compliant with this proposal.
+
+## I. Purpose
+
+This proposal seeks to define a consistent and nationally applicable matching strategy for patient, member or beneficiary records. It defines when responding entities SHALL return the matching records, subject to the administrative controls in §IV.D and Table 4\.  in response to any query for records as governed by the data sharing agreement used to establish trust between the parties but does not seek to provide governance or protocol recommendations beyond matching (e.g. data returned, exchange purposes, enforcement, etc).  This framework governs source-system matching at responding endpoints, not payload requirements on wire-transaction formats.
+
+Throughout this document, SHALL, SHALL NOT, SHOULD, and MAY are used in the RFC 2119 sense to describe the requirements that would apply once this framework is adopted. Their use does not create a present obligation during any comment period, and all requirements remain subject to revision through the governance process in §VIII. 

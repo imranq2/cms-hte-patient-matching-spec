@@ -1,0 +1,49 @@
+---
+title: "Document Control and Comments"
+excerpt: "Specification v3.4.0, section Document Control"
+hidden: true
+---
+
+*Specification v3.4.0, section Document Control*
+
+| Item | Detail |
+| --- | --- |
+| Version | 3.4.0 |
+| Status | Final Consolidated Draft |
+| Release Date | 9/10/2026 |
+| Comment Period Ends | \[Date + 60 days\] |
+| Effective Date | \[TBD after finalization\] |
+
+Comment Submission Information:
+
+Submit Comments To:
+
+Public Comment Focus Areas:
+
+1. Probability of Collision as primary metric and the 2e-12 threshold
+
+2. Risk framework — collision risk vs. non-return harm
+
+3. Table 2 completeness \- are important field combinations missing?
+
+4. Fuzzy constraints appropriateness
+
+5. P(collision) values from different populations
+
+6. Ecosystem-specific validation requirements
+
+7. Implementation feasibility
+
+8. SSN/ITIN last-4 handling
+
+9. Consideration for weighting known past demographics such as address and phone differently
+
+10. Consideration for the weighting of shared living spaces such as shelter, hotel, jail, halfway house, dorm, nursing facility, group home, migrant camp, or family shelter
+
+11. Consider a requirement that Responders SHALL match on date of birth \+ or – 1 day from the date provided by the requestor
+
+12. Should the Patients insurance ID and ID suffix be a matching field
+
+<Callout icon="💬" theme="info">
+  **Where to submit comments on this site:** open an issue at [github.com/imranq2/cms-hte-patient-matching-spec/issues](https://github.com/imranq2/cms-hte-patient-matching-spec/issues). The "Submit Comments To" field above is empty in the source document.
+</Callout>

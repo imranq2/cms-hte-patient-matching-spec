@@ -1,0 +1,30 @@
+---
+title: "Validation Requirements"
+excerpt: "Specification v3.4.0, section VI"
+hidden: true
+---
+
+*Specification v3.4.0, section VI*
+
+## A. Implementation Testing
+
+Before initial production use, and after any material change to matching logic, normalization rules, placeholder handling, fuzzy-comparison settings, or decision thresholds, an implementation SHALL demonstrate documented performance on the ONC patient matching test dataset.
+
+Where this document describes a u-probability as a 'conservative floor,' it means the lowest plausible value assigned in the absence of precise empirical measurement — an engineering lower bound chosen so the field's true discriminating power is assumed to be at least as strong as the stated value.
+
+The accuracy floor SHALL be established through a follow-on effort before the framework's effective date, with interim reporting-only in the meantime.
+
+([https\://github.com/onc-healthit/patient-matching](https://github.com/onc-healthit/patient-matching)), on a successor dataset, or an approved third party assessment approved through the governance process. At a minimum, validation results SHALL report observed precision, recall, and false-positive rate at the configured operating point. Validation SHALL confirm that the implementation correctly handles matches, non-matches, placeholder values, normalization requirements, uniqueness checks, approved fuzzy comparisons, and other material edge cases.
+
+We will include shelters, nursing facilities, correctional institutions, hotels and short-term housing, halfway houses, dormitories, group homes, migrant camps, and multi-generational households as required scenarios in the validation test datasets. 
+
+Participants that rely on a vendor, health information network, payer platform, or other shared matching service MAY rely on centrally produced benchmark results for the core algorithm, provided that they document the product, version, and configuration in use and perform local acceptance testing sufficient to show that the production implementation applies this framework correctly to their own data feeds, message formats, and workflows. Local acceptance testing need not replicate population-scale benchmarking, but it SHALL confirm that required fields, comparison rules, and response behavior operate as configured in production.
+
+As the ONC dataset is revised, or as an approved successor dataset becomes available, implementations SHALL validate against the current approved version within the implementation period established through governance. This approach permits algorithmic innovation by evaluating outcomes rather than prescribing a single technical method.
+
+## B. Validation of P(collision) Values
+
+The P(collision) values used to approve combinations in Table 2 are conservative estimates intended for threshold design and rule classification. Those values SHALL be empirically validated at the framework level within 12 months of proposal adoption, and again when a material change is proposed to an affected combination, using one or more population-scale datasets totaling at least 1 million records. Validation may be performed by CMS, a network operator, a qualified independent entity, or participants acting collaboratively. Individual participants are required to assemble a dataset of that size on its own in order to comply with this requirement.
+
+For each combination evaluated, the validation record SHALL report the observed collision rate for the combination's field set, the 95 percent confidence interval, and a description of the validation population, including material demographic, geographic, and source-system characteristics that could affect the result. Participants with sufficient volume and technical capability SHOULD perform ecosystem-specific validation or   
+If framework-level or ecosystem-specific validation demonstrates that a Table 2 combination materially exceeds the framework threshold, that combination SHALL be reviewed through the governance process and, as appropriate, restricted, suspended, or removed from Table 2\.

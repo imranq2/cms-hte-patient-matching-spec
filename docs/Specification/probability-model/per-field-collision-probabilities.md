@@ -1,0 +1,58 @@
+---
+title: "Per-Field Collision Probabilities"
+excerpt: "Specification v3.4.0, section IV.C"
+hidden: true
+---
+
+*Specification v3.4.0, section IV.C*
+
+For a single field with counts ni across N distinct individuals, the exact non-match agreement probability is:
+
+ufield \= Σ\[ni(ni \- 1)\] / \[N(N \- 1)\]
+
+For large populations, this may be approximated as ufield ≈ Σ(fi^2)  
+where fi is the relative frequency of value i. When a field is approximately uniform, a simpler approximation is
+
+ufield ≈ 1 / Ndistinct
+
+In practice, exact population frequency distributions are not available for every field, and field distributions vary across patient populations, regions, and source systems. Accordingly, the values in Table 3 should be treated as conservative single-point assumptions based on reasonable expectations about cardinality, skew, missingness, and data quality. They are intended for threshold setting, comparative scoring, and rule classification, not for precise actuarial measurement.
+
+Fuzzy matching is used only to account for limited data-entry variation that remains after deterministic normalization. It is not applied to structured fields such as DOB, ZIP, MBI, Legal ID, or namespace bound unique identifiers, and it is not applied to any compared string shorter than 5 characters after normalization. Fuzzy comparison may be used only for first name, last name, and street line, and only under constrained rules intended to capture minor typographic or adjacent transposition errors. Unless Table 2 expressly states otherwise, no more than one field in a qualifying combination may be satisfied by fuzzy comparison.
+
+*Table 3\. Conservative per-field u-probabilities used to classify Table 2 combinations*
+
+| Field | Conservative u, exact | Conservative u, fuzzy | Basis / assumption |
+| --- | --- | --- | --- |
+| First Name | 0.02 | 0.03 | Common-name concentration; deterministic nickname handling first; fuzzy limited to a single minor edit or adjacent transposition and only when the normalized value is at least 5 characters. |
+| Middle Name | 0.01 | Not used | This field has been dismissed due to observed data quality issues and low selectivity |
+| Last Name | 0.005 | 0.01 | Heavy-tailed surname distribution; no phonetics; fuzzy limited to a single minor edit or adjacent transposition and only when the normalized value is at least 5 characters. |
+| Suffix | 0.2 | Not used | This field has been dismissed due to observed data quality issues and low selectivity |
+| Date of Birth (full) | 0.0001 | Not used | Exact comparison only. |
+| Year of Birth | 0.015 | Not used | This field has been dismissed due to observed low adoption and low selectivity |
+| ZIP Code (5-digit) | 0.0003 | Not used | Conservative geographic concentration assumption; exact comparison only. |
+| City | 0.01 | Not used | Exact comparison only. |
+| State | 0.06 | Not used | Exact comparison only. |
+| Street line | 0.00003 | 0.00006 | Street line and ZIP standardized; ZIP must remain exact. Fuzzy, when allowed, applies only to the street line. |
+| Phone Number | 0.000001 | Not used | Normalized to E.164 |
+| Email Address | 0.000001 | Not used | Exact comparison only after deterministic normalization. |
+| SSN Last 4 Digits | 0.0001 | Not used | Exact comparison only. |
+| ITIN Last 4 Digits | 0.0001 | Not used | Exact comparison only. |
+| Legal ID (full exact value within issuing-authority namespace) | 0.000001 | Not used | Conservative floor for exact DL/passport or equivalent legal identifier; exact comparison only within namespace. |
+| MBI (CMS-issued Medicare Beneficiary Identifier) | 0.000001 | Not used | CMS-issued MBI only; generic insurance identifiers are excluded unless separately validated. |
+| Namespace bound unique identifiers (e.g. EMPI, FHIR Patient Identifier, CSP UUID, etc.) | ≈0 | Not used | Exact comparison only; treated as effectively zero collision for under namespace-bound exact matching. |
+| Insurance Member ID (full individual-level value within payer namespace, i.e., including any dependent suffix) | 0.000001 | Not used | Conservative floor for exact individual member identifier issued by a single payer; exact comparison only within payer namespace. Family-plan dependent suffixes must be included; a bare subscriber base value without dependent suffix SHALL NOT be treated as a Member ID under this row. |
+| Insurance Subscriber ID (policyholder-level base value within payer namespace) | 0.0001 | Not used | Conservative estimate reflecting documented family-plan sharing: approximately 40% of commercially insured individuals are dependents sharing a base subscriber ID with one or more household members. This degrades the effective per-individual selectivity to roughly the level of SSN last 4 digits. Exact comparison only within payer namespace. |
+| Relationship Linkage — clinical source | 0.01 |  |  |
+| Relationship Linkage — self-reported/intake | 0.05 |  |  |
+
+Where no reliable empirical distribution is available, the assigned u-value should be understood as a conservative order-of-magnitude assumption or engineering floor rather than a directly measured quantity. For namespace bound unique identifiers, "≈0" indicates effectively zero collision for threshold design under exact namespace-bound comparison, not a claim of literal impossibility.
+
+The following simplifying assumptions are reasonable for threshold-setting purposes:
+
+1. City and state should generally be treated as a single geographic signal when both are present.
+
+2. ZIP code already captures the state and much of the city, so the state adds little incremental discrimination when ZIP is available.
+
+3. Address line 1 and ZIP should not automatically receive full independent credit, because they are related geographic fields.
+
+4. Phone number and email address should be treated as strong but imperfect identifiers, since either may be shared, stale, reassigned, or missing.

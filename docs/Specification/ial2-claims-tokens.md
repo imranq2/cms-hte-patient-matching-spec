@@ -1,0 +1,73 @@
+---
+title: "IAL2 Claims Tokens"
+excerpt: "Specification v3.4.0, section III.D and III.E"
+hidden: true
+---
+
+*Specification v3.4.0, section III.D and III.E*
+
+## D. IAL2 Claims Tokens
+
+A patient-facing app SHALL include a CSP-issued IAL2 Claims Token in a query to match a patient. For purposes of this framework, an "IAL2 Claims Token" means a signed OpenID Connect ID token issued by a CSP after identity proofing to at least NIST IAL2. The presence of a valid IAL2 Claims Token provides high-confidence evidence regarding the provenance and prior identity proofing of the demographic attributes conveyed in the query and strengthens the Responder's ability to verify that the matching request is being made at the patient's direction.
+
+If an IAL2 Claims Token is included in a query, the Responder SHALL validate the token prior to responding. Validation SHALL include:
+
+1. The token's digital signature using the CSP's published JWKS or other applicable key distribution mechanism
+
+2. The iss claim identifies a trusted CSP. A trusted CSP must use distinct issuer URLs for production and non-production id\_tokens.
+
+3. The aud claim identifies the intended relying party, IAS Provider, or other expected audience for the transaction
+
+4. The token is unexpired based on the exp claim, or otherwise within the Responder's maximum acceptable age based on iat; and reasonable checks of token integrity and freshness.  
+5. Anti-replay controls using the jti claim in combination with issuer context. At a minimum, the Responder SHALL record previously accepted iss \+ jti values, or maintain equivalent controls, for the applicable token-validity window and SHALL reject subsequent reuse of the same token identifier.
+
+If token validation fails or replay is detected, the Responder SHALL NOT rely on the token or any claim extracted from it for matching or response.
+
+When an IAL2 Claims Token is successfully validated, demographic claims extracted from the token SHALL be used as query demographics for matching. Such demographics SHALL be subject to the same normalization, placeholder suppression, historical-value handling, exact and fuzzy comparison constraints, approved Table 2 combinations, and uniqueness requirements that apply when the same demographics are transmitted directly in the query.
+
+6\. Adding additional non-standard claims
+
+The core set of non-standard OIDC claims that are utilized in existing matching specifications have been called out above as “non-standard”. Additional non-standard OIDC verified claims MAY be added to the id\_token by labeling them using the following formats:
+
+For CMS-Aligned Networks:
+
+http\://&lt;network-specified-url&gt;/OIDC/claim/\[claim\]
+
+For TEFCA-specific elements:
+
+http\://rce.sequoiaproject.org/OIDC/claim/\[claim\]
+
+## E. IAL2 Claim Token Fields
+
+| Field Name | Description | Required |
+| --- | --- | --- |
+| iss | Issuer identifier for the entity that issued the ID Token. Case-sensitive URL. | Required - OIDC |
+| sub | Unique identifier for the subject (person) within the issuer’s system | Required - OIDC |
+| aud | Identifies the intended audience of the token | Required - OIDC<br />SHALL be the App’s Client ID (be it an NPD ID, Medicare App Library client id, etc). |
+| exp | Expiration time for the token | Required - OIDC<br />SHALL NOT be &gt; iat+300 |
+| iat | Time the token was issued | Required - OIDC |
+| jti | Unique identifier for the token, used to prevent replay attacks | Required |
+| at\_hash | Hash of the access token for validation purposes | Optional - OIDC |
+| auth\_time | Time when the end-user authentication occurred | Required - CAN |
+| tToken\_policy | Framework + IAL level. Object<br />EG today<br />\{'trust\_framework': 'nist\_800\_63a', 'assurance\_level': 'ial2'\}<br />future:<br />\{'trust\_framework': 'nist\_800\_63a\_4', 'assurance\_level': 'ial2'\} | REQUIRED - CAN<br />trust\_framework = nist\_800\_63a<br />assurance\_level in (‘ial2’,’ial3’) |
+| given\_name | First or given name(s) of the person. Multiple names may be space- separated | Required |
+| middle\_name | Middle name of individual | Required if present |
+| family\_name | Surnames / last names | Required |
+| historical\_name | Previously known or alternate legal names<br />(note: distinguish legal name v. aliases/nicknames/preferred names | Required if present |
+| birthdate | Patient’s date of birth | Required |
+| gender | Legal sex or gender as recorded at birth | Optional |
+| email | Verified email associated with individual | Required |
+| email\_verified | True if the End-User's e-mail address has been verified; otherwise false | SHALL NOT be populated |
+| phone\_number | Verified primary phone number | Required |
+| phone\_number\_verified | True if the End-User's phone number has been verified; otherwise false | SHALL NOT be populated |
+| historical\_phone\_number | Previous phone numbers | Optional |
+| address.country | Country | Required |
+| address.street\_address | Primary street address | Required |
+| address.locality | City or locality name | Required |
+| address.region | State, province, or region | Required |
+| address.postal\_code | ZIP or postal | Required |
+| historical\_address | Array of previously known addresses | Required if present and validated by CSPs |
+| ssn\_itin | Social security number | Optional |
+| ssn\_itin\_short | Last 4 of SSN/ITIN | Optional |
+| uuid | CSP-specific identifier, unique per individual | For discussion - presumed optional |
+| legal\_id | Government-issued legal identity documents like driver’s license and passport<br />Object. Eg<br />\{<br />“legal\_id\_issuer”:”TX”,<br />“id\_number”:”123456780”<br />\} | For discussion |

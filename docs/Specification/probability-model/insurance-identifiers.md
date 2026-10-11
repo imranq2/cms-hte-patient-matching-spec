@@ -1,0 +1,45 @@
+---
+title: "Insurance Identifiers"
+excerpt: "Specification v3.4.0, section IV.H"
+hidden: true
+---
+
+*Specification v3.4.0, section IV.H*
+
+## H. Note on Insurance Identifiers
+
+Insurance identifiers offer meaningful incremental discriminating power when used within a defined payer namespace, but they present structural characteristics that require explicit handling rules not applicable to most other fields in this framework.
+
+## H.1. Member ID versus Subscriber ID
+
+U.S. commercial health insurance practice distinguishes two related but non-equivalent identifiers. The **Insurance Subscriber ID** is assigned to the individual who purchases or holds the policy (the policyholder). Under standard commercial plan design, all family members enrolled on the same policy share the same base subscriber ID, distinguished only by a two-digit dependent suffix (e.g., "00" for the subscriber, "01" for a spouse, "02" onward for dependents). Approximately 40 percent of commercially insured individuals are covered as dependents under another person's policy. Because the base subscriber ID without its suffix identifies the family unit rather than the individual, it does not satisfy the individual-uniqueness requirement that anchors the collision probability model in this framework.
+
+The **Insurance Member ID** is the individual-level identifier assigned to each covered person, including the dependent suffix where applicable. When the full individual member ID — inclusive of any payer-assigned suffix — is used, it functions as an individual-level identifier within the payer's namespace and may be treated with the same selectivity assumption as a Legal ID or MBI within its issuing authority.
+
+Implementations SHALL NOT substitute the bare subscriber base value for an individual member ID when applying Member ID combinations from Table 2\. If the implementation cannot confirm that a submitted identifier includes the individual-level suffix, it SHALL treat the identifier as a Subscriber ID and apply the corresponding, more conservative, u-probability.
+
+## H.2. Payer Namespace Requirement
+
+Neither identifier is globally unique. The same numeric or alphanumeric string may refer to entirely different individuals at different payers. A payer identifier (Payer ID or, in FHIR contexts, the Coverage.identifier.system URI) is therefore a required co-input for any matching combination that uses an insurance identifier. Matching SHALL be performed only within the payer namespace established by the co-submitted Payer ID. A query that provides an insurance identifier without a Payer ID SHALL NOT be evaluated under any insurance identifier combination in Table 2\.
+
+In FHIR, the individual member ID is represented as Coverage.identifier with type.coding.code \= "MB" (from HL7 v2 table 0203), and the payer namespace is encoded in Coverage.identifier.system. The subscriber ID is represented in Coverage.subscriberId and, beginning with FHIR R5, carries its own Identifier.system field. Implementations SHALL enforce the namespace binding at the Coverage.identifier.system or equivalent level.
+
+## H.3. Recyclability
+
+Unlike government-issued identifiers such as MBI, commercial insurance member IDs are not guaranteed to be permanently bound to a single individual. A member who disenrolls and re-enrolls may receive a new member ID at the same payer, and some payers have historically reused previously issued values when pools are exhausted or following system migrations. CMS Medicaid data show that between one and three percent of state-reported beneficiary IDs in the 2016 T-MSIS Analytic Files were non-unique, with a subset linked to records for more than one distinct individual. No equivalent published measurement exists for commercial payer member IDs; the absence of a published recycling rate does not imply the rate is zero.
+
+The combinatorial mitigation for recyclability risk is the same principle applied to other mutable or recyclable fields in this framework: the matching combination must include at least one individually discriminating demographic field (such as date of birth, first name, or last name) that is not derived from the coverage relationship and that would not transfer to a new member who received a recycled ID. All Table 2 combinations incorporating an insurance identifier satisfy this requirement. An insurance identifier SHALL NOT be combined solely with other insurance-derived or plan-administrative fields (such as group number, plan type, or enrollment date) in a Table 2 combination, as those fields would be equally applicable to a new member receiving a recycled ID.
+
+## H.4. Relationship to MBI
+
+The CMS-issued Medicare Beneficiary Identifier (MBI) is already listed in Table 2 as a standalone-combinable field. MBI is a federal lifetime identifier with a defined format (11-character randomized alphanumeric), issued by CMS and scoped to the Medicare program. It is not interchangeable with a commercial payer's member ID, Medicaid MSIS ID, or any other insurance identifier. Rules referencing MBI in Table 2 apply only to CMS-issued MBI values.
+
+## H.5. U-Probability Basis
+
+No empirically measured Fellegi-Sunter u-probability has been published in the peer-reviewed literature for U.S. commercial insurance member or subscriber identifiers. The values assigned in Table 3 are conservative order-of-magnitude engineering assumptions grounded in the following:
+
+For **Insurance Member ID** (u \= 0.000001): the theoretical per-individual collision probability within a large payer's enrollment population (one million or more members) is approximately 1/N, where N is total enrollment. For payers with one million or more members this yields a value at or below 0.000001. The assigned value matches the conservative floor already applied to Legal ID and MBI in this framework — both of which are namespace-bound exact identifiers of comparable cardinality — and is consistent with the HL7 FHIR Interoperable Digital Identity and Patient Matching Implementation Guide (v2.0.0, 2024), which scores Insurance Member ID \+ Payer ID in the same input weight tier as a verified address, phone number, or MRN.
+
+For **Insurance Subscriber ID** (u \= 0.0001): the documented family-plan sharing pattern degrades per-individual selectivity. If 40 percent of insured persons are dependents sharing a base subscriber ID with one or more household members, the effective collision probability for the subscriber base value is substantially higher than 1/N. A conservative estimate matching the SSN last 4 digit assumption (u \= 0.0001) is appropriate until ecosystem-specific empirical measurements are available. The HL7 FHIR IG separately confirms this degraded status, noting that "the identifier is not 1:1 with a unique identity" for subscriber-level values.
+
+Both values are provisional and subject to the same ecosystem-specific validation requirements established in §IV.F. Participating organizations that can compute empirical collision rates from their own enrollment populations are encouraged to report those measurements to CMS for framework-level recalibration.

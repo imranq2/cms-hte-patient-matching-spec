@@ -1,0 +1,35 @@
+---
+title: "Placeholder Values"
+excerpt: "Specification v3.4.0, section V.D"
+hidden: true
+---
+
+*Specification v3.4.0, section V.D*
+
+1. Each implementation SHALL maintain versioned reference tables of non-comparable values (e.g. placeholder values) and patterns for each demographic field used in matching.
+
+2. Regular expressions may be used to identify placeholder values.
+
+3. When a field value is identified as placeholder, temporary, unknown, test, or otherwise non-comparable, that field SHALL be treated as unavailable for use in matching. It SHALL NOT count as an exact match, fuzzy match, nickname match, phonetic match, or conflict.
+
+4. Placeholder-name categories SHALL include, at minimum, newborn temporary names, unidentified-patient names, unknown-value placeholders, and local test or training values.
+
+5. Placeholder suppression SHALL apply to both requestor-side query preparation and responder-side record evaluation.
+
+6. Unknown dates of birth, including all dates of birth prior to the current year – 120 years or after the current date \+ 2 days SHALL be treated as unavailable for use in matching.
+
+Placeholder values are a worst-case data-quality problem precisely because they defeat the statistical assumptions the rest of the framework depends on: a real SSN last 4 or Subscriber ID is shared by a handful of related people, but a placeholder value like "000-00-0000" or "01/01/1900" can be shared by thousands of unrelated records across the entire population. Table 3's u-probabilities assume real-world field distributions; a placeholder value violates that assumption entirely. Any rule that multiplies two field probabilities together — which is most of Table 2 — is vulnerable to two independently-defaulted fields (e.g., a placeholder DOB and a placeholder SSN last 4 entered by the same intake system) combining to pass a threshold that was never meant to certify a shared default value, only a shared real one.
+
+Requesters and responders SHALL maintain a reference list of known placeholder values per field and SHALL exclude any field value on that list from matching entirely — treating the field as absent, not as a real value that happens to match. The table below is illustrative and not exhaustive; it should be adopted as a starting reference and extended through the same governance process (§VIII) that maintains Table 2\.
+
+| Field | Example placeholder patterns | Handling |
+| --- | --- | --- |
+| First Name / Last Name | "Unknown," "Unk," "Test," "Test Patient," "Baby Boy \[Surname\]," "Baby Girl \[Surname\]," "Twin A"/"Twin B," "Newborn," "N/A," "None," "TBD," "Doe" paired with generic "John"/"Jane," single-character or repeated-character strings ("X," "ZZZ") | Treat as absent; do not use in any Direct, Household, or Individual matching rule until replaced with the legal name. Directly relevant to newborn/NICU records. |
+| Date of Birth | 01/01/1900, 01/01/1901, 01/01/1800, 01/01/2000, 11/11/1111, 01/01/0001, a DOB equal to the record's registration/admission date (common default-fill error) | Treat as absent; a rule requiring DOB cannot be evaluated without a non-placeholder value. |
+| SSN / ITIN Last 4 | 0000, 9999, 1234, repeated-digit sequences (1111-9999 in stride) | Treat as absent; excludes the field from any rule that includes SSN/ITIN Last 4. |
+| Phone Number | 000-000-0000, 555-555-5555, 111-111-1111, 123-456-7890, any number in the 555 exchange | Treat as absent; excludes the field from any rule that includes Phone Number. |
+| Email Address | test@test.com, noreply@\*, unknown@unknown.com, none@none.com, \*@example.com | Treat as absent; excludes the field from any rule that includes Email Address. |
+| Street Address | "123 Main St" (unaccompanied by a real unit/city match), "PO Box 0," "Unknown," "Homeless," "No Fixed Address," ZIP 00000 or 99999 | Treat as absent; distinct from, and in addition to, any institutional-address exclusion elsewhere in the framework. |
+| Subscriber ID / Member ID | All-zero or all-nine strings, "PENDING," "TBD," "NONE," a payer's documented default/test enrollment value | Treat as absent; excludes the field from any rule that includes Subscriber ID or Member ID. |
+
+The placeholder value list is a living reference, extended through the same governance process that maintains Table 2, with a defined path for ecosystem participants to submit newly observed patterns.
