@@ -1,0 +1,35 @@
+---
+title: "Changelog Overview"
+excerpt: "How the specification is versioned, and where to find what changed in each version."
+hidden: true
+---
+
+Each released version of the specification has its own changelog page. This page explains how versions are numbered and how to read an entry.
+
+## Versioning
+
+The specification's [Governance and Versioning](/docs/governance-and-versioning) section requires semantic versioning in the form Major.Minor.Patch:
+
+| Increment | Meaning, from the specification |
+|---|---|
+| **Major** | A change to the framework threshold, core methodology, or other foundational requirement |
+| **Minor** | A substantive implementation change, including additions to or removals from Table 2, support for new fields or identifier classes, or changes to validation or normalization requirements that materially affect matching behavior |
+| **Patch** | Clarifications, corrections, citation updates, or other non-substantive revisions that do not materially change participant obligations |
+
+Adopted changes are published with a version increment and an effective date. Substantive changes include a transition period of not less than 90 days unless a shorter period is necessary to mitigate immediate risk.
+
+## Versions
+
+| Version | Status | Page |
+|---|---|---|
+| 3.4.0 | Final Consolidated Draft | [v3.4.0](/docs/v3-4-0) |
+
+Earlier versions are not listed. The proposals that produced v3.4.0 are numbered v3.3.1 to v3.3.5. They are proposals against v3.3.0, not separate released versions. See [Proposals](/docs/proposals).
+
+## Not yet in a released version
+
+Two proposals are under review and are not part of v3.4.0. See [Under Review](/docs/proposals-under-review).
+
+## How to read an entry
+
+Each entry gives the version, release date, status, and the changes grouped by the proposal that produced them, with links to the proposals and to the affected specification pages.
