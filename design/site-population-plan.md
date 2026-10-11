@@ -220,6 +220,20 @@ The page lists what to include in a report (spec version or library/test-set ver
 - the repos' contributor lists include bots (`claude[bot]`, `bwell-dev`) and GitHub handles rather than names;
 - listing a person by name publicly should be their choice.
 
+**Initial list** (provided 2026-10-10; names and organizations only, never email addresses). Some names were derived from the email addresses supplied; the last column lists what still needs confirmation:
+
+| Name | Organization | Needs confirmation |
+|---|---|---|
+| Aaron Madsen | Portobello Health | |
+| Sean Hegarty | b.well Connected Health | Spelling |
+| Adam Culbertson | b.well Connected Health | Spelling |
+| Cody Ebberson | Medplum | Surname inferred from the v3.4.1 proposal text; confirm it's the same person |
+| Andre Quina | Arcadia | Spelling |
+| Nicholas Orser | Verato | Supplied twice (as Nicholas and as Nick); listed once |
+| Lance Laforge | Verato | Capitalization of surname |
+| Harry Freedman | Epic | |
+| Luke Breyer | Epic | |
+
 Each entry: name or handle, organization, role, optional link. Source is a `contributors` data block in the page, edited by PR. Seed it from the spec's workgroup/author information and the GitHub contributor lists, then confirm names with each person before publishing.
 
 ## Hosted testing UI
