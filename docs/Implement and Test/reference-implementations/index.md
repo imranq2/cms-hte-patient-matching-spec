@@ -14,7 +14,6 @@ These projects are maintained by b.well Connected Health and are published openl
 | **Patient matching service** | A FastAPI service that wraps the library as a FHIR `$match` HTTP endpoint. | [GitHub](https://github.com/icanbwell/cms-hte-patient-matching-service) |
 | **IAL2 reader** | A package that verifies an IAL2 token and returns a FHIR `Patient`. Published on PyPI; its source repository is not public. | [PyPI](https://pypi.org/project/cms-hte-ial2-reader/) |
 | **Probability calculations** | A standalone tool that computes empirical u-probabilities from public data. It is *not* part of the matching library. | [Methodology](/docs/how-the-numbers-are-derived) |
-| **Hosted testing UI** | A hosted instance of the service's manual-testing page. | [Try It](/docs/try-it) |
 
 ## Which to use
 

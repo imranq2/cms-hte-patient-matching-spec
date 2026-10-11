@@ -34,8 +34,6 @@ This site hosts the specification, explains how its numbers are derived, and giv
 
   <Card kind="tile" title="Reference implementations" href="/docs/reference-implementations" icon="fa-duotone fa-terminal">A Python library and a matching service</Card>
 
-  <Card kind="tile" title="Try it" href="/docs/try-it" icon="fa-duotone fa-flask">A hosted page for trying the matching service with synthetic data</Card>
-
   <Card kind="tile" title="Changelog" href="/docs/changelog" icon="fa-duotone fa-clock-rotate-left">What changed in each version</Card>
 
   <Card kind="tile" title="Proposals" href="/docs/proposals" icon="fa-duotone fa-file-pen">Proposals under review and accepted</Card>

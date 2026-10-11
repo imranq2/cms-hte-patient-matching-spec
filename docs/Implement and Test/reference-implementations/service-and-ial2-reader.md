@@ -23,7 +23,7 @@ A FastAPI service that wraps the [patient matching library](/docs/patient-matchi
 - **No candidates without a FHIR source.** If `FHIR_BASE_URL` is not set, the service starts but its cache is empty and every request returns `no_match`.
 - **The default public build does not include the matching engine.** `POST /Patient/$match` returns 503 unless the service is built with `INSTALL_MATCHING_ENGINE=true`.
 - **IAL2 support is off by default.** It requires `IAL2_ALLOWED_JWKS_URLS` and `IAL2_AUDIENCE`. Without them, a request carrying a `cms_smart` identity is rejected with 400.
-- **The testing UI has no authentication of its own.** The README says never to enable `ENABLE_TESTING_UI` in a production or externally reachable deployment. See [Try It](/docs/try-it).
+- **The testing UI has no authentication of its own.** The README says never to enable `ENABLE_TESTING_UI` in a production or externally reachable deployment.
 
 ### API description
 

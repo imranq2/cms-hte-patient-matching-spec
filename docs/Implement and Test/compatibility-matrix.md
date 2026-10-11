@@ -15,7 +15,6 @@ hidden: false
 | Test set (`cms-hte-patient-matching-test-set`) | tag `0.0.5` | 2026-10-07 | Not stated in its top-level README. Its test-data README says it excludes true-match pairs that only rule 29 could link. |
 | Patient matching service | tag `0.0.11` | 2026-10-07 | Wraps the library. It depends on `cms-hte-ial2-reader` 0.0.4 or later, and on `cms-hte-patient-matching` 0.0.11 or later only through its optional `matching` extra. The default public build leaves the library out and returns 503 from `$match`. |
 | IAL2 reader (`cms-hte-ial2-reader`) | 0.0.5 on PyPI | 2026-10-07 | Implements token handling for section III.D. Source repository is not public. |
-| Hosted testing UI | Not recorded | | Which library version it runs is not published |
 
 ## Known differences
 
