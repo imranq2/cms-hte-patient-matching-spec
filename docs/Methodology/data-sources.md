@@ -39,4 +39,4 @@ The calculations project uses **only public aggregate data**. It uses no patient
 
 ## Test data is separate
 
-The labeled test cases come from a different public dataset, the ONC 2017 Patient Matching Algorithm Challenge dataset. See [Test Set Methodology](/docs/test-set-methodology) and [Test Set Overview](/docs/test-set-overview) for its provenance and attribution.
+The labeled test cases come from a different public dataset, the ONC 2017 Patient Matching Algorithm Challenge dataset. See [Test Set Methodology](/docs/test-set-methodology) and [Test Set Overview](/docs/test-set) for its provenance and attribution.

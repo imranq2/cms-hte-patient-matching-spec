@@ -1,0 +1,107 @@
+---
+title: "Implementation Guide"
+excerpt: "The order of operations for evaluating a query against Table 2, with links to the governing text."
+hidden: true
+---
+
+This guide shows how the pieces of the specification fit together when you evaluate one query. It summarizes and links; it does not replace the specification, and it adds no requirements. **The specification text governs.** Every step cites the section it comes from.
+
+The specification's SHALL language describes requirements that would apply once the framework is adopted. It creates no present obligation during a comment period (section I).
+
+## The flow
+
+```text
+Query arrives
+  |
+  |-- Has an IAL2 Claims Token?  -> validate it (III.D); use its claims as query demographics
+  v
+1. Normalize every field and remove placeholder values   (V; III.C.8 step 0)
+  v
+2. Category 1: does the query match a Category 1 row?     (Table 2, III.C; fuzzy limits in V.E)
+     exactly one candidate  -> match (subject to III.C.6 and Table 4 restrictions)
+  v  (no Category 1 rule applies)
+3. Category 2: two steps                                   (III.C.2 to III.C.5, III.C.8)
+     Step A  Household match (Table 2-H)  -> exactly one household?
+     Step B  Individual match (Table 2-I) -> exactly one member of that household?
+     combined P(collision) = household x individual <= 2e-12  -> match
+  v
+4. Candidate-count rules at each step                      (III.B.1, III.C.8)
+5. Twins and generational names                            (III.C.7, V.B item 5)
+6. Log the decision                                        (VII)
+```
+
+## 0. IAL2 Claims Token, if present
+
+If a query includes an IAL2 Claims Token, the responder validates it before responding. Validation covers the signature, the issuer, the audience, expiry, and replay. If validation fails, the responder does not rely on the token or any claim from it. If it succeeds, the claims are used as query demographics and are subject to the same normalization, placeholder suppression, comparison constraints, approved Table 2 combinations, and uniqueness requirements as any other query. A patient-facing app is required to include a token. See [IAL2 Claims Tokens](/docs/ial2-claims-tokens).
+
+## 1. Normalize and remove placeholders
+
+Remove placeholder values for every field *before anything else*, because a placeholder can otherwise satisfy a rule by coincidence (III.C.8, step 0). A placeholder field is treated as unavailable: it does not count as an exact, fuzzy, nickname, or phonetic match, and it is not a conflict. This applies on both the requestor side and the responder side. See [Placeholder Values](/docs/placeholder-values) and [Required Normalization, Names, and Demographic Fields](/docs/required-normalization-names-and-demographics).
+
+## 2. Category 1: direct rules
+
+Check the Category 1 rows of [Table 2](/docs/table-2-category-1-rules). A rule applies when the query and the candidate match on every field in the row. Fields marked with an asterisk may be fuzzy; the others must match exactly. Fuzzy matching:
+
+- applies only where a row marks the field,
+- should be implemented as a Damerau-Levenshtein distance of 1, and Jaro-Winkler may also be considered where available (V.E),
+- is not applied to strings shorter than 5 characters (V.E),
+- for date of birth means a ±1-day tolerance (Table 2 notes),
+- is described in IV.C as limited to first name, last name, and street line, with no more than one field in a combination satisfied by fuzzy comparison unless Table 2 expressly states otherwise. Table 2 also marks date of birth with an asterisk for the ±1-day tolerance, so the specification's own text is not fully consistent on this point. Follow the asterisks in Table 2 and read the notes beneath it.
+
+See [Fuzzy Matching](/docs/fuzzy-matching) and [Per-Field Collision Probabilities](/docs/per-field-collision-probabilities).
+
+Insurance identifiers have extra rules: matching is only within the payer namespace, a Member ID must include any dependent suffix, and an identifier that cannot be confirmed to include the individual-level suffix is treated as a Subscriber ID. See [Insurance Identifiers](/docs/insurance-identifiers).
+
+If a Category 1 rule applies and the query resolves to exactly one candidate, return the match. No household step is needed.
+
+Disagreement in other fields that are not part of the qualifying combination does not, by itself, negate the match, except where the specification gives a deterministic contraindication (III.C). The generational suffix rule is one (step 5).
+
+## 3. Category 2: household, then individual
+
+Run this only if no Category 1 rule applies.
+
+1. **Step A, household (Table 2-H).** Check whether the shared fields available (SSN or ITIN last 4, Subscriber ID, phone, email, address, ZIP) satisfy a row of Table 2-H. This narrows the candidates to those sharing that value, ideally one household.
+2. **Step B, individual (Table 2-I).** Within that household, check whether first name and date of birth satisfy a row of Table 2-I.
+3. **Combine.** Multiply the household and individual probabilities. If both steps resolved uniquely and the product is at most 2e-12, return the match.
+
+A step that does not resolve to exactly one candidate is not satisfied. Any household row may in principle pair with any individual row, subject to the gating conditions in Table 2-I (III.C.5). See [Category 2: Household and Individual Rules](/docs/category-2-household-and-individual-rules) and [Applying the Tables](/docs/applying-the-tables).
+
+## 4. Candidate counts
+
+The specification applies the candidate-count logic independently at each step:
+
+| Candidates at the step | What the specification says |
+|---|---|
+| Zero | The relevant identifiers are not on file for anyone. Decline. |
+| Exactly one | The step is satisfied. |
+| Exactly two | Escalate to the two-candidate path (multi-factor authentication or supplementary disambiguation) rather than declining automatically. The protocol layer MAY escalate. |
+| Three or more | Re-evaluate against the stricter 1-in-a-million threshold. If that bar is still not met, decline. |
+
+Sources: III.B.1 and III.C.8.
+
+## 5. Twins, higher-order multiples, and generational names
+
+- **Twins and multiples.** Before applying any rule with a fuzzy-matched first name, check whether the resolved household has more than one candidate sharing the same date of birth. If so, ordinary fuzzy matching and corroboration do not apply. First name comparison must be exact; placeholder or identical first names fail closed (more than one candidate, no unique match); middle name is a last-resort tiebreaker only within the two-candidate escalation; and after the first resolution, anchor to a persistent identifier so later queries do not repeat the name-based tiebreak. See [Multiple Births](/docs/multiple-births).
+- **Generational suffix.** If a generational suffix can be identified on both the query and the candidate and they do not match, do not return the match. This negates a match made through any Table 2 combination (V.B item 5). See [Required Normalization, Names, and Demographic Fields](/docs/required-normalization-names-and-demographics).
+
+## 6. Restrictions and logging
+
+- Some combinations pass the collision threshold but are administratively restricted (III.C.6 and Table 4 in IV.D). See [Administrative Restrictions](/docs/administrative-restrictions).
+- Where relationship data exists, it SHOULD be used to flag same-household candidates before a phone- or email-based match is finalized (III.C.9).
+- Retain enough information to reconstruct each decision, including the Table 2 combination evaluated, whether the comparison was exact or fuzzy, and the uniqueness check result. See [Audit and Monitoring](/docs/audit-and-monitoring).
+
+## Worked examples
+
+These use fictional records. They illustrate the flow; they are not test cases.
+
+**Category 1.** A query carries first name Jordan, date of birth 1984-03-09, and a phone number. One record in the responder's system matches on all three after normalization. That is [Table 2](/docs/table-2-category-1-rules) rule 11 (First Name + DOB + Phone Number, P(collision) 2e-12, exact). The query resolves to exactly one candidate, so the responder returns the match.
+
+**Category 2 arithmetic.** The combined probability of a household-then-individual rule is the product of the two rows. For rows H-12 (Phone Number + ZIP Code, 3.0e-10) and I-01 (First Name + Date of Birth, 2.0e-6 exact), the product is 6.0e-16, which the specification lists in its section III.C.4 table. That is at most 2e-12, so the pairing qualifies if both steps each resolve to exactly one candidate.
+
+**Why date of birth matters.** Proposal v3.4.1, which is under review ([issue #7](https://github.com/imranq2/cms-hte-patient-matching-spec/issues/7)), describes two synthetic test-set records for a father and a son with the same first and last name, the same phone number, and the same ZIP code but dates of birth 45 years apart. A rule with no date of birth would match them. The proposal reports that the household-then-individual path (H-12 with I-01) rejects them on the date of birth check.
+
+## Where to go next
+
+- [Conformance Checklist](/docs/conformance-checklist) for the SHALL statements in one list.
+- [Reference Implementations](/docs/reference-implementations) and the [Spec-to-Code Map](/docs/spec-to-code-map) to see the flow in code.
+- [Test Set](/docs/test-set) to check your implementation.
