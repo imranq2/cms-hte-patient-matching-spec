@@ -1,8 +1,9 @@
 # Design: Populating the Patient Matching Docs Site
 
-Status: Draft for review
+Status: Draft for review. Open questions from the first review were resolved on 2026-10-10; see Decisions.
 Author: Imran Qureshi
 Date: 2026-10-10
+Docs repo: https://github.com/imranq2/cms-hte-patient-matching-spec (public)
 
 ## Goal
 
@@ -39,10 +40,10 @@ Give them direct access to the [test set](https://github.com/icanbwell/cms-hte-p
 1. **Single long document, mixed audiences.** Normative rules, statistical derivation, and governance are interleaved.
 2. **Inconsistent section lettering.** Headings run B.1, "Matching Criteria" (no letter), C.2–C.9, E, G, H.1–H.5, I; there is no A, D, or F heading. Cross-references such as "§IV.D" don't map to visible headings.
 3. **Still in comment period.** Content will change after publication.
-4. **Possible rule-count mismatch.** The spec's Executive Summary says 30 Category 1 and 8 Category 2 rules. The reference implementation README says 29 Category 1 and 10 Category 2 (39 total, though its diagram says 38). To be confirmed with the spec authors before we publish rule counts anywhere on the site.
-5. **Docs repo is private; the project is open source.** `icanbwell/cms-hte-patient-matching-spec` is private and has no LICENSE file, so readers cannot file issues or send PRs against the site, and the site content has no stated license. The spec's own license is also unstated.
+4. **Rule-count mismatch between spec and library.** The spec's Executive Summary says 30 Category 1 and 8 Category 2 rules (confirmed correct for v3.4.0). The reference implementation README says 29 Category 1 and 10 Category 2 (39 total, though its diagram says 38), so the library README needs correcting. Rule counts on the site always carry a spec version, because proposal v3.4.1 (under review) would reduce Category 1 to 29.
+5. **No license on the docs repo.** `imranq2/cms-hte-patient-matching-spec` is public with issues enabled, but has no LICENSE file, so the site content and the spec text have no stated license. The repo is under a personal account, not an `icanbwell` org repo (see Remaining open items).
 6. **Stale reference script.** The spec's "Reference Script to calculate P(collision)" section points to a personal Gist. The repo's `calculations/` project supersedes it. Fixing the spec link is for the spec authors; the site links to the repo.
-7. **Spec values vs. computed values.** The calculations README calls its output a check on "hand-picked conservative u-values". Not confirmed: whether the spec's published values (Per-Field Collision Probabilities, Table 2) come from this tool or are independently chosen. The Methodology pages must not claim otherwise until confirmed.
+7. **Spec values vs. computed values.** Confirmed: the spec's per-field conservative u-values and Table 2 P(collision) values were chosen independently, and the `calculations/` tool is a check against them (matching its README, which calls them "hand-picked conservative u-values"). The Methodology pages must say this and must not describe the spec values as computed by the tool.
 
 ## Information architecture
 
@@ -119,12 +120,12 @@ Changes
   Changelog
     Overview                           how versions are numbered (Major.Minor.Patch per Governance), how to read an entry
     v3.4.0                             one page per released spec version, newest first
-    v3.3.0, ...                        backfilled from prior versions if available
+    v3.3.x entries                     backfilled from proposals v3.3.1 to v3.3.6 (see Changelog and Proposals)
   Proposals
     Overview                           how proposals work (links to Governance and Versioning), lifecycle and statuses
-    Under Review                       index table: ID, title, summary, affected spec sections, comment deadline, link
-    Accepted                           index table: ID, title, summary, spec version it shipped in, effective date, link
-    <ID>-<slug>                        one page per proposal (see below)
+    Under Review                       index table: ID, title, summary, affected spec sections, link to GitHub issue
+    Accepted                           index table: ID, title, summary, link to GitHub issue, changelog entry
+    Rejected and Withdrawn             same table form; empty at launch
 
 Community
   Contributors                         people and organizations that have contributed to the spec and tooling
@@ -140,10 +141,10 @@ Approximate page count: 65 for the fixed pages, plus one page per released versi
 
 New content (not in the Google Doc) that sits above the faithful spec pages. Each page is short and links into the spec for detail rather than restating it.
 
-- **For Decision Makers:** what the spec requires (return matching records when a query matches a Table 2 combination and yields a unique candidate; failing to is non-compliant), who it applies to, why (the cost of mismatches and non-return), and what an organization needs to do. Wording must be reviewed by the spec authors.
+- **For Decision Makers:** what the spec requires (return matching records when a query matches a Table 2 combination and yields a unique candidate; failing to is non-compliant), who it applies to, why (the cost of mismatches and non-return), and what an organization needs to do. Drafted by Claude and reviewed by Imran before publication (no separate workgroup sign-off; the spec authors can still correct pages after publication).
 - **Adoption Timeline:** effective date (currently TBD in the Doc), the 90-day transition for substantive changes, and the phased adoption and safe harbor the spec describes.
 - **Implementation Guide:** a decision-flow diagram and step list, plus worked examples for a Category 1 match, a Category 2 household/individual two-step, and a twin case. Examples use test-set records.
-- **Conformance Checklist:** the SHALL requirements gathered in one checklist with links to the pages that define them, and the validation evidence the spec requires (observed precision, recall, and false-positive rate on the ONC dataset or a successor).
+- **Conformance Checklist (informational, non-normative; the spec text governs):** the SHALL requirements gathered in one checklist with links to the pages that define them, and the validation evidence the spec requires (observed precision, recall, and false-positive rate on the ONC dataset or a successor).
 - **FAQ:** seeded from comment-period questions as they arrive.
 - **Status:** current version, comment-period dates, known issues (such as the rule-count mismatch) until resolved.
 
@@ -153,28 +154,38 @@ The calculations are a separate project, not a reference implementation, so they
 
 - Report what the README and generated `outputs/u_probabilities.md` say, with the data download dates and checksum note, not a paraphrase that could drift.
 - State plainly which fields are point estimates and which are floors or proxies.
-- Do not state that spec values were computed by this tool until open question 18 is answered.
+- Say that the spec's values were chosen independently and checked against this tool. Do not describe them as computed by it.
 - Data Sources carries attribution for each public source and the redistribution caveat from the test-set README for the ONC dataset.
 
 ### Changelog and Proposals
 
 **Requirements:** show a changelog each time a new spec version is created, and list proposals currently under review and proposals previously accepted.
 
-**Lifecycle, grounded in the spec's Governance and Versioning section:** a proposal states the change, rationale, anticipated implementation impact, and a validation plan or evidence where applicable. Changes affecting Table 2, the threshold, approved fields, normalization, fuzzy constraints, or required testing get at least 30 days of public comment. Adopted changes ship with a version increment, an effective date, and (for substantive changes) a transition period of at least 90 days. Statuses on the site: **Under Review** → **Accepted** (shipped in vX.Y.Z). The Governance text does not define a rejected or withdrawn outcome; see Open questions.
+**Where proposals live.** Proposals are GitHub Issues in this repo, and that is where discussion and status are recorded. The 7 existing proposals (previously Google Docs in a Drive folder) were migrated on 2026-10-10 as issues #1 to #7 with the original Doc linked from each. New proposals are filed as GitHub Issues or PRs.
+
+| Issue | Proposal | State | Labels |
+|---|---|---|---|
+| #1 | v3.3.1 Household-Then-Individual Matching | Closed | `proposal`, `status: accepted` |
+| #2 | v3.3.2 Compliance, Testing & Audit Clarifications | Closed | `proposal`, `status: accepted` |
+| #3 | v3.3.3 Relationship-Based Matching for Minors and Newborns | Closed | `proposal`, `status: accepted` |
+| #4 | v3.3.4 Placeholder Value Exclusion in Patient Matching | Closed | `proposal`, `status: accepted` |
+| #5 | v3.3.5 Test Dataset & Accuracy Methodology | Closed | `proposal`, `status: accepted` |
+| #6 | v3.3.6 Institutional Address Identification Methodology | Open | `proposal`, `status: under-review` |
+| #7 | v3.4.1 Remove Rule 29 | Open | `proposal`, `status: under-review` |
+
+**Lifecycle, grounded in the spec's Governance and Versioning section.** A proposal states the change, rationale, anticipated implementation impact, and a validation plan or evidence where applicable. Changes affecting Table 2, the threshold, approved fields, normalization, fuzzy constraints, or required testing get at least 30 days of public comment. Adopted changes ship with a version increment, an effective date, and (for substantive changes) a transition period of at least 90 days. The workgroup decides proposals. Status is a label on the issue: `status: under-review`, `status: accepted`, `status: rejected`, `status: withdrawn` (all four created). The Governance text itself defines only adoption, so the Rejected and Withdrawn statuses are additions to be reflected in a Governance proposal if the workgroup wants them in the spec.
+
+**Site pages.** The Proposals section has an overview and index tables by status (Under Review, Accepted, Rejected and Withdrawn). Each row has the ID, title, one-line summary, affected spec sections, and a link to the issue. The site does not mirror full proposal text, so it cannot drift from the issue. A small script can generate the tables from `gh issue list --label proposal`; until there are more than ~10 proposals they are maintained by hand.
 
 **Changelog entries** (`docs/Changelog/v3-4-0.md` etc.), one page per version, newest first, each with:
 - Version, release date, effective date, semver class (Major / Minor / Patch) and a one-line reason
 - Change list grouped as Added / Changed / Removed, each item linking to the affected spec page and rule ID anchor (e.g. Table 2 rows added or removed)
-- Links to the Accepted proposals that produced the change
+- Links to the issues for the proposals that produced the change
 - Transition period end date for substantive changes
 
-**Proposal pages** (`docs/Proposals/<ID>-<slug>.md`) use a fixed template: status, submitted date, comment deadline, affected spec sections (links), description, rationale, implementation impact, validation plan/evidence, outcome (version shipped, effective date) once accepted. Frontmatter carries `status`, `comment_deadline`, `shipped_in` so the index tables can be built or checked from it.
+**Backfill.** The Changelog starts at v3.4.0 and backfills v3.3.1 to v3.3.6 from the proposals, since no other change notes were identified. Which of those versions were actually released needs confirming (see Remaining open items).
 
-**Index pages** (Under Review / Accepted) are hand-maintained Markdown tables at first. A small script that regenerates them from proposal frontmatter is optional and only worth adding once there are more than ~10 proposals. Moving a proposal Under Review → Accepted is a PR that edits its page and moves its table row.
-
-**Link between the two:** a proposal's `shipped_in` points to a changelog entry, and the changelog entry lists its proposals, so a reader can go in either direction.
-
-**Spec status banner:** the landing page and Spec Overview show the current released version and link to Under Review proposals, since the spec is in a comment period.
+**Spec status banner:** the landing page and Spec Summary show the current released version and link to the Under Review table, since the spec is in a comment period.
 
 ### Navigation aids
 
@@ -196,27 +207,27 @@ Pages under a **Community** nav entry (Contributors, Report an Issue, Contribute
 
 | What | Where it goes |
 |---|---|
-| Spec content: unclear, incorrect, or a change request | The spec's public comment process (Document Control and Comments page) during a comment period; afterwards, submit a proposal (see Contribute) |
+| Spec content: unclear, incorrect, or a comment on the draft | GitHub Issues on this docs repo (label `spec-comment`, to be created), during the comment period; a substantive change is filed as a proposal (see Contribute) |
 | Test set: wrong label, bad case, format problem | GitHub Issues on `cms-hte-patient-matching-test-set` |
 | Reference library: bug or rule-coverage gap | GitHub Issues on `cms-hte-patient-matching` |
-| Hosted UI | Contact route TBD (see Open questions) |
-| This site: typo, broken link, stale content | GitHub Issues on this docs repo (requires the repo to be public; see Open questions) |
+| Hosted UI | Contact route not decided (see Remaining open items) |
+| This site: typo, broken link, stale content | GitHub Issues on this docs repo |
 
-The page lists what to include in a report (spec version or library/test-set version, rule ID, minimal example using synthetic data only, expected vs. actual) and carries a prominent "never include real patient data" warning. Per-repo issue templates are optional follow-up work in those repos, not part of this plan.
+The page lists what to include in a report (spec version or library/test-set version, rule ID, minimal example using synthetic data only, expected vs. actual) and carries a prominent "never include real patient data" warning. b.well maintainers triage issues. Per-repo issue templates are optional follow-up work in those repos, not part of this plan. The spec's Document Control "Submit Comments To" field is empty today; it should point to this route (a spec-author edit).
 
 **Contribute.** One page with a section per contribution type, each linking to the authoritative instructions rather than restating them:
 
-- **Spec changes:** submit a proposal containing the elements the Governance section requires (description, rationale, implementation impact, validation plan or evidence). Describes the path Under Review → Accepted, the 30-day comment period, and the 90-day transition for substantive changes. Links to the Proposals pages and the proposal template.
+- **Spec changes:** file a proposal as a GitHub Issue (or PR) containing the elements the Governance section requires (description, rationale, implementation impact, validation plan or evidence). Describes the path Under Review → Accepted, the 30-day comment period, the 90-day transition for substantive changes, and that the workgroup decides. Links to the Proposals index and to an issue template (to be added to this repo) based on the migrated proposals' structure.
 - **Test data:** link to the test set's `CONTRIBUTING.md`. Summarize its key rules in a few lines (only synthetic records derived from a disclosed method, or cited aggregate statistics; no raw real records; fabricated values marked as synthetic).
 - **Code (library, test set):** link to each repo's `CONTRIBUTING.md` (dev setup, tests, pre-commit) and their license (Apache-2.0).
-- **Docs (this site):** how to edit and submit a change. Local edit, `npx @readme/cli lint`, PR into `v1.0`, with the note that merged changes publish. The ReadMe web editor path, if contributors are allowed to use it.
-- **Licensing:** contributions are accepted under the target repo's license; state that on the page.
+- **Docs (this site):** the repo is public, so outside contributors open PRs. Steps: local edit, `npx @readme/cli lint`, preview locally with `@readme/cli`, PR into `v1.0`. State that there are no hosted PR previews and that merged changes publish.
+- **Licensing:** contributions are accepted under the target repo's license (Apache-2.0 for the code repos and for this site and the spec text); state that on the page.
 
-**License and Open Source.** Lists the license of each repo (site, spec text, library, calculations, test set) and the data-source terms (Census, ACS, CMS, ONC). Requires adding a LICENSE file to the docs repo and a decision on the license for the spec text.
+**License and Open Source.** Lists the license of each repo (site, spec text, library, calculations, test set) and the data-source terms (Census, ACS, CMS, ONC). The site content and the spec text are Apache-2.0; this requires adding a LICENSE file to the docs repo.
 
 **How to Cite.** Gives the citation form for a spec version, including version number and release date.
 
-**Contributors.** A page listing contributors, grouped as Spec authors and workgroup, Test set and library contributors, and Organizations. Built from a curated list, not a raw `git log` dump, because:
+**Contributors.** A page listing contributors, from the list Imran provided, grouped as Spec authors and workgroup, Test set and library contributors, and Organizations. Built from a curated list, not a raw `git log` dump, because:
 - the repos' contributor lists include bots (`claude[bot]`, `bwell-dev`) and GitHub handles rather than names;
 - listing a person by name publicly should be their choice.
 
@@ -234,16 +245,18 @@ The page lists what to include in a report (spec version or library/test-set ver
 | Harry Freedman | Epic | |
 | Luke Breyer | Epic | |
 
-Each entry: name or handle, organization, role, optional link. Source is a `contributors` data block in the page, edited by PR. Seed it from the spec's workgroup/author information and the GitHub contributor lists, then confirm names with each person before publishing.
+Each entry: name or handle, organization, role, optional link. Source is a `contributors` data block in the page, edited by PR. Nothing is published until Imran has confirmed each entry. Proposal text in issues #6 and #7 and the migrated proposals also name individual commenters; those names are public in the issues.
 
 ## Hosted testing UI
 
 b.well also runs a service with a UI for testing patient matching: https://patient-matching-service.bwell.com. The site gets a **Try It** page group for it.
 
-- **Placement:** pages under Implement and Test → Try It, and a card on the landing page ("Try matching in your browser"), plus links from Matching Rules (try a rule combination), Reference Implementations (the hosted service wraps the library), and the Test Set (run cases through the UI).
-- **Content:** a page describing what the UI does and its limits, and a walkthrough with a sample query and how the result maps to a Table 2 rule ID. The walkthrough needs screenshots, which go in the repo and must use synthetic data only.
-- **Scope boundary:** the site links to the UI; it does not document an HTTP API unless the service exposes one for ecosystem participants (see Open questions on the API Reference).
-- **Not verified:** I could not reach the URL from this environment (no response), so access requirements and behavior are unconfirmed.
+- **Access (confirmed by Imran):** public, no login. The UI accepts synthetic data only.
+- **Placement:** pages under Implement and Test → Try It, and a card on the landing page ("Try matching in your browser"), plus links from Matching Rules (try a rule combination), Reference Implementations (the hosted service wraps the library), and the Test Set (run cases through the UI). Ships in PR 7.
+- **Content:** a page describing what the UI does and its limits, with a prominent "synthetic data only" warning, and a walkthrough with a sample query and how the result maps to a Table 2 rule ID. Screenshots go in the repo and use test-set records.
+- **Scope boundary:** the site links to the UI. It does not publish an API Reference. The Service page links to the `cms-hte-patient-matching-service` repo and to the running service's own `/docs`.
+- **Unresolved conflict (launch blocker for linking to the UI):** the service README says the testing UI (`ENABLE_TESTING_UI`) "has no auth of its own" and must never be enabled in a production or externally reachable deployment. A public, no-login UI contradicts this. Resolve before the site links to it: confirm what is deployed at that URL, or update the README if the exposure is intended.
+- **Not verified:** I could not reach the URL from this environment (no response), so behavior is unconfirmed.
 
 ## Test set, reference implementation, and calculations access
 
@@ -253,7 +266,7 @@ Site pages summarize and link; they do not copy repo content.
 - **What the site adds:** orientation (what/why/when), the spec-to-test mapping, and a stable entry URL. Each page opens with a "Source of truth: `<repo path>`" link.
 - **Cross-links from the spec:** the Validation Requirements page links to the test set; the Matching Rules and Normalization pages link to the library's rule/normalizer modules.
 - **Calculations follow the same rule.** Methodology pages link to `calculations/docs/` and the generated `outputs/u_probabilities.md` as the source of truth. Numbers shown on the site (e.g. the empirical-vs-conservative comparison) are quoted with the calculations commit they came from.
-- **Spec-to-Code Map** is the one page that is new content. It is built from the library's rule definitions and must be regenerated or re-verified when the library changes (see Maintenance).
+- **Spec-to-Code Map** is the one page that is new content. It is built from the library's rule definitions and is maintained by the library maintainers, as part of the library's release process; the site page is refreshed from it (see Maintenance).
 
 ## Conversion approach
 
@@ -265,7 +278,7 @@ Site pages summarize and link; they do not copy repo content.
    - Row/column counts of all 11 tables match (31×4, 31×3, 22×4, 15×3, 11×3, 8×3, 7×4, 6×2, 5×3, 4×4, 3×4).
    - Every numeric cell in Table 2 / 2-H / 2-I / Model tables is compared programmatically.
    - Check the Doc for inline images/drawings (none seen in the text extract; confirm) and for the embedded Gist link in the Executive Summary.
-5. `npx @readme/cli lint` plus a link check on the final tree.
+5. `npx @readme/cli lint` plus a link check on the final tree, and a local rendered preview with `@readme/cli`, because ReadMe does not sync non-`v1.0` branches to previews.
 
 ## Delivery plan
 
@@ -273,7 +286,7 @@ Because `v1.0` publishes on push, work goes through PRs into `v1.0`. Each PR is 
 
 | PR | Scope | Defers |
 |---|---|---|
-| 0. Repo readiness | LICENSE file, decision on repo visibility, branch/preview check (open questions 4, 15, 17, 19) | All content |
+| 0. Repo readiness | Apache-2.0 LICENSE file, `spec-comment` label, proposal issue template, local-preview instructions, resolve ReadMe version naming | All content |
 | 1. Skeleton | `_order.yaml` files for the six sections, titled hidden pages, remove template callouts, rule-ID anchor test | All content |
 | 2. Spec: framing | Summary and Purpose, Core Principles, Risk Framework | Rules, model |
 | 3. Spec: Matching Rules | Table 2, 2-H, 2-I, Category 2, Table 4, twins, how-to-apply, IAL2 tokens, Find a Rule index | Probability model |
@@ -281,39 +294,56 @@ Because `v1.0` publishes on push, work goes through PRs into `v1.0`. Each PR is 
 | 5. Spec: remainder | Normalization, Validation, Audit, Governance, References, Document Control | Methodology and tools |
 | 6. Methodology | 7 pages sourced from `calculations/` and the test-set methodology | Spec-to-Code Map |
 | 7. Implement and Test | Reference Implementations (incl. Spec-to-Code Map), Test Set, Try It, Table 2 downloads, Compatibility Matrix | Implementation Guide, Conformance Checklist |
-| 8. Audience layer | For Decision Makers, Adoption Timeline, Implementation Guide, Conformance Checklist, FAQ, Status, Glossary | Spec-author review is a gate before merge |
-| 9. Changes | Changelog and Proposals overview pages, proposal template, v3.4.0 entry, existing proposals | Pre-3.4.0 backfill unless source material exists |
-| 10. Community | Contributors, Report an Issue, Contribute, License and Open Source, How to Cite | Contributor names not yet confirmed |
+| 8. Audience layer | For Decision Makers, Adoption Timeline, Implementation Guide, Conformance Checklist (informational), FAQ, Status, Glossary | Imran reviews before merge |
+| 9. Changes | Changelog overview and v3.4.0 entry, v3.3.1 to v3.3.6 backfill from proposals, Proposals overview and index tables from issues #1 to #7 | Anything before v3.3.1 |
+| 10. Community | Contributors, Report an Issue, Contribute, License and Open Source, How to Cite | Contributor entries Imran has not confirmed |
 | 11. Launch | Landing page with audience cards, flip `hidden`, cross-link pass, lint and link check | — |
 
 ## Maintenance
 
 - **Spec changes during comment period.** Record the Doc `revisionId` used for each conversion in the PR description. Re-run the extract and diff script to produce a change list instead of re-reading the Doc.
-- **Source of truth.** Until the spec is finalized, the Google Doc is canonical and the site follows it. Decision needed on whether the repo becomes canonical afterward (see Open questions).
+- **Source of truth.** Until the spec is finalized, the Google Doc is canonical and the site follows it. Once the comment period closes and the spec is final, the Markdown in this repo becomes canonical and the Google Doc is archived or read-only. After that, spec changes are PRs.
+- **ReadMe versions.** Each spec version gets its own ReadMe version (branch), so older spec text stays browsable; the Changelog links across them.
 - **Methodology pages** record the `calculations/` commit they were written against and are re-checked when `outputs/u_probabilities.md` changes.
 - **Compatibility Matrix** is updated at every spec release and every library, test-set, or service release.
 - **Spec-to-Code Map** is re-verified whenever the library's rule set changes; add a note on the page naming the library version it was built against.
 
-## Open questions
+## Decisions
 
-1. **Source of truth after finalization:** does the Markdown in this repo replace the Google Doc, or does the Doc stay canonical and the site stay derived? Recommendation: the repo becomes canonical once the comment period closes.
-2. **Rule-count mismatch** (30+8 in the spec vs 29+10 in the library README): which is correct, and is it a spec edit, a library edit, or a version skew?
-3. **ReadMe versioning:** should spec v3.4.0 be pinned to ReadMe version `v1.0`, or will future spec versions get their own ReadMe versions/branches? This affects slug design (e.g. whether the spec version appears in URLs).
-4. **Other branches:** does ReadMe sync non-`v1.0` branches to preview versions? If not, PR review is by Markdown only and there is no rendered preview before publish. Check the sync configuration in the ReadMe dashboard.
-5. **API Reference:** `reference/` has only the config stubs. If `cms-hte-patient-matching-service` exposes an API intended for ecosystem participants, should its OpenAPI spec be published here? Out of scope for this plan.
-6. **Comment submission:** the Doc's "Submit Comments To" section looks empty in the extract. Needs content before the Document Control page is published.
-7. **Spec-to-Code Map ownership:** who maintains it as the library evolves?
-8. **Proposal source and statuses:** where do proposals originate today (Google Docs, GitHub issues, email)? Do we need Rejected / Withdrawn / Superseded statuses, or only Under Review and Accepted?
-9. **Existing proposals and history:** is there a current list of proposals under review and accepted proposals to import, and do prior spec versions (before v3.4.0, e.g. v3.3.0 mentioned in the spec) have change notes to backfill?
-10. **Changelog granularity:** per-version pages (proposed) vs. a single running page. Per-version pages scale better and give each release a stable URL.
-11. **Hosted UI access and audience:** is `patient-matching-service.bwell.com` public, login-gated, or internal? Which spec version and library version does it run? If it is not open to site readers, the Try It pages need an access-request path instead of a plain link.
-12. **Hosted UI data handling:** does it accept real patient data? If it can, the page needs an explicit "use synthetic data only" warning, and the walkthrough and screenshots must use test-set records.
-13. **Delivery slot for Try It:** proposed as part of PR 7 (Reference Implementations) since the service wraps the library; say if it should ship separately.
-14. **Who are the contributors, and do they consent to being listed?** Who are the spec authors and workgroup members and organizations to credit, and in what form (name, handle, organization)?
-15. **Where do issue reports go for the spec and the hosted UI?** The docs repo `icanbwell/cms-hte-patient-matching-spec` is private, so readers cannot file issues there. Since the project is open source, recommendation: make it public. Alternatives: a public repo or intake form, or an email alias.
-16. **Who triages reports and who approves proposals?** The Report an Issue and Contribute pages need a named owner or alias and an expected response, or readers get no answer.
-17. **Can external contributors edit the docs?** Yes if the repo becomes public (question 15). Otherwise the Contribute page's docs section becomes "suggest an edit" via the issue route.
-18. **Origin of the spec's probability values:** are the spec's per-field conservative u-values and Table 2 P(collision) values derived from the `calculations/` tool, chosen independently and checked against it, or something else? This decides how Methodology describes the relationship.
-19. **Licenses:** which license covers the site content and the spec text (the code repos are Apache-2.0)? The docs repo has no LICENSE file.
-20. **Audience-layer authorship and review:** who writes For Decision Makers, the Implementation Guide, and the Conformance Checklist, and do the spec authors review them before publication? These pages interpret the spec and carry more risk of misstatement than the converted pages.
-21. **Conformance Checklist scope:** is it informational, or does the workgroup consider it an official companion to the spec? This changes its wording and who approves it.
+Resolved with Imran on 2026-10-10.
+
+| # | Topic | Decision |
+|---|---|---|
+| 1 | Source of truth after finalization | This repo; Google Doc archived or read-only |
+| 2 | Spec vs. library rule counts | Spec is correct (30 Category 1 + 8 Category 2 in v3.4.0); library README needs correcting |
+| 3 | ReadMe versioning | One ReadMe version per spec version |
+| 4 | Branch previews | None exist; use local preview and Markdown review; merging publishes |
+| 5 | API Reference for the service | Link only; no OpenAPI under `reference/` |
+| 6 | Comment route | GitHub Issues on this repo |
+| 7 | Spec-to-Code Map owner | Library maintainers |
+| 8 | Proposal source and statuses | GitHub Issues/PRs going forward; four statuses (Under Review, Accepted, Rejected, Withdrawn) |
+| 9 | Existing proposals and history | 7 proposals migrated to issues #1 to #7; Changelog backfilled from them |
+| 10 | Changelog granularity | One page per version |
+| 11 | Hosted UI access | Public, no login (conflicts with service README; see Hosted testing UI) |
+| 12 | Hosted UI data | Synthetic data only |
+| 13 | Try It delivery | PR 7 |
+| 14 | Contributors | Imran provided the list; confirmations pending |
+| 15 | Docs repo visibility | Public (it already is: `imranq2/cms-hte-patient-matching-spec`) |
+| 16 | Triage | Workgroup decides proposals; b.well maintainers triage issues |
+| 17 | External docs edits | Yes, via PRs to the public repo |
+| 18 | Origin of spec probability values | Chosen independently; `calculations/` is a check |
+| 19 | Content license | Apache-2.0 |
+| 20 | Audience pages | Claude drafts, Imran reviews; no workgroup sign-off |
+| 21 | Conformance Checklist | Informational (non-normative) |
+
+## Remaining open items
+
+1. **Hosted UI exposure vs. README warning.** Confirm what is deployed at `patient-matching-service.bwell.com` and reconcile with the service README before the site links to it.
+2. **Docs repo home.** It is under the personal account `imranq2`, not an `icanbwell` org repo. Moving it later changes URLs; issues transfer with the repo. Decide whether to transfer before launch. Note that `icanbwell/cms-hte-patient-matching-spec` redirects to an unrelated private repo, so links using that name are wrong.
+3. **ReadMe version naming.** The current branch and ReadMe version are `v1.0`. Decide how spec version 3.4.0 maps to it and what future branches are called (for example `v3.5`), including slug conventions.
+4. **Changelog backfill.** The proposal IDs are version-numbered (v3.3.1 to v3.3.6, v3.4.1), but v3.3.6 is still under review while v3.4.0 is released. Confirm which versions were actually released, and what proposal v3.3.6's issue number means for the version sequence.
+5. **Proposal text on the site.** The plan links to issues and does not mirror proposal text. Confirm that is acceptable, or add per-proposal site pages.
+6. **Library README correction.** Someone needs to correct the rule counts in `cms-hte-patient-matching`'s README (29+10, diagram 38).
+7. **Named individuals.** Issues #6 and #7 and the migrated proposals name commenters (Cody Ebberson, David Pyke, Alex Dzeda, and "We Malone", likely a typo). They are now public; confirm those people are comfortable. Four contributor-table entries also still need confirmation (see Contributors).
+8. **Hosted UI contact route** for the Report an Issue page.
+9. **Spec's "Submit Comments To" field** is empty and should point to GitHub Issues (spec-author edit).
