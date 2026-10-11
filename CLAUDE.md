@@ -22,13 +22,26 @@ Uses `@readme/cli` via `npx` (no local install):
 
 ## Structure
 
-- `docs/` — guides. Each subdirectory is a category (e.g. `docs/Getting Started/`) containing pages.
-- `reference/` — API reference section. `reference/ReadMeConfig/` holds the stub pages (`getting-started`, `authentication`, `my-requests`) that configure ReadMe's API Explorer via the `api_config` frontmatter key; they are `hidden: true`.
-- No OpenAPI spec has been added yet; endpoint pages will need one under `reference/`.
+- `docs/` — guides, in six categories (each a subdirectory): `Getting Started` (landing page and audience pages), `Specification` (spec v3.4.0), `Methodology` (probability calculations, test-set methodology), `Implement and Test`, `Changes` (changelog and proposals), `Community`. Pages with children are a folder with an `index.md` plus an `_order.yaml` (the folder name is the slug).
+- `reference/` — API reference section. `reference/ReadMeConfig/` holds the stub pages that configure ReadMe's API Explorer via `api_config`; they are `hidden: true`. No OpenAPI spec is published; the service page links to the service repo instead.
+- `tools/` — scripts that generate or check content (not published). `assets/` — images and data files linked from pages by `raw.githubusercontent.com` URLs on the `v1.0` branch. `design/` — the site design document (not published).
+- Proposals are GitHub Issues in this repo (labels `proposal` and `status: under-review|accepted|rejected|withdrawn`); the site's Proposals pages index them.
+
+## Specification pages are generated
+
+`docs/Specification/**` is produced from the source Google Doc (document id `1NytpfZ05aokS-gD7uDIQE7gEyms9zMgoiaIah_w4VTE`). **Do not hand-edit these pages**; re-run the converter so the text stays identical to the Doc.
+
+- Inputs: the Doc's Markdown export (`https://docs.google.com/document/d/<id>/export?format=md`) and its Google Docs API JSON (`documents.get`).
+- `python3 tools/convert_spec.py --markdown spec.md --json spec.json --out docs/Specification` writes the pages and prints a word-by-word comparison against the Doc. Expected differences are list numbers, headings moved into page titles, and the cover lines. Anything else is a bug.
+- `python3 tools/build_conformance_checklist.py` rebuilds `docs/Implement and Test/conformance-checklist.md`. Every item is a verbatim quotation and the script fails if the spec no longer contains it.
+- `python3 tools/export_tables.py --json spec.json --out assets/data` regenerates the CSV/JSON downloads.
+- Re-run all three for every new spec version, and update the Changelog, Compatibility Matrix, and Spec-to-Code Map.
+- Do not copy facts about the other repos (library, service, test set, calculations) from memory. Read their READMEs and source; the site pages link to them as the source of truth.
 
 ## Conventions specific to ReadMe
 
-- Navigation order is controlled by `_order.yaml` files, not filenames. Each directory has one listing page slugs (without `.md`) in display order; the top-level `docs/_order.yaml` and `reference/_order.yaml` list category directory names. When adding, renaming, or removing a page or category, update the matching `_order.yaml`.
-- Pages begin with YAML frontmatter (`title`, `hidden`, optionally `excerpt`, `icon`, `api_config`).
-- Pages use ReadMe MDX components (`<Callout>`, `<Cards>`/`<Card>`), not plain Markdown equivalents.
-- `docs/Getting Started/getting-started.md` is still the unedited ReadMe template (contains a "Template: Delete this callout" notice and placeholder `href="#"` links).
+- Navigation order is controlled by `_order.yaml` files, not filenames. Each directory has one listing page slugs (without `.md`) in display order; `docs/_order.yaml` and `reference/_order.yaml` list category directory names. A folder's `_order.yaml` must not list `index`. When adding, renaming, or removing a page or category, update the matching `_order.yaml`.
+- Slugs are the file names (or folder names for pages with children) and must be unique across `docs/`. Internal links are `/docs/<slug>`.
+- Pages begin with YAML frontmatter (`title`, `hidden`, optionally `excerpt`, `icon`, `api_config`). All new pages are `hidden: true` until launch; launching means flipping `hidden` to `false`.
+- Pages are MDX. Escape `<`, `>`, `{` and `}` in prose and tables, write `<br />` (not `<br>`), and use `[text](url)` links, not `<https://...>` autolinks. Use `<Callout>` and `<Cards>`/`<Card>` where the template does.
+- `@readme/cli` could not be installed in one environment (npm 403 on a dependency). To check MDX syntax without it, compile each page with `@mdx-js/mdx` and `remark-gfm`.
