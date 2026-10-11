@@ -1,0 +1,54 @@
+---
+title: "Table 2: Category 1 Rules"
+excerpt: "Specification v3.4.0, section III.C"
+hidden: false
+---
+
+*Specification v3.4.0, section III.C*
+
+The approved combinations provided in Table 2 are the baseline matching rules eligible for implementation . Additional detail on model construction and threshold selection are provided in a later section.
+
+As of v3.4.0, Table 2 is divided into **Category 1 (Direct Match Rules)** — 30 rules evaluated in a single step, exactly as in v3.3.0 — and **Category 2 (Household \+ Individual Rules)** — 8 rules evaluated in two steps.
+
+*Table 2 Approved matching combinations and conservative collision estimates. Fields with a \* may be fuzzy.*
+
+| ID | Approved field combination | P(collision), exact | P(collision), fuzzy |
+| --- | --- | --- | --- |
+| 01 | First Name\* + Last Name\* + DOB\* + Street Line\* | 3e-13 | 9e-13 |
+| 02 | First Name + Last Name\* + DOB\* + Phone Number | 1e-14 | 2e-14 |
+| 03 | First Name\* + Last Name\* + DOB\* + Email Address | 1e-14 | 3e-14 |
+| 04 | First Name\* + Last Name + DOB + SSN Last 4 | 1e-12 | 2e-12 |
+| 05 | First Name + Last Name\* + DOB + SSN Last 4 | 1e-12 | 2e-12 |
+| 06 | First Name\* + Last Name + DOB + ITIN Last 4 | 1e-12 | 2e-12 |
+| 07 | First Name + Last Name\* + DOB + ITIN Last 4 | 1e-12 | 2e-12 |
+| 08 | First Name + DOB + MBI | 2e-12 |  |
+| 09 | First Name + DOB + Legal ID | 2e-12 |  |
+| 10 | Last Name\* + DOB\* + Legal ID | 5e-13 | 1e-12 |
+| 11 | First Name + DOB + Phone Number | 2e-12 |  |
+| 12 | First Name + DOB + Email Address | 2e-12 |  |
+| 13 | First Name + Phone Number + SSN Last 4 | 2e-12 |  |
+| 14 | First Name + Phone Number + ITIN Last 4 | 2e-12 |  |
+| 15 | First Name + Email Address + SSN Last 4 | 2e-12 |  |
+| 16 | First Name + Email Address + ITIN Last 4 | 2e-12 |  |
+| 17 | Phone Number + MBI | 1e-12 |  |
+| 18 | Phone Number + Legal ID (w/issuing-authority namespace) | 1e-12 |  |
+| 19 | Email Address + MBI | 1e-12 |  |
+| 20 | Email Address + Legal ID (w/issuing-authority namespace) | 1e-12 |  |
+| 21 | Legal ID + MBI | 1e-12 |  |
+| 22 | Namespace bound unique identifiers (e.g. EMPI, FHIR Patient Identifier, CSP UUID, etc) | ≈0 |  |
+| 23 | First Name + DOB + Member ID (w/ Payer namespace) | 2e-12 |  |
+| 24 | Last Name\* + DOB\* + Member ID (w/ Payer namespace) | 5e-13 | 1e-12 |
+| 25 | Phone Number + Member ID (w/ Payer namespace) | 1e-12 |  |
+| 26 | Email Address + Member ID (w/ Payer namespace) | 1e-12 |  |
+| 27 | First Name\* + Last Name + DOB + Subscriber ID (w/ Payer namespace) | 1e-12 | 2e-12 |
+| 28 | First Name + Last Name\* + DOB + Subscriber ID (w/ Payer namespace) | 1e-12 | 2e-12 |
+| 29 | First Name\* + Last Name\* + Phone Number + ZIP | 3e-14 | 9e-14 |
+| 30 | Last Name\* + DOB + Phone Number | 5e-13 | 1e-12 |
+
+Except where this framework expressly provides a deterministic contraindication, disagreement in additional data elements present in the query or source record, but not included in the qualifying Table 2 combination, does not by itself negate the match. In such cases, the more likely implication is that one or more non-qualifying data elements are inaccurate, stale, or incomplete, not that the otherwise qualifying match is incorrect. Organizations MAY flag such queries for review, audit, or data-quality follow-up. This framework further mitigates risk of an incorrect match by requiring that a match is satisfied only when it produces a unique candidate subject at the source system.
+
+Notes: First name is the twin and multiple-birth guardrail for rules that rely on household-shared demographic evidence. Where a fuzzy value is shown with "\*". Email, SSN last 4, ITIN last 4, MBI, Legal ID, ZIP, and namespace bound unique identifiers must match exactly. MBI means CMS-issued MBI only; generic insurance subscriber or member identifiers are not interchangeable with MBI under Table 2\.  
+
+When Date of Birth is shown with “\*” that means we allow a ±1-day tolerance.
+
+Notes: Member ID means the full individual-level identifier inclusive of any dependent suffix; the bare subscriber base value without a dependent suffix SHALL NOT be used under Member ID rules. Subscriber ID means the policyholder-level base value; some rules require at least one individually discriminating demographic field (first name, last name, or date of birth) to mitigate recyclability risk. For all rules in this group, the Payer ID establishes the namespace and matching SHALL be performed only within that namespace. Email, phone, date of birth, subscriber ID, and member ID must match exactly after normalization. Fuzzy matching is limited to name fields as defined in Table 3 and §V.E.

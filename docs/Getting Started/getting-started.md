@@ -1,48 +1,50 @@
 ---
 title: Welcome to Patient Matching
+excerpt: The CMS HealthTech Ecosystem Patient Matching Specification, with the tools to implement and test it.
 hidden: false
 ---
 <Callout icon="📘" theme="info">
-  **Template:**  Delete this callout and edit this page with your content and links.
+  **Status:** specification v3.4.0, Final Consolidated Draft. Its effective date has not been set, and the end of its comment period is a placeholder in the specification. Two proposals are [under review](/docs/proposals-under-review). See [Status](/docs/status).
 </Callout>
 
+The specification defines when a responding entity SHALL return matching patient records. If the identity attributes in a query correspond to a combination listed in Table 2, and the query produces a unique candidate, the responding entity returns the records for that patient within the permitted scope for that query, subject to the administrative controls in section IV.D and Table 4. Table 2 lists combinations whose conservative probability of collision is 2e-12 (1 in 500 billion) or lower and that satisfy additional administrative controls. Two relationship-based rows carry caveats that the specification itself flags as unresolved.
+
+This site hosts the specification, explains how its numbers are derived, and gives you the software and test data to check your implementation. The code, data, and documentation behind it are public.
+
+## Start with your role
+
 <Cards>
-  {/* Edit the props below to customize these components */}
-  <Card title="Quick Start" href="#" icon="fa-duotone fa-rocket-launch">Learn how to get started with our product</Card>
+  <Card title="Decision makers" href="/docs/for-decision-makers" icon="fa-duotone fa-briefcase">What the specification requires of an organization, and why</Card>
 
-  <Card title="API Reference" href="#" icon="fa-duotone fa-code-simple">Explore endpoints and build your integration</Card>
+  <Card title="Engineers" href="/docs/implementation-guide" icon="fa-duotone fa-code">How to evaluate a query, and how to show your implementation conforms</Card>
 
-  <Card title="Build with AI" href="#" icon="fa-duotone fa-sparkles">Use LLM features to automate your workflow</Card>
+  <Card title="Data scientists" href="/docs/how-the-numbers-are-derived" icon="fa-duotone fa-chart-line">How the collision probabilities were calculated, from what data</Card>
+
+  <Card title="Reviewers and commenters" href="/docs/summary-and-purpose" icon="fa-duotone fa-comments">Read the specification, review proposals, and send comments</Card>
 </Cards>
 
 <br />
 
-## Recent Releases
+## What's here
 
 <Cards>
-  <Card isNew kind="tile" title="v2.0 Migration" href="#" icon="fa-duotone fa-magnifying-glass">Everything you need to upgrade</Card>
+  <Card kind="tile" title="Specification" href="/docs/summary-and-purpose" icon="fa-duotone fa-book">The full text of v3.4.0, one topic per page</Card>
 
-  <Card kind="tile" title="Webhooks" href="#" icon="fa-duotone fa-bullhorn">Real-time events are now available</Card>
+  <Card kind="tile" title="Test set" href="/docs/test-set" icon="fa-duotone fa-vial">Labeled cases for validating an algorithm</Card>
 
-  <Card kind="tile" title="Android SDK" href="#" icon="fa-duotone fa-robot">Our native Android library is out of beta</Card>
+  <Card kind="tile" title="Reference implementations" href="/docs/reference-implementations" icon="fa-duotone fa-terminal">A Python library and a matching service</Card>
+
+  <Card kind="tile" title="Try it" href="/docs/try-it" icon="fa-duotone fa-flask">A hosted page for trying the matching service with synthetic data</Card>
+
+  <Card kind="tile" title="Changelog" href="/docs/changelog" icon="fa-duotone fa-clock-rotate-left">What changed in each version</Card>
+
+  <Card kind="tile" title="Proposals" href="/docs/proposals" icon="fa-duotone fa-file-pen">Proposals under review and accepted</Card>
 </Cards>
 
 <br />
 
-## The Basics
+## Get involved
 
-<Cards>
-  <Card kind="tile" title="Customize" href="#" icon="fa-duotone fa-brush">Style the widget to match your brand</Card>
-
-  <Card kind="tile" title="Integrations" href="#" icon="fa-duotone fa-arrow-down-left-and-arrow-up-right-to-center">Connect with third-party services</Card>
-
-  <Card kind="tile" title="CLI" href="#" icon="fa-duotone fa-terminal">Manage resources from your terminal</Card>
-
-  <Card kind="tile" title="Security" href="" icon="fa-duotone fa-shield-dog">Learn how we secure your data</Card>
-
-  <Card kind="tile" title="Common Issues" href="" icon="fa-duotone fa-file-circle-info">Troubleshoot common issues</Card>
-
-  <Card kind="tile" title="Sync" href="#" icon="fa-duotone fa-code-compare">Connect to a storage provider</Card>
-</Cards>
-
-<br />
+- [Report an issue](/docs/report-an-issue) or comment on the draft.
+- [Contribute](/docs/contribute) a proposal, test data, code, or documentation.
+- See who has [contributed](/docs/contributors).

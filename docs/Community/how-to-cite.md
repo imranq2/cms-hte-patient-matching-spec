@@ -1,0 +1,24 @@
+---
+title: "How to Cite"
+excerpt: "How to cite a version of the specification."
+hidden: false
+---
+
+Cite the specification by its title, version, and release date, and link to the page you are citing.
+
+## Specification
+
+> CMS Patient Matching Specification, Version 3.4.0, Final Consolidated Draft. Released 9/10/2026.
+
+Add the section you are citing, using the specification's own section numbers (for example, "section III.C, Table 2"). Each specification page on this site shows its section at the top.
+
+## Software and data
+
+Cite the version you used, since these projects change between releases:
+
+- **Library:** `cms-hte-patient-matching`, with the release number from PyPI.
+- **Test set:** `cms-hte-patient-matching-test-set`, with the release tag.
+
+Record the specification version, library version, and test set release together with your results. See the [Compatibility Matrix](/docs/compatibility-matrix).
+
+The specification is a draft that is still open for comment. Its effective date has not been set.

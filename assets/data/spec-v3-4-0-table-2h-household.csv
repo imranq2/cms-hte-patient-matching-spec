@@ -1,0 +1,15 @@
+ID,Household field combination,P(household collision)
+H-01,SSN Last 4 + Phone Number,1.0e-10
+H-02,SSN Last 4 + Email Address,1.0e-10
+H-03,SSN Last 4 + Street Line,3.0e-9
+H-04,ITIN Last 4 + Phone Number,1.0e-10
+H-05,ITIN Last 4 + Email Address,1.0e-10
+H-06,ITIN Last 4 + Street Line,3.0e-9
+H-07,Subscriber ID (w/ Payer namespace) + Phone Number,1.0e-10
+H-08,Subscriber ID (w/ Payer namespace) + Email Address,1.0e-10
+H-09,Subscriber ID (w/ Payer namespace) + Street Line,3.0e-9
+H-10,Phone Number + Email Address,1.0e-12
+H-11,SSN Last 4 + Subscriber ID (w/ Payer namespace),1.0e-8
+H-12,Phone Number + ZIP Code,3.0e-10
+H-13,Email Address + ZIP Code,3.0e-10
+H-14,Phone Number + Street Line,3.0e-11

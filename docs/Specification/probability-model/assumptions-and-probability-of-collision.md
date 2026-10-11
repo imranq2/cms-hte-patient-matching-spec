@@ -1,0 +1,22 @@
+---
+title: "Assumptions and Probability of Collision"
+excerpt: "Specification v3.4.0, section IV.A and IV.B"
+hidden: false
+---
+
+*Specification v3.4.0, section IV.A and IV.B*
+
+## A. Assumptions and intended use
+
+Exact national collision probabilities cannot be known with precision for every field and every field combination. The values below are intended as order-of-magnitude estimates for threshold setting, relative comparison, and risk ranking. Unless direct empirical estimates are available for the deployment population, the model uses reasonable assumptions based on distinct-value counts, expected skew, missingness, and operational experience.
+
+Joint probabilities are treated as first-order approximations. They do not assume complete independence across demographic variables. All values should be understood as provisional and subject to recalibration as better population-specific data become available.
+
+## B. Probability of Collision
+
+The primary metric used to evaluate match strength is the Probability of Collision, P(collision), defined as approximate probability that two distinct individuals in the relevant population share the same observed values for a specified set of demographics or identifying attributes.
+
+P(collision) is best understood as a measure of ambiguity in the identifier set itself, not as a direct measure of total matching performance. It provides a practical lower-bound proxy for how often a combination of fields may fail to distinguish two different people. If two distinct people are indistinguishable across all fields in a given combination, then the available data alone cannot reliably separate them.
+
+This model is consistent with the Fellegi-Sunter probabilistic record linkage literature, in which u-probability for a field represents the probability of coincidental agreement among records that do not belong to the same person. For the purposes of this framework, u-probabilities are treated as estimated  
+values that support threshold design and comparative scoring. They are not presented as exact national constants.

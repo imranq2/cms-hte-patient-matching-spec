@@ -1,0 +1,32 @@
+---
+title: "Table 2 Downloads"
+excerpt: "The specification's matching tables as CSV and JSON."
+hidden: false
+---
+
+The specification's tables as machine-readable files, so you do not need to retype rules. They are generated from the specification document by script, not typed by hand, and cell text is exactly what the document contains.
+
+<Callout icon="📘" theme="info">
+  **The specification text governs.** These files are a convenience copy of specification v3.4.0. They are regenerated for each version. If a file and the specification differ, the specification is correct.
+</Callout>
+
+| Table | Rows | CSV | JSON |
+|---|---|---|---|
+| [Table 2: Category 1 rules](/docs/table-2-category-1-rules) | 30 | [CSV](https://raw.githubusercontent.com/imranq2/cms-hte-patient-matching-spec/main/assets/data/spec-v3-4-0-table-2-category-1.csv) | [JSON](https://raw.githubusercontent.com/imranq2/cms-hte-patient-matching-spec/main/assets/data/spec-v3-4-0-table-2-category-1.json) |
+| [Table 2-H: Household tier](/docs/category-2-household-and-individual-rules) | 14 | [CSV](https://raw.githubusercontent.com/imranq2/cms-hte-patient-matching-spec/main/assets/data/spec-v3-4-0-table-2h-household.csv) | [JSON](https://raw.githubusercontent.com/imranq2/cms-hte-patient-matching-spec/main/assets/data/spec-v3-4-0-table-2h-household.json) |
+| [Table 2-I: Individual within household](/docs/category-2-household-and-individual-rules) | 3 | [CSV](https://raw.githubusercontent.com/imranq2/cms-hte-patient-matching-spec/main/assets/data/spec-v3-4-0-table-2i-individual.csv) | [JSON](https://raw.githubusercontent.com/imranq2/cms-hte-patient-matching-spec/main/assets/data/spec-v3-4-0-table-2i-individual.json) |
+| [Category 2 combined probabilities (III.C.4)](/docs/category-2-household-and-individual-rules) | 10 | [CSV](https://raw.githubusercontent.com/imranq2/cms-hte-patient-matching-spec/main/assets/data/spec-v3-4-0-category-2-combined.csv) | [JSON](https://raw.githubusercontent.com/imranq2/cms-hte-patient-matching-spec/main/assets/data/spec-v3-4-0-category-2-combined.json) |
+| [Administrative restrictions (III.C.6)](/docs/administrative-restrictions) | 2 | [CSV](https://raw.githubusercontent.com/imranq2/cms-hte-patient-matching-spec/main/assets/data/spec-v3-4-0-administrative-restrictions.csv) | [JSON](https://raw.githubusercontent.com/imranq2/cms-hte-patient-matching-spec/main/assets/data/spec-v3-4-0-administrative-restrictions.json) |
+| [Table 3: Conservative per-field u-probabilities](/docs/per-field-collision-probabilities) | 21 | [CSV](https://raw.githubusercontent.com/imranq2/cms-hte-patient-matching-spec/main/assets/data/spec-v3-4-0-table-3-per-field-u.csv) | [JSON](https://raw.githubusercontent.com/imranq2/cms-hte-patient-matching-spec/main/assets/data/spec-v3-4-0-table-3-per-field-u.json) |
+| [Table 4: Sample administrative restrictions](/docs/joint-collision-probability) | 6 | [CSV](https://raw.githubusercontent.com/imranq2/cms-hte-patient-matching-spec/main/assets/data/spec-v3-4-0-table-4-sample-restrictions.csv) | [JSON](https://raw.githubusercontent.com/imranq2/cms-hte-patient-matching-spec/main/assets/data/spec-v3-4-0-table-4-sample-restrictions.json) |
+
+## Reading the files
+
+- Values are strings exactly as printed, for example `3e-13`, `≈0`, or `2.0e-6 (exact) / 3.0e-6 (fuzzy)`. Parse them yourself. Empty cells are empty strings.
+- In Table 2, an asterisk after a field name marks a field that may be fuzzy. In the column "P(collision), fuzzy", an empty value means the row has no fuzzy variant.
+- The specification does not assign IDs to the Category 2 pairings in the III.C.4 table. Its rows appear in the specification's order. See the [Spec-to-Code Map](/docs/spec-to-code-map) for how a reference implementation labels them.
+- Each JSON file records the specification version and the revision of the source document it was generated from.
+
+## Regenerating
+
+`tools/export_tables.py` in the [docs repository](https://github.com/imranq2/cms-hte-patient-matching-spec) produces these files from the source document's Google Docs API JSON export. It is run by the maintainers for each new specification version; the repository's `CLAUDE.md` describes the inputs.

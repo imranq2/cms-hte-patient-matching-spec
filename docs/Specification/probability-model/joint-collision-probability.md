@@ -1,0 +1,59 @@
+---
+title: "Joint Collision Probability"
+excerpt: "Specification v3.4.0, section IV.D"
+hidden: false
+---
+
+*Specification v3.4.0, section IV.D*
+
+Under this framework, joint collision estimates are intended to provide a practical and transparent approximation of match ambiguity, not an exact population truth.
+
+Any field combination above the threshold is not eligible for approval. A field combination below the threshold is eligible for consideration, but it is not automatically approved. This distinction is important because P(collision) is a mathematical estimate of coincidental agreement, not a complete measure of operational safety. It is calculated from conservative per-field assumptions using a multiplicative approximation, which is useful for threshold-setting but does not fully capture all real-world sources of overlap. In practice, some data elements are not fully independent, some are shared across family members or households, some are proxy-controlled, some are stale or reassigned, and some are vulnerable to fraud or data-quality defects. Examples include twins or siblings sharing date of birth and residence, spouses or caregivers sharing an email address, family-plan phone numbers, multigenerational naming patterns, suffix suppression, shared living spaces such as long-term care facilities or shelters, and recycled contact channels. The threshold is intentionally set at this stringent level in part to create a safety margin for those risks.
+
+For a combination of multiple fields, the collision probability may be approximated as: P(collision for combination) ≈ ∏ u\_field,k
+
+This product form is a first-order heuristic. It is useful for ranking combinations by expected ambiguity, but it should not be interpreted as a literal claim that all fields are fully independent.
+
+The threshold was chosen based on the clustering of common industry used combinations in national matching products compared against a distribution of field combinations and their super sets. An analysis of 2554 combinations of demographic fields were conducted and reduced to 1150 combinations based on the elimination of Year of Birth, Suffix, and Middle Name. Rows with an effective collision probability  
+of zero are excluded in the following chart (e.g. namespace bound unique identifiers). Note how the number of possible unique combinations (e.g. not a subset of a larger combination) drop off rapidly around the reference set cluster.
+
+*Table 3 Distribution of Collision probabilities. Zero values excluded.*
+
+![Bar chart titled Selectivity Distribution. X axis: collision probability bucket. Y axis: combo count. Series: all canonical combos (692), threshold-qualified combos (556), combos that are not a superset of a threshold-qualified combo (224), and reference-list minimal rows (20).](https://raw.githubusercontent.com/imranq2/cms-hte-patient-matching-spec/main/assets/images/spec-v3-4-0-selectivity-distribution.png)
+
+There are approximately 68 additional unique combinations that could be added to the approved list based on threshold, however, passing the threshold should be treated as a necessary condition for approval, not a sufficient one. Combinations that fall below the threshold may still warrant restriction, exact-only treatment, limitation to certain query contexts, or exclusion from Table 2 if they rely too heavily on shared, mutable, or household-level data. Because demographic variables are often correlated, the model applies conservative dependency adjustments to avoid overstating uniqueness.
+
+Several administrative rules must additionally be evaluated prior to approval of a new matching combination.
+
+1. Data Independence risk. Each field in the combination must be reasonably independent from the others.
+
+2. Shared Contact Channel risk. Each contact channel that can be shared must be distinguished by other individually identifying fields.
+
+3. Reassignment risk. Each field that can be reassigned must be further distinguished by individually identifying fields.
+
+4. Multiple Births (e.g. Twins) risk must be mitigated by non-placeholder based first name.
+
+5. Generational Name risk must be mitigated by date of birth and are further checked deterministically by suffix if available
+
+6. Geographic field dependency. The simplifying assumptions in §IV.D note that City and State should be treated as a single geographic signal when both are present, and that ZIP already captures much of City and State. These observations imply that certain field combinations involving two or more correlated geographic attributes — for example, City \+ ZIP or DOB \+ ZIP in combinations that lack an individually discriminating contact field — may overstate uniqueness if their u-probabilities are multiplied without a dependency adjustment. The framework does not currently specify a formal method for computing that adjustment. Until such a method is adopted through governance, combinations whose approval depends on a geographic dependency discount SHALL NOT be added to Table 2\. Combinations that pass the 2e-12 threshold using the full Table 3 product — without any discount — are unaffected by this constraint and may be evaluated normally.
+
+The combinations below illustrate this principle. While they technically meet the threshold, they should be administratively rejected.
+
+*Table 4 Sample Administrative Restrictions on Matching Combinations*
+
+| Candidate combination | P(collision) | Secondary risk category | Why the risk is not fully captured by P(collision) |
+| --- | --- | --- | --- |
+| Date of Birth + Street Address + ZIP | 3.00E-13 | Twin risk; shared living space risk | Twins, siblings in the same household, and residents in shared or institutional settings may share these fields; address standardization can also collapse distinctions if unit information is missing or inconsistent |
+| Email + Date of Birth + City + State | 1.00E-12 | Shared contact channel risk | Email addresses may be shared by spouses, parents, guardians, or caregivers; City and State add limited incremental discrimination |
+| First Name + Last Name + Street + Zip | 3.00E-13 | Shared contact channel risk; Generational Name risk | Parent and child generational names in the same household where suffix was either not disclosed or not transmitted |
+| Phone + City + State + Zip | 1.8E-13 | Reassignment risk; Shared contact risk; Data independence risk | Though clearly under the threshold, phone numbers are frequently shared or reassigned. City, State, and Zip are not independent. |
+| First Name + Last Name + DOB + ZIP | 3e-12 (framework) | Above threshold; geographic dependency question | With Table 3 u-values this combination yields P(collision) = 3e-12, which exceeds the 2e-12 threshold and is ineligible for approval without a formally documented dependency adjustment. The value 3e-13 appears in some prior analyses of this combination, suggesting an implicit discount is being applied to correlated geographic and demographic fields; that discount must be specified and validated before this rule may be reconsidered. |
+| Last Name + DOB + City + ZIP | 1.5e-12 (framework) | Data independence risk | City and ZIP are correlated fields — ZIP already encodes city and state. Per §IV.D assumptions, the combination should not receive full independent credit for both. A dependency adjustment reducing the effective contribution of City is warranted before this rule is approved, and the adjusted value should be validated against population data per §IV.F. |
+
+Further, to protect against skewed distribution in the demographic data and other unknowns, implementers are expected to:
+
+1. Remove placeholders. Prior to performing matching requesters and responders must identify and remove placeholder values prior to matching.
+
+2. Perform a uniqueness check. The query must produce exactly one candidate in the responding system. If two patients share the same field combination, the system flags ambiguity and does NOT release.
+
+3. Log queries. Every match is logged and can be audited. Wrong-patient releases are discrete, detectable, reportable events.

@@ -1,0 +1,39 @@
+---
+title: "Applying the Tables"
+excerpt: "Specification v3.4.0, section III.C.8 and III.C.9"
+hidden: false
+---
+
+*Specification v3.4.0, section III.C.8 and III.C.9*
+
+## C.8. How to apply these tables
+
+- 0\. Remove placeholder values first, for every field, before doing anything else as defined in the Placeholder Values section in this document. This has to happen before Step 1, because a placeholder can otherwise satisfy a rule by pure coincidence.
+
+- 1\. Check the Category 1 table first. If the query and candidate record's fields match one of the rows there (respecting the fuzzy-matching constraints in §V.E) and the query resolves to exactly one candidate, return the match — no household step needed..
+
+- 2\. If no Category 1 rule applies, run the two-step Category 2 process instead. This applies specifically to the combinations that rely on a shared, household-level field without enough individuating information alongside it:
+
+- Step A — Household Match (Table 2-H). Check whether the shared fields available (SSN/ITIN last 4, Subscriber ID, phone, email, address, ZIP) satisfy a row in the Household Match table. This narrows the candidate pool to records sharing that value — ideally to one household.
+
+- Step B — Individual Match (Table 2-I). Within that household, check whether the remaining fields (First Name, Date of Birth) satisfy a row in the Individual Match table. This narrows to one person.
+
+- Combine. Multiply the two probabilities. §C.4 lists the eight specific Household+Individual pairings this proposal amends or adds (Rules 13, 14, 15, 16, 34, 35, 37, and 38); if both steps are resolved uniquely and the combined probability is ≤ 2e-12, return the match.
+
+- 3\. Apply the base document's existing tiered candidate-count logic independently at each step. A step is satisfied only when it resolves to exactly one candidate.   
+    
+- Zero candidates at either step means the relevant identifiers aren't on file for anyone — decline.
+
+- Exactly two candidates at either step escalate to the base document's existing two-candidate path (§III.B — multi-factor authentication or supplementary disambiguation), not an automatic decline.
+
+- Three or more candidates at either step require re-evaluation against the base document's stricter 1-in-a-million threshold (§III.B) before proceeding further; if that stricter bar still isn't met, decline.
+
+- A step that does not resolve to exactly one candidate SHALL NOT be treated as satisfied for purposes of combining probabilities in step 2 above.
+
+Special case — twins and higher-order multiples. Before applying any rule that includes a fuzzy-matched First Name (marked \*), check whether the resolved household contains more than one candidate sharing the same Date of Birth. If so, steps 1-3 above are modified — do not apply ordinary fuzzy-matching or corroboration rules to a twin case.
+
+## C.9. Defensive use — flag same-household false positives
+
+New "Household/Relationship risk" category, alongside the existing Data Independence, Shared Contact Channel, Reassignment, Multiple Births, and Generational Name categories: wherever relationship data exists in the query or source record — FHIR RelatedPerson, Patient.link, emergency-contact fields, or any other relationship data the record holds — it SHOULD be used to flag or additionally verify same-household candidates before a phone- or email-based match is finalized.
+
+SHOULD, not SHALL: an unconditional SHALL to consult "any relationship data the record holds" is not auditable under a macro-level, methodology-agnostic audit model, and an entity validating via test suite rather than implementing Table 2 literally may not ingest relationship data at all. SHOULD, applied where the responding entity's data model actually supports it, is honest about what can be verified. It's a weaker guarantee than an unconditional mandate, and that trade-off is made explicitly here rather than written around. It directly answers Alex's gynecology-records example on a best-efforts basis, not a guaranteed one.
