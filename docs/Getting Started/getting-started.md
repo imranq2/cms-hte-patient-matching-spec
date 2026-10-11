@@ -4,10 +4,10 @@ excerpt: The CMS HealthTech Ecosystem Patient Matching Specification, with the t
 hidden: true
 ---
 <Callout icon="📘" theme="info">
-  **Status:** specification v3.4.0, Final Consolidated Draft, is open for public comment. Its effective date has not been set. Two proposals are [under review](/docs/proposals-under-review). See [Status](/docs/status).
+  **Status:** specification v3.4.0, Final Consolidated Draft. Its effective date has not been set, and the end of its comment period is a placeholder in the specification. Two proposals are [under review](/docs/proposals-under-review). See [Status](/docs/status).
 </Callout>
 
-The specification defines when a responding entity SHALL return matching patient records. If the identity attributes in a query correspond to a combination listed in Table 2, and the query produces a unique candidate, the responding entity returns the records for that patient within the permitted scope for that query. Every combination in Table 2 has a conservative probability of collision of 2e-12 (1 in 500 billion) or lower.
+The specification defines when a responding entity SHALL return matching patient records. If the identity attributes in a query correspond to a combination listed in Table 2, and the query produces a unique candidate, the responding entity returns the records for that patient within the permitted scope for that query, subject to the administrative controls in section IV.D and Table 4. Table 2 lists combinations whose conservative probability of collision is 2e-12 (1 in 500 billion) or lower and that satisfy additional administrative controls. Two relationship-based rows carry caveats that the specification itself flags as unresolved.
 
 This site hosts the specification, explains how its numbers are derived, and gives you the software and test data to check your implementation. Everything here is open source.
 

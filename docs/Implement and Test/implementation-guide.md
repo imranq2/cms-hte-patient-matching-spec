@@ -46,7 +46,7 @@ Check the Category 1 rows of [Table 2](/docs/table-2-category-1-rules). A rule a
 - should be implemented as a Damerau-Levenshtein distance of 1, and Jaro-Winkler may also be considered where available (V.E),
 - is not applied to strings shorter than 5 characters (V.E),
 - for date of birth means a ±1-day tolerance (Table 2 notes),
-- is described in IV.C as limited to first name, last name, and street line, with no more than one field in a combination satisfied by fuzzy comparison unless Table 2 expressly states otherwise. Table 2 also marks date of birth with an asterisk for the ±1-day tolerance, so the specification's own text is not fully consistent on this point. Follow the asterisks in Table 2 and read the notes beneath it.
+- is described in IV.C as limited to first name, last name, and street line, with no more than one field in a combination satisfied by fuzzy comparison unless Table 2 expressly states otherwise. Table 2 also marks date of birth with an asterisk for the ±1-day tolerance, so the specification's own text is not fully consistent on this point. Section IV.C and Table 3 say date of birth is exact only, and one note under Table 2 says date of birth must match exactly after normalization. This guide cannot resolve that; read the notes beneath Table 2 and raise it as a [comment](/docs/report-an-issue) if it affects you.
 
 See [Fuzzy Matching](/docs/fuzzy-matching) and [Per-Field Collision Probabilities](/docs/per-field-collision-probabilities).
 
@@ -54,7 +54,7 @@ Insurance identifiers have extra rules: matching is only within the payer namesp
 
 If a Category 1 rule applies and the query resolves to exactly one candidate, return the match. No household step is needed.
 
-Disagreement in other fields that are not part of the qualifying combination does not, by itself, negate the match, except where the specification gives a deterministic contraindication (III.C). The generational suffix rule is one (step 5).
+Disagreement in other fields that are not part of the qualifying combination does not, by itself, negate the match, except where the specification expressly provides a deterministic contraindication (III.C). The generational suffix rule (step 5) is a rule that negates a match.
 
 ## 3. Category 2: household, then individual
 
@@ -64,7 +64,9 @@ Run this only if no Category 1 rule applies.
 2. **Step B, individual (Table 2-I).** Within that household, check whether first name and date of birth satisfy a row of Table 2-I.
 3. **Combine.** Multiply the household and individual probabilities. If both steps resolved uniquely and the product is at most 2e-12, return the match.
 
-A step that does not resolve to exactly one candidate is not satisfied. Any household row may in principle pair with any individual row, subject to the gating conditions in Table 2-I (III.C.5). See [Category 2: Household and Individual Rules](/docs/category-2-household-and-individual-rules) and [Applying the Tables](/docs/applying-the-tables).
+A step that does not resolve to exactly one candidate is not satisfied. Any household row may in principle pair with any individual row, subject to the gating conditions in Table 2-I (III.C.5).
+
+The section III.C.4 table also lists two relationship-based pairings: a guardian-verified minor (rule 39) and a newborn matched through maternal linkage (rule 40). They are structured differently. Their "household" leg is another person's identity that was independently matched under Table 2, and the table flags unresolved caveats for both. Read them in [Category 2: Household and Individual Rules](/docs/category-2-household-and-individual-rules) before implementing them. See [Category 2: Household and Individual Rules](/docs/category-2-household-and-individual-rules) and [Applying the Tables](/docs/applying-the-tables).
 
 ## 4. Candidate counts
 
@@ -74,8 +76,8 @@ The specification applies the candidate-count logic independently at each step:
 |---|---|
 | Zero | The relevant identifiers are not on file for anyone. Decline. |
 | Exactly one | The step is satisfied. |
-| Exactly two | Escalate to the two-candidate path (multi-factor authentication or supplementary disambiguation) rather than declining automatically. The protocol layer MAY escalate. |
-| Three or more | Re-evaluate against the stricter 1-in-a-million threshold. If that bar is still not met, decline. |
+| Exactly two | Escalate to the two-candidate path (multi-factor authentication or supplementary disambiguation) rather than declining automatically. Section III.B.1 says the protocol layer MAY escalate; section III.C.8 says to escalate rather than decline automatically. |
+| Three or more | Re-evaluate against the stricter 1-in-a-million threshold. Section III.C.8 says to decline if that bar is still not met. Section III.B.1 says the responder "may decline" absent further evidence. |
 
 Sources: III.B.1 and III.C.8.
 
@@ -88,7 +90,7 @@ Sources: III.B.1 and III.C.8.
 
 - Some combinations pass the collision threshold but are administratively restricted (III.C.6 and Table 4 in IV.D). See [Administrative Restrictions](/docs/administrative-restrictions).
 - Where relationship data exists, it SHOULD be used to flag same-household candidates before a phone- or email-based match is finalized (III.C.9).
-- Retain enough information to reconstruct each decision, including the Table 2 combination evaluated, whether the comparison was exact or fuzzy, and the uniqueness check result. See [Audit and Monitoring](/docs/audit-and-monitoring).
+- Retain enough information to reconstruct each decision, including the Table 2 combination evaluated, whether the comparison was exact or fuzzy, and the uniqueness check result (section VII). The section's Path B audit description separately lists a thinner per-query record with no "which rule fired", so the specification is not uniform on this. See [Audit and Monitoring](/docs/audit-and-monitoring).
 
 ## Worked examples
 

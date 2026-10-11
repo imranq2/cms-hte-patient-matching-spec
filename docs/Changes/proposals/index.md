@@ -14,7 +14,7 @@ The specification requires a proposed change to include a description of the cha
 
 - Changes that materially affect Table 2, the framework threshold, approved fields, normalization rules, fuzzy constraints, or required testing are published for public comment for not less than 30 calendar days, unless an emergency update is needed to address a material patient-safety, privacy, security, or compliance risk.
 - After review of comments and supporting evidence, adopted changes are published with a version increment and an effective date. Substantive changes include a transition period of not less than 90 days unless a shorter period is necessary to mitigate immediate risk.
-- The workgroup decides proposals.
+- Proposals are decided by the workgroup. This is a convention of this project; the specification's governance text does not name who decides.
 
 ## Statuses
 
@@ -35,4 +35,4 @@ See [Contribute](/docs/contribute).
 
 ## Numbering
 
-Existing proposals are named by the version number they were drafted for, for example "Proposal v3.3.1", and each modifies the specification version it names. Section references inside a proposal use the section numbering of that version, which can differ from the current specification's numbering.
+Existing proposals are named by the version number they were drafted for, for example "Proposal v3.3.1". Proposals v3.3.1 to v3.3.6 each modify v3.3.0, and proposal v3.4.1 modifies v3.4.0. Section references inside a proposal use the section numbering of the version it modifies, which can differ from the current specification's numbering.

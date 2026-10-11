@@ -8,7 +8,7 @@ Each answer summarizes the specification and links to the governing text. The sp
 
 ## What does the specification require?
 
-If a query's identity attributes correspond to a combination in Table 2, and the query produces a unique candidate, the responding entity SHALL return matching records for that patient within the permitted scope. See [For Decision Makers](/docs/for-decision-makers).
+If a query's identity attributes correspond to a combination in Table 2, and the query produces a unique candidate, the responding entity SHALL return matching records for that patient within the permitted scope, subject to the administrative controls in section IV.D and Table 4. See [For Decision Makers](/docs/for-decision-makers).
 
 ## What is P(collision)?
 
@@ -24,7 +24,7 @@ No. The specification calls passing the threshold a necessary condition, not a s
 
 ## Do we have to collect SSN or ITIN?
 
-No. An organization's decision not to collect them does not constitute non-compliance. Full SSN and full ITIN SHALL NOT be transmitted in matching queries; only the last four digits are used, as optional attributes. See [SSN and ITIN](/docs/ssn-and-itin).
+No. An organization's decision not to collect them does not constitute non-compliance. Full SSN and full ITIN SHALL NOT be transmitted in matching queries; only the last four digits are used, as optional attributes. See [SSN and ITIN](/docs/ssn-and-itin). The IAL2 token field table lists a full-SSN claim as optional, which the specification does not reconcile with this (see [Status](/docs/status)).
 
 ## Is fuzzy matching allowed?
 
@@ -36,11 +36,11 @@ A match requires a unique candidate. The specification describes escalation when
 
 ## Do we have to implement Table 2 exactly?
 
-The specification describes two compliance paths: Path A (Assumed Compliance, rules-based) and Path B (Empirical Compliance, performance-based). It states that the framework is a baseline against which existing methods can be tested, not a mandated replacement for methods that already meet or exceed its performance. See [Implementation and Testing](/docs/implementation-and-testing).
+The Executive Summary says failing to return records when a query satisfies a Table 2-listed combination and produces a unique candidate is non-compliant. It also names two compliance paths: Path A (Assumed Compliance, rules-based) and Path B (Empirical Compliance, performance-based), which [Audit and Monitoring](/docs/audit-and-monitoring) describes. Section IX proposes that the framework be a baseline against which existing methods can be tested, not a mandated replacement for methods that already meet or exceed its performance, with a phased adoption period and safe harbor. Those are proposals and are not yet in effect. See [Implementation and Testing](/docs/implementation-and-testing).
 
 ## How do we check our implementation?
 
-The specification asks for documented performance on the ONC patient matching test dataset, on a successor dataset, or through an approved third-party assessment, reporting precision, recall, and false-positive rate. The public [test set](/docs/test-set) is built from the ONC dataset. See [Validation Requirements](/docs/validation-requirements).
+An implementation SHALL demonstrate documented performance on the ONC patient matching test dataset, on a successor dataset, or through an approved third-party assessment, reporting at least precision, recall, and false-positive rate at the configured operating point. The public [test set](/docs/test-set) is built from the ONC dataset. See [Validation Requirements](/docs/validation-requirements).
 
 ## Is the reference implementation required?
 

@@ -22,7 +22,8 @@ What happens next, from [Governance and Versioning](/docs/governance-and-version
 - Changes that materially affect Table 2, the framework threshold, approved fields, normalization rules, fuzzy constraints, or required testing are published for public comment for not less than 30 calendar days, unless an emergency update is needed.
 - After review of comments and evidence, adopted changes are published with a version increment and an effective date.
 - Substantive changes include a transition period of not less than 90 days unless a shorter period is necessary to mitigate immediate risk.
-- The workgroup decides proposals.
+
+The workgroup decides proposals. That is this project's convention; the specification's governance text does not name who decides.
 
 ## Add or improve test data
 

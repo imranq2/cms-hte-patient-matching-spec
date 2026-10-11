@@ -12,7 +12,7 @@ The specification is a draft. This page collects what it says about timing, and 
 |---|---|---|
 | Version | 3.4.0 | Document Control |
 | Status | Final Consolidated Draft | Document Control |
-| Release date | 9/10/2026 | Document Control |
+| Release date | 9/10/2026, as printed (the date format is ambiguous) | Document Control |
 | Comment period ends | `[Date + 60 days]`, a placeholder | Document Control |
 | Effective date | `[TBD after finalization]` | Document Control |
 
@@ -34,7 +34,7 @@ The specification says its SHALL language describes requirements that would appl
 - The effective date.
 - The end of the comment period (a placeholder in the specification).
 - The accuracy floor number.
-- The length of the phased adoption period.
+- The length of the phased adoption period, which the specification does not specify.
 
 ## Open changes
 

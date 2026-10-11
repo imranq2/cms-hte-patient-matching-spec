@@ -32,7 +32,7 @@ Definitions follow the specification's wording where it defines a term, and give
 
 **Namespace-bound identifier.** An identifier compared only within the namespace of the entity that issued it, such as a payer's member ID within that payer, or an EMPI.
 
-**ONC dataset.** The ONC 2017 Patient Matching Algorithm Challenge dataset, which the specification names as a validation dataset (section VI.A). See [Test Set Overview](/docs/test-set).
+**ONC dataset.** The specification names the "ONC patient matching test dataset" (with a link to github.com/onc-healthit/patient-matching) as a validation dataset (section VI.A). The test set on this site is built from the ONC 2017 Patient Matching Algorithm Challenge dataset. See [Test Set Overview](/docs/test-set).
 
 **P(collision).** The probability that two distinct individuals in the population share identical values for a given combination of fields. It measures the discriminating power of the combination itself, independent of any algorithm (Executive Summary).
 
@@ -46,7 +46,7 @@ Definitions follow the specification's wording where it defines a term, and give
 
 **RFC 2119.** The convention that gives SHALL, SHALL NOT, SHOULD, and MAY their requirement meanings, which the specification applies (section I).
 
-**Table 2.** The specification's list of approved field combinations whose conservative P(collision) is at or below 2e-12 and that satisfy additional administrative controls.
+**Table 2.** The specification's list of approved field combinations whose conservative P(collision) is at or below 2e-12 and that satisfy additional administrative controls (Executive Summary). Two relationship-based rows carry caveats the specification flags as unresolved.
 
 **u-probability.** For a field, the probability that two distinct individuals share the same value. See [How the Numbers Are Derived](/docs/how-the-numbers-are-derived).
 

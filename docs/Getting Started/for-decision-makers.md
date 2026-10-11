@@ -14,12 +14,12 @@ The [Risk Framework](/docs/risk-framework) argues that failing to return a recor
 
 ## What it requires
 
-In the specification's words: if the identity attributes in a query correspond to a field combination listed in Table 2, and the query produces a unique candidate subject, the responding entity SHALL return matching records for that patient within the permitted scope for that query context. **Failing to return records when a query satisfies a Table 2 combination and produces a unique candidate is non-compliant.**
+In the specification's words: if the identity attributes in a query correspond to a field combination listed in Table 2, and the query produces a unique candidate subject, the responding entity SHALL return matching records for that patient within the permitted scope for that query context. The Purpose and Core Principle 3 add that this is subject to the administrative controls in section IV.D and Table 4. **Failing to return records when a query satisfies a Table 2-listed combination and produces a unique candidate is non-compliant.**
 
-- **Table 2** lists approved combinations of identity attributes (for example, first name, date of birth, and phone number). Each has a conservative probability of collision at or below 2e-12.
+- **Table 2** lists approved combinations of identity attributes (for example, first name, date of birth, and phone number). Each is listed with a conservative probability of collision at or below 2e-12, with the exception of two relationship-based rows whose caveats the specification flags as unresolved.
 - **A unique candidate is required.** A match is satisfied only when it produces a unique candidate at the source system. When there is more than one candidate, the specification describes escalation and, in some cases, declining.
 - **Data is cleaned first.** Implementations normalize identity attributes and remove placeholder values such as test names or default dates of birth.
-- **Verified identity for patient-facing apps.** A patient-facing app includes an IAL2 Claims Token issued by a Credential Service Provider. Covered entities may request records from other covered entities without a signed token.
+- **Verified identity for patient-facing apps.** A patient-facing app SHALL include an IAL2 Claims Token issued by a Credential Service Provider (section III.D). Core Principle 12 says covered entities may request records from other covered entities without a signed token, and that patient-facing apps not covered by HIPAA may only request records by transmitting one.
 
 See [Summary and Purpose](/docs/summary-and-purpose) and [Core Principles](/docs/core-principles).
 
@@ -34,13 +34,13 @@ The specification describes two compliance paths:
 - **Path A, Assumed Compliance (rules-based).** The audit sections describe Path A audits as verifying the correct application and integrity of the Table 2 rules.
 - **Path B, Empirical Compliance (performance-based).** The audit sections describe Path B audits as focused on macro-level outcome metrics such as match, no-candidate, and ambiguous rates, correction rate, and appeal rate.
 
-It also proposes a phased adoption period and a documented safe harbor for organizations whose current matching performance is demonstrably at or above its collision and recall benchmarks, whatever method they use. See [Implementation and Testing](/docs/implementation-and-testing), [Audit and Monitoring](/docs/audit-and-monitoring), and [Validation Requirements](/docs/validation-requirements).
+It also proposes (it is not yet in effect) a phased adoption period and a documented safe harbor for organizations whose current matching performance is demonstrably at or above its collision and recall benchmarks, whatever method they use. The paths are named in the Executive Summary and described in [Audit and Monitoring](/docs/audit-and-monitoring). The safe harbor is in [Implementation and Testing](/docs/implementation-and-testing), and the validation requirements are in [Validation Requirements](/docs/validation-requirements).
 
 ## What it deliberately does not do
 
 - It does not set governance or protocol recommendations beyond matching, such as what data is returned, exchange purposes, or enforcement (Purpose).
 - It does not govern wire-transaction payload formats. It governs source-system matching at responding endpoints (Purpose).
-- It does not permit full SSN or full ITIN in matching queries. Using the last four digits is optional, and choosing not to collect SSN or ITIN is not non-compliance ([SSN and ITIN](/docs/ssn-and-itin)).
+- It does not permit full SSN or full ITIN in matching queries. Using the last four digits is optional, and choosing not to collect SSN or ITIN is not non-compliance ([SSN and ITIN](/docs/ssn-and-itin)). The IAL2 token field table lists a full-SSN claim as optional, which the specification does not reconcile with this; see [Status](/docs/status).
 
 ## Timing
 
@@ -53,7 +53,7 @@ These are the activities the specification describes, not additional requirement
 - Normalization and placeholder handling for every identity field ([Normalization](/docs/normalization)).
 - Evidence of performance on the ONC patient matching test dataset, or a successor or approved third-party assessment, including precision, recall, and false-positive rate ([Validation Requirements](/docs/validation-requirements)).
 - Audit and monitoring sufficient to explain match decisions and detect degradation ([Audit and Monitoring](/docs/audit-and-monitoring)).
-- Participation in the governance process for changes ([Governance and Versioning](/docs/governance-and-versioning)).
+- The specification says it is maintained through a documented governance process ([Governance and Versioning](/docs/governance-and-versioning)).
 
 ## Where to go next
 

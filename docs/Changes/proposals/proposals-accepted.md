@@ -4,9 +4,9 @@ excerpt: "Proposals that were accepted and are part of specification v3.4.0."
 hidden: true
 ---
 
-All five accepted proposals are incorporated in [v3.4.0](/docs/v3-4-0), according to that version's Executive Summary.
+The Executive Summary of [v3.4.0](/docs/v3-4-0) says that version incorporates all five accepted proposals. That does not mean every edit a proposal lists appears in v3.4.0's text. For example, proposal v3.3.5 charters a new section VI.C, which v3.4.0 does not contain, and the Path A and Path B compliance paths from proposal v3.3.2 appear in the Executive Summary and in the audit section, not in section VI.A. Check the specification text for what v3.4.0 says.
 
-| Proposal | Summary | Affected specification sections | Submitted | Shipped in | Discussion |
+| Proposal | Summary | Affected specification sections | Submitted | Incorporated in, per the Executive Summary | Discussion |
 |---|---|---|---|---|---|
 | **v3.3.1**: Household-Then-Individual Matching | Splits matching for 8 rules into two steps: first prove the household, then prove the individual inside it, and multiply the two probabilities. The other rules are unchanged. | Section III.C, Tables 2, 3 and 4, as numbered in the proposal | 2026-07-03 | [v3.4.0](/docs/v3-4-0) | [Issue #1](https://github.com/imranq2/cms-hte-patient-matching-spec/issues/1) |
 | **v3.3.2**: Compliance, Testing & Audit Clarifications | Splits compliance into Path A (rules-based, assumed compliance) and Path B (performance-based, empirical compliance), with separate audit tracks. Adds a sentence clarifying that SHALL language describes future obligations, and a definition of "conservative floor". | Purpose and Executive Summary, IV.A, VI.A, VII, as numbered in the proposal | 2026-07-15 | [v3.4.0](/docs/v3-4-0) | [Issue #2](https://github.com/imranq2/cms-hte-patient-matching-spec/issues/2) |
