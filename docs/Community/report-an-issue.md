@@ -1,7 +1,7 @@
 ---
 title: "Report an Issue"
 excerpt: "Where to send comments, bugs, and corrections."
-hidden: true
+hidden: false
 ---
 
 Choose the row that matches what you found, so your report reaches the right place.

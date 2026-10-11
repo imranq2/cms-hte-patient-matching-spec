@@ -1,7 +1,7 @@
 ---
 title: "Patient Matching Library"
 excerpt: "cms-hte-patient-matching: a Python implementation of the Table 2 rules."
-hidden: true
+hidden: false
 ---
 
 *Source of truth: the [README of cms-hte-patient-matching](https://github.com/icanbwell/cms-hte-patient-matching#readme). This page summarizes it. Where they differ, the repository is correct.*

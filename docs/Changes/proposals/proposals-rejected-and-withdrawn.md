@@ -1,7 +1,7 @@
 ---
 title: "Rejected and Withdrawn Proposals"
 excerpt: "Proposals that were rejected or withdrawn."
-hidden: true
+hidden: false
 ---
 
 There are no rejected or withdrawn proposals recorded yet.

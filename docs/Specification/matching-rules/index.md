@@ -1,7 +1,7 @@
 ---
 title: "Matching Rules"
 excerpt: "Specification section III.C (Matching Criteria and Table 2) and its subsections C.2 to C.9."
-hidden: true
+hidden: false
 ---
 
 Specification section III.C (Matching Criteria and Table 2) and its subsections C.2 to C.9.

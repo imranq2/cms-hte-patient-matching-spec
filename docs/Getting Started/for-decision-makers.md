@@ -1,7 +1,7 @@
 ---
 title: "For Decision Makers"
 excerpt: "What the specification requires of an organization, in plain language."
-hidden: true
+hidden: false
 ---
 
 This page summarizes the specification for readers who do not need the technical detail. It adds no requirements. **The specification text governs**, and each point links to where it comes from.

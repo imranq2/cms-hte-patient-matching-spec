@@ -1,7 +1,7 @@
 ---
 title: "FAQ"
 excerpt: "Short answers to common questions, with the sections they come from."
-hidden: true
+hidden: false
 ---
 
 Each answer summarizes the specification and links to the governing text. The specification governs.

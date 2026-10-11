@@ -1,7 +1,7 @@
 ---
 title: "Running the Test Set"
 excerpt: "File formats, scoring, and reporting rules for the two test tiers."
-hidden: true
+hidden: false
 ---
 
 *Source of truth: the "How to test a patient-matching algorithm against this dataset" document at [`evaluation/cases/README.md`](https://github.com/icanbwell/cms-hte-patient-matching-test-set/blob/main/evaluation/cases/README.md), which includes runnable Python scoring examples. This page summarizes the contract and the reporting rules; use the repository for the code.*

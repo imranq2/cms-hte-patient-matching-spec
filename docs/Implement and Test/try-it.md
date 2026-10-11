@@ -1,7 +1,7 @@
 ---
 title: "Patient Matching Service UI"
 excerpt: "A hosted page for trying the matching service with synthetic data."
-hidden: true
+hidden: false
 ---
 
 b.well hosts an instance of the patient matching service at [patient-matching-service.bwell.com](https://patient-matching-service.bwell.com). The service README places its manual-testing page at the path `/testing-ui`.

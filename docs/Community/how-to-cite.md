@@ -1,7 +1,7 @@
 ---
 title: "How to Cite"
 excerpt: "How to cite a version of the specification."
-hidden: true
+hidden: false
 ---
 
 Cite the specification by its title, version, and release date, and link to the page you are citing.

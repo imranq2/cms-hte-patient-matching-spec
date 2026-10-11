@@ -1,7 +1,7 @@
 ---
 title: "IAL2 Claims Tokens"
 excerpt: "Specification v3.4.0, section III.D and III.E"
-hidden: true
+hidden: false
 ---
 
 *Specification v3.4.0, section III.D and III.E*

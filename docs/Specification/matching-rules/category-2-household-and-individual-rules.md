@@ -1,7 +1,7 @@
 ---
 title: "Category 2: Household and Individual Rules"
 excerpt: "Specification v3.4.0, section III.C.2 to III.C.5"
-hidden: true
+hidden: false
 ---
 
 *Specification v3.4.0, section III.C.2 to III.C.5*

@@ -1,7 +1,7 @@
 ---
 title: "Reproducing the Calculations"
 excerpt: "How to run the calculations project and verify its inputs."
-hidden: true
+hidden: false
 ---
 
 *Source of truth: [`calculations/README.md`](https://github.com/icanbwell/cms-hte-patient-matching/blob/main/calculations/README.md) and [`calculations/docs/PROCESS.md`](https://github.com/icanbwell/cms-hte-patient-matching/blob/main/calculations/docs/PROCESS.md). If these steps differ from the repository, the repository is correct.*

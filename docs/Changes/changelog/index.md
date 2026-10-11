@@ -1,7 +1,7 @@
 ---
 title: "Changelog Overview"
 excerpt: "How the specification is versioned, and where to find what changed in each version."
-hidden: true
+hidden: false
 ---
 
 Each released version of the specification has its own changelog page. This page explains how versions are numbered and how to read an entry.

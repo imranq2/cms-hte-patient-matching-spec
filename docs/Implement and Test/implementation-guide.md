@@ -1,7 +1,7 @@
 ---
 title: "Implementation Guide"
 excerpt: "The order of operations for evaluating a query against Table 2, with links to the governing text."
-hidden: true
+hidden: false
 ---
 
 This guide shows how the pieces of the specification fit together when you evaluate one query. It summarizes and links; it does not replace the specification, and it adds no requirements. **The specification text governs.** Every step cites the section it comes from.

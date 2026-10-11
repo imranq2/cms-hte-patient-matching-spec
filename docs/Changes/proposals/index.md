@@ -1,7 +1,7 @@
 ---
 title: "Proposals"
 excerpt: "How changes to the specification are proposed, reviewed, and accepted."
-hidden: true
+hidden: false
 ---
 
 Changes to the specification go through the governance process in [Governance and Versioning](/docs/governance-and-versioning). Proposals are GitHub issues in the [docs repository](https://github.com/imranq2/cms-hte-patient-matching-spec/issues), so their discussion and status are public.

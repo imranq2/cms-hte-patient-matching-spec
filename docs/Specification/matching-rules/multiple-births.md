@@ -1,7 +1,7 @@
 ---
 title: "Multiple Births"
 excerpt: "Specification v3.4.0, section III.C.7"
-hidden: true
+hidden: false
 ---
 
 *Specification v3.4.0, section III.C.7*

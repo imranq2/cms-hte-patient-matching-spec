@@ -1,7 +1,7 @@
 ---
 title: "Adoption Timeline"
 excerpt: "What the specification says about dates, transition periods, and phased adoption."
-hidden: true
+hidden: false
 ---
 
 The specification is a draft. This page collects what it says about timing, and what has not been decided. It adds no requirements.

@@ -1,7 +1,7 @@
 ---
 title: "Test Set Methodology"
 excerpt: "How the labeled test cases are generated from the ONC 2017 challenge dataset."
-hidden: true
+hidden: false
 ---
 
 *Source of truth: [`evaluation/cases/README.md`](https://github.com/icanbwell/cms-hte-patient-matching-test-set/blob/main/evaluation/cases/README.md) in the cms-hte-patient-matching-test-set repository, in particular its "How this test data was generated" section, and [`docs/METHODOLOGY.md`](https://github.com/icanbwell/cms-hte-patient-matching-test-set/blob/main/docs/METHODOLOGY.md). The repository changes as the test set evolves; this page summarizes it and does not repeat counts that change between releases.*

@@ -1,7 +1,7 @@
 ---
 title: "Twins and Fragile Identities"
 excerpt: "Specification v3.4.0, section IV.G"
-hidden: true
+hidden: false
 ---
 
 *Specification v3.4.0, section IV.G*

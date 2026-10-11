@@ -1,7 +1,7 @@
 ---
 title: Welcome to Patient Matching
 excerpt: The CMS HealthTech Ecosystem Patient Matching Specification, with the tools to implement and test it.
-hidden: true
+hidden: false
 ---
 <Callout icon="📘" theme="info">
   **Status:** specification v3.4.0, Final Consolidated Draft. Its effective date has not been set, and the end of its comment period is a placeholder in the specification. Two proposals are [under review](/docs/proposals-under-review). See [Status](/docs/status).

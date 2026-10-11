@@ -1,7 +1,7 @@
 ---
 title: "Proposals Under Review"
 excerpt: "Proposals currently open for review."
-hidden: true
+hidden: false
 ---
 
 | Proposal | Summary | Affected specification sections | Submitted | Discussion |

@@ -1,7 +1,7 @@
 ---
 title: "Governance and Versioning"
 excerpt: "Specification v3.4.0, section VIII"
-hidden: true
+hidden: false
 ---
 
 *Specification v3.4.0, section VIII*

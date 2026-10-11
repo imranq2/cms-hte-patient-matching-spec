@@ -1,7 +1,7 @@
 ---
 title: "Summary and Purpose"
 excerpt: "Specification v3.4.0, section Executive Summary; I (Purpose)"
-hidden: true
+hidden: false
 ---
 
 *Specification v3.4.0, section Executive Summary; I (Purpose)*

@@ -42,6 +42,6 @@ Uses `@readme/cli` via `npx` (no local install):
 
 - Navigation order is controlled by `_order.yaml` files, not filenames. Each directory has one listing page slugs (without `.md`) in display order; `docs/_order.yaml` and `reference/_order.yaml` list category directory names. A folder's `_order.yaml` must not list `index`. When adding, renaming, or removing a page or category, update the matching `_order.yaml`.
 - Slugs are the file names (or folder names for pages with children) and must be unique across `docs/`. Internal links are `/docs/<slug>`.
-- Pages begin with YAML frontmatter (`title`, `hidden`, optionally `excerpt`, `icon`, `api_config`). All new pages are `hidden: true` until launch; launching means flipping `hidden` to `false`.
+- Pages begin with YAML frontmatter (`title`, `hidden`, optionally `excerpt`, `icon`, `api_config`). Pages are `hidden: false` (visible) except the `reference/ReadMeConfig` stubs. Hidden is a visibility setting, not access control; set `hidden: true` on a page you do not want shown.
 - Pages are MDX. Escape `<`, `>`, `{` and `}` in prose and tables, write `<br />` (not `<br>`), and use `[text](url)` links, not `<https://...>` autolinks. Use `<Callout>` and `<Cards>`/`<Card>` where the template does.
 - `@readme/cli` could not be installed in one environment (npm 403 on a dependency). To check MDX syntax without it, compile each page with `@mdx-js/mdx` and `remark-gfm`.

@@ -1,7 +1,7 @@
 ---
 title: "License and Open Source"
 excerpt: "The licenses that cover the site, the specification text, the code, and the data."
-hidden: true
+hidden: false
 ---
 
 The documentation site, the patient matching library, the probability calculations, the matching service, and the test set have public source. The IAL2 reader is published on PyPI, but its source repository is private.

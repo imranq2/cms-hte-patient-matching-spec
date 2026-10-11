@@ -300,7 +300,7 @@ def render_page(title, note, keys, sections_by_key):
 
 def frontmatter(title, note):
     t = title.replace('"', '\\"')
-    return f'---\ntitle: "{t}"\nexcerpt: "Specification v{SPEC_VERSION}, section {note}"\nhidden: true\n---\n'
+    return f'---\ntitle: "{t}"\nexcerpt: "Specification v{SPEC_VERSION}, section {note}"\nhidden: false\n---\n'
 
 
 def write(path: Path, text: str):
@@ -347,7 +347,7 @@ def main():
         children = [(r.split("/")[1], t) for r, t, _, _ in PAGES if r.startswith(folder + "/")]
         body = [f"{intro}", "", "*This page is site navigation. It is not part of the specification text.*", ""]
         body += [f"- [{t}](/docs/{slug})" for slug, t in children]
-        write(out / folder / "index.md", f'---\ntitle: "{title}"\nexcerpt: "{intro}"\nhidden: true\n---\n\n' + "\n".join(body) + "\n")
+        write(out / folder / "index.md", f'---\ntitle: "{title}"\nexcerpt: "{intro}"\nhidden: false\n---\n\n' + "\n".join(body) + "\n")
         write(out / folder / "_order.yaml", "".join(f"- {slug}\n" for slug, _ in children))
 
     top = []

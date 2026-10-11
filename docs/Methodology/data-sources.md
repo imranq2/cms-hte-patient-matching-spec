@@ -1,7 +1,7 @@
 ---
 title: "Data Sources"
 excerpt: "The public data behind the calculations project, with attribution and download dates."
-hidden: true
+hidden: false
 ---
 
 *Source of truth: the "Sources and download dates" section of [`calculations/outputs/u_probabilities.md`](https://github.com/icanbwell/cms-hte-patient-matching/blob/main/calculations/outputs/u_probabilities.md), and [`calculations/config.py`](https://github.com/icanbwell/cms-hte-patient-matching/blob/main/calculations/config.py), which records how each URL was resolved.*

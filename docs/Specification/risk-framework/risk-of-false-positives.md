@@ -1,7 +1,7 @@
 ---
 title: "Risk of False Positives"
 excerpt: "Specification v3.4.0, section III.B.1"
-hidden: true
+hidden: false
 ---
 
 *Specification v3.4.0, section III.B.1*

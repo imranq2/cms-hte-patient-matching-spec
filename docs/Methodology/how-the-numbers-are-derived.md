@@ -1,7 +1,7 @@
 ---
 title: "How the Numbers Are Derived"
 excerpt: "From field frequencies to u-probabilities to P(collision) to the Table 2 threshold, and how the calculations project checks them."
-hidden: true
+hidden: false
 ---
 
 This page explains where the probabilities in the specification come from, and what the [calculations project](https://github.com/icanbwell/cms-hte-patient-matching/tree/main/calculations) does and does not do. It is written for data scientists and reviewers. The specification text governs; see the [Probability Model](/docs/probability-model) pages for the normative wording.

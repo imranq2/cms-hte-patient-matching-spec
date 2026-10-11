@@ -1,7 +1,7 @@
 ---
 title: "SSN and ITIN"
 excerpt: "Specification v3.4.0, section IV.E"
-hidden: true
+hidden: false
 ---
 
 *Specification v3.4.0, section IV.E*

@@ -1,7 +1,7 @@
 ---
 title: "Implementation and Testing"
 excerpt: "Specification v3.4.0, section IX"
-hidden: true
+hidden: false
 ---
 
 *Specification v3.4.0, section IX*

@@ -1,7 +1,7 @@
 ---
 title: "Contributors"
 excerpt: "People and organizations that have contributed to the specification and its tooling."
-hidden: true
+hidden: false
 ---
 
 Thank you to everyone who has contributed to the CMS HTE Patient Matching specification and its supporting tools.

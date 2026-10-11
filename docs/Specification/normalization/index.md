@@ -1,7 +1,7 @@
 ---
 title: "Normalization"
 excerpt: "Specification section V (Normalization Requirements)."
-hidden: true
+hidden: false
 ---
 
 Specification section V (Normalization Requirements).

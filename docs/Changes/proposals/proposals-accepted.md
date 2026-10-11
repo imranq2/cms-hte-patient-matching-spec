@@ -1,7 +1,7 @@
 ---
 title: "Accepted Proposals"
 excerpt: "Proposals that were accepted and are part of specification v3.4.0."
-hidden: true
+hidden: false
 ---
 
 The Executive Summary of [v3.4.0](/docs/v3-4-0) says that version incorporates all five accepted proposals. That does not mean every edit a proposal lists appears in v3.4.0's text. For example, proposal v3.3.5 charters a new section VI.C, which v3.4.0 does not contain, and the Path A and Path B compliance paths from proposal v3.3.2 appear in the Executive Summary and in the audit section, not in section VI.A. Check the specification text for what v3.4.0 says.

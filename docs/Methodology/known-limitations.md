@@ -1,7 +1,7 @@
 ---
 title: "Known Limitations"
 excerpt: "Limits of the empirical u-probability estimates, as documented by the calculations project."
-hidden: true
+hidden: false
 ---
 
 *Source of truth: the "Known limitations" section of [`calculations/README.md`](https://github.com/icanbwell/cms-hte-patient-matching/blob/main/calculations/README.md), [`docs/PROCESS.md`](https://github.com/icanbwell/cms-hte-patient-matching/blob/main/calculations/docs/PROCESS.md), the caveats in [`outputs/u_probabilities.md`](https://github.com/icanbwell/cms-hte-patient-matching/blob/main/calculations/outputs/u_probabilities.md), and [`docs/conservative_u_comparison.md`](https://github.com/icanbwell/cms-hte-patient-matching/blob/main/calculations/docs/conservative_u_comparison.md).*

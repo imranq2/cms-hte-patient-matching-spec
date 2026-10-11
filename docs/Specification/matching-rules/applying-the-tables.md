@@ -1,7 +1,7 @@
 ---
 title: "Applying the Tables"
 excerpt: "Specification v3.4.0, section III.C.8 and III.C.9"
-hidden: true
+hidden: false
 ---
 
 *Specification v3.4.0, section III.C.8 and III.C.9*

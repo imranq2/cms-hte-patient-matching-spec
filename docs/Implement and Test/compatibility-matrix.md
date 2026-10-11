@@ -1,7 +1,7 @@
 ---
 title: "Compatibility Matrix"
 excerpt: "Which versions of the specification, library, test set, and service go together."
-hidden: true
+hidden: false
 ---
 
 *Last updated 2026-10-10 from the public package indexes and repository tags. Update this page at every specification release and every library, test set, or service release.*

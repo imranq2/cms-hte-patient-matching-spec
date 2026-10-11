@@ -1,7 +1,7 @@
 ---
 title: "Test Set Overview"
 excerpt: "A public, algorithm-agnostic dataset for validating a matching algorithm against the specification."
-hidden: true
+hidden: false
 ---
 
 *Source of truth: the [cms-hte-patient-matching-test-set repository](https://github.com/icanbwell/cms-hte-patient-matching-test-set) and its [README for test data](https://github.com/icanbwell/cms-hte-patient-matching-test-set/blob/main/evaluation/cases/README.md). Where this page differs from the repository, the repository is correct.*

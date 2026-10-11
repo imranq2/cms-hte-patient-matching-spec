@@ -1,7 +1,7 @@
 ---
 title: "Conformance Checklist"
 excerpt: "The specification's SHALL requirements, quoted and linked. Informational, not normative."
-hidden: true
+hidden: false
 ---
 
 <Callout icon="📘" theme="info">

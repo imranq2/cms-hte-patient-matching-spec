@@ -1,7 +1,7 @@
 ---
 title: "Joint Collision Probability"
 excerpt: "Specification v3.4.0, section IV.D"
-hidden: true
+hidden: false
 ---
 
 *Specification v3.4.0, section IV.D*

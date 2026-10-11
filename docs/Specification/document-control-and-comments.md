@@ -1,7 +1,7 @@
 ---
 title: "Document Control and Comments"
 excerpt: "Specification v3.4.0, section Document Control"
-hidden: true
+hidden: false
 ---
 
 *Specification v3.4.0, section Document Control*

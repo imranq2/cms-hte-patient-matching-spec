@@ -1,7 +1,7 @@
 ---
 title: "References"
 excerpt: "Specification v3.4.0, section References"
-hidden: true
+hidden: false
 ---
 
 *Specification v3.4.0, section References*

@@ -1,7 +1,7 @@
 ---
 title: "Probability Model"
 excerpt: "Specification section IV (Model & Assumptions)."
-hidden: true
+hidden: false
 ---
 
 Specification section IV (Model & Assumptions).

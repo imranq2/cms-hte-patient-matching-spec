@@ -1,7 +1,7 @@
 ---
 title: "Contribute"
 excerpt: "How to propose specification changes, add test data, or contribute code and documentation."
-hidden: true
+hidden: false
 ---
 
 Everything here is open source. Choose the kind of contribution below.

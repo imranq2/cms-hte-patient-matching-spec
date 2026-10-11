@@ -1,7 +1,7 @@
 ---
 title: "Service and IAL2 Reader"
 excerpt: "The FHIR $match service that wraps the library, and the IAL2 token reader."
-hidden: true
+hidden: false
 ---
 
 ## Patient matching service

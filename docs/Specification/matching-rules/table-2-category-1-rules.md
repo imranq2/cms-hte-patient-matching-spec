@@ -1,7 +1,7 @@
 ---
 title: "Table 2: Category 1 Rules"
 excerpt: "Specification v3.4.0, section III.C"
-hidden: true
+hidden: false
 ---
 
 *Specification v3.4.0, section III.C*

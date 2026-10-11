@@ -1,7 +1,7 @@
 ---
 title: "Glossary"
 excerpt: "Terms used in the specification and on this site."
-hidden: true
+hidden: false
 ---
 
 Definitions follow the specification's wording where it defines a term, and give the section. Where the specification does not define a term, the entry says how this site uses it.

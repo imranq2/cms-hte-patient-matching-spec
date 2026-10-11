@@ -1,7 +1,7 @@
 ---
 title: "Empirical vs. Conservative Values"
 excerpt: "The specification's conservative u-values compared with empirical estimates from public data."
-hidden: true
+hidden: false
 ---
 
 *Source of truth: [`calculations/docs/conservative_u_comparison.md`](https://github.com/icanbwell/cms-hte-patient-matching/blob/main/calculations/docs/conservative_u_comparison.md) and the generated [`outputs/u_probabilities.md`](https://github.com/icanbwell/cms-hte-patient-matching/blob/main/calculations/outputs/u_probabilities.md). The values below are copied from those files as of repository commit `0b50516`. They change if the tool is re-run, so check the repository for current values.*

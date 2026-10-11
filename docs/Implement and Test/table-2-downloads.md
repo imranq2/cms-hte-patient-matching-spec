@@ -1,7 +1,7 @@
 ---
 title: "Table 2 Downloads"
 excerpt: "The specification's matching tables as CSV and JSON."
-hidden: true
+hidden: false
 ---
 
 The specification's tables as machine-readable files, so you do not need to retype rules. They are generated from the specification document by script, not typed by hand, and cell text is exactly what the document contains.

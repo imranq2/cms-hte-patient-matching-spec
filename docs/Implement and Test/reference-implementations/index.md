@@ -1,7 +1,7 @@
 ---
 title: "Reference Implementations Overview"
 excerpt: "The public software that implements the specification, and which one to use when."
-hidden: true
+hidden: false
 ---
 
 These projects are maintained by b.well Connected Health and are published openly. They are implementations of the specification, not the specification itself. **If an implementation and the specification text disagree, the specification governs.**

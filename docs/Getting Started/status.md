@@ -1,7 +1,7 @@
 ---
 title: "Status"
 excerpt: "The current version, what is open, and notes on the specification text."
-hidden: true
+hidden: false
 ---
 
 ## Current version

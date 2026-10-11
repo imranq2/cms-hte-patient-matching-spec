@@ -1,7 +1,7 @@
 ---
 title: "Required Normalization, Names, and Demographic Fields"
 excerpt: "Specification v3.4.0, section V.A to V.C"
-hidden: true
+hidden: false
 ---
 
 *Specification v3.4.0, section V.A to V.C*

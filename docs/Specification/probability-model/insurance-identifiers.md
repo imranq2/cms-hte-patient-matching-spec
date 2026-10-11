@@ -1,7 +1,7 @@
 ---
 title: "Insurance Identifiers"
 excerpt: "Specification v3.4.0, section IV.H"
-hidden: true
+hidden: false
 ---
 
 *Specification v3.4.0, section IV.H*
