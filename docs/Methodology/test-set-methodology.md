@@ -20,9 +20,9 @@ Each case has a stable `case_id` built from the ONC identifiers involved and a `
 
 | Category | What it does |
 |---|---|
-| Fuzzy-tolerance variants | One single-character-edit variant of a real record per case, matching the specification's fuzzy tolerance (insertion, deletion, substitution, transposition). Ten mutation types cover date-of-birth shifts, swaps and typos, family-name typos, transpositions and dropped letters, given-name nicknames, and given-name initials. |
+| Fuzzy-tolerance variants | One variation of a real record per case. Most are single-character edits matching the specification's fuzzy tolerance (insertion, deletion, substitution, transposition); some are broader, such as small date-of-birth shifts, dropping about 20% of a family name's letters, nickname substitution, and reducing a given name to an initial. Ten mutation types are registered. |
 | Normalization edge cases | Diacritic and punctuation variants that the specification's normalization requirements say must fold into an identical match. |
-| Compound variants and scenario mutators | Several edits in one pair, a dropped SSN, a marriage-driven surname and address change, and a second phone number. These categories have intentionally small yields, because the underlying ONC fields are sparsely populated. |
+| Compound variants and scenario mutators | Several edits in one pair, a dropped SSN, a marriage-driven surname and address change, and a second phone number. The marriage and second-phone categories have intentionally small yields, because the underlying ONC fields are sparsely populated. |
 | Drift scenarios | Registry scenarios named `surname_change`, `address_move`, `phone_churn`, `email_churn`, `placeholder`, and `gender_drift`. |
 
 ## True-non-match cases
@@ -30,16 +30,17 @@ Each case has a stable `case_id` built from the ONC identifiers involved and a `
 Non-matches are never produced by mutating a record, since that would test only a matcher's own fuzzy tolerance, not reality. They are always two genuinely distinct ONC identities:
 
 - **General hard negatives:** distinct people who share a postal code and date of birth but have different family names.
-- **Multi-generational households:** same address and family name with birth years at least 15 years apart. Because ONC addresses are near-unique, these are constructed by giving a real younger same-surname record the elder's real address.
+- **Multi-generational households:** same address and family name with birth years at least 15 years apart. In the committed sample every such pair is constructed, by giving a real younger same-surname record the elder's real address, because ONC addresses are near-unique. The generator can also mine same-street pairs from inputs that have co-resident records.
 - **Institutional negatives:** eight categories (shelter, nursing facility, correctional institution, hotel or short-term housing, halfway house, dormitory, group home, migrant camp). Three already-distinct real identities have only their address overwritten with a fixed synthetic address. Each carries an unambiguous "SYNTHETIC TEST ADDRESS" line and a reserved ZIP block.
-- **Sibling negatives and name-collision negatives:** near-DOB same-surname pairs, and near-identical full names with no other shared field.
+- **Sibling negatives:** distinct people sharing postal code and family name, with different first names and birth years no more than 3 years apart.
+- **Name-collision negatives:** near-identical full names (edit distance of 1 or less) with no shared postal code or date of birth.
 - **Placeholder-collision negatives:** two distinct people sharing a placeholder SSN, phone, or date of birth.
 
-Literal twins are deliberately never constructed, because they cannot be resolved by field matching alone. Every non-match pair is checked so that none shares a real SSN or an identical first name, family name, and date of birth.
+Literal twins are deliberately never constructed, because, according to the test set's README, that case cannot be resolved through field matching alone. Every non-match pair is checked so that none shares a real SSN or an identical first name, family name, and date of birth.
 
 ## Two tiers
 
-The same generation logic is assembled into two test tiers, which support different metrics. See [Running the Test Set](/docs/running-the-test-set).
+The same generation logic is assembled into two test tiers. The per-provision pairs support recall and false-positive rate; the population-query tier supports precision, recall, false-positive rate, FDR, F1, and accuracy. See [Running the Test Set](/docs/running-the-test-set).
 
 ## What this dataset does not claim
 

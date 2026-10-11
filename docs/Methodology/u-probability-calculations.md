@@ -53,7 +53,7 @@ Variants beyond what the specification uses are also computed for pricing propos
 
 ## Date of birth
 
-Full date of birth assumes a uniform distribution within a birth year. The tool also computes date-level variants, including a ±1-day variant (`fuzzy_pm1day`). The specification allows a ±1-day tolerance for date of birth where it is marked with an asterisk.
+Full date of birth assumes a uniform distribution within a birth year. The tool also computes date-level variants, including a ±1-day variant (`fuzzy_pm1day`). These are widened variants computed for pricing proposed rule changes against the threshold. They have no conservative value to compare against and are not part of the specification comparison. Table 2 allows a ±1-day tolerance for date of birth where it is marked with an asterisk, but the specification's Table 3 lists no fuzzy u-value for date of birth ("Not used"), and section IV.C says fuzzy matching is not applied to structured fields such as DOB.
 
 ## Where a number comes from
 

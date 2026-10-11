@@ -12,15 +12,15 @@ The calculations project uses **only public aggregate data**. It uses no patient
 
 | Used for | Source | Publisher |
 |---|---|---|
-| First names (2020) | `Names2020_FirstNames_Sex.xlsx` | U.S. Census Bureau |
-| Last names (2020) | `Names2020_LastNames_RaceHispanic.xlsx`. This file publishes race and Hispanic-origin cross-tabs; the tool sums the race columns, which it verified equal the total frequency column. | U.S. Census Bureau |
+| First names (2020), and the proxy for middle names | `Names2020_FirstNames_Sex.xlsx` | U.S. Census Bureau |
+| Last names (2020) | `Names2020_LastNames_RaceHispanic.xlsx`. This file publishes race and Hispanic-origin cross-tabs as well as a total frequency column. The tool uses the total column, which the project's configuration notes was verified to equal the sum of the per-category columns. | U.S. Census Bureau |
 | Last names (2010), comparison only | `names_2010census.zip` | U.S. Census Bureau |
 | Year of birth and full date of birth | `nc-est2025-agesex-res.csv` (national single-year-of-age estimates) | U.S. Census Bureau |
 | State | `NST-EST2025-POP.xlsx` (July 1, 2025 estimate) | U.S. Census Bureau |
 | City | `sub-est2025.csv` (incorporated places and Census Designated Places, July 1, 2025 estimate) | U.S. Census Bureau |
 | ZIP (via ZCTA), street line | American Community Survey 2024 5-year estimates at ZCTA level: population (B01003), household size (B11016, B25010), housing units (B25001) | U.S. Census Bureau |
 | MBI | "Medicare Total Enrollment" (2024), Program Statistics | Centers for Medicare & Medicaid Services |
-| Phone (share of households with a landline) | NCHS Wireless Substitution survey, July to December 2024, Table 1: [doi.org/10.15620/cdc/174608](https://doi.org/10.15620/cdc/174608) | CDC National Center for Health Statistics |
+| Phone (share of adults in a household with a landline, 20.7%: 19.8% dual-user plus 0.9% landline-only) | NCHS Wireless Substitution survey, July to December 2024, Table 1: [doi.org/10.15620/cdc/174608](https://doi.org/10.15620/cdc/174608) | CDC National Center for Health Statistics |
 | SSN / ITIN last 4 | SSA SSN Randomization policy (closed form, no data file): [ssa.gov/employer/randomization.html](https://www.ssa.gov/employer/randomization.html) | Social Security Administration |
 
 ## Cited but not used in a computed value

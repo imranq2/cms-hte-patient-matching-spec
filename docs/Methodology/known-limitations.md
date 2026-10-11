@@ -4,7 +4,7 @@ excerpt: "Limits of the empirical u-probability estimates, as documented by the 
 hidden: true
 ---
 
-*Source of truth: the "Known limitations" section of [`calculations/README.md`](https://github.com/icanbwell/cms-hte-patient-matching/blob/main/calculations/README.md), the caveats in [`outputs/u_probabilities.md`](https://github.com/icanbwell/cms-hte-patient-matching/blob/main/calculations/outputs/u_probabilities.md), and [`docs/conservative_u_comparison.md`](https://github.com/icanbwell/cms-hte-patient-matching/blob/main/calculations/docs/conservative_u_comparison.md).*
+*Source of truth: the "Known limitations" section of [`calculations/README.md`](https://github.com/icanbwell/cms-hte-patient-matching/blob/main/calculations/README.md), [`docs/PROCESS.md`](https://github.com/icanbwell/cms-hte-patient-matching/blob/main/calculations/docs/PROCESS.md), the caveats in [`outputs/u_probabilities.md`](https://github.com/icanbwell/cms-hte-patient-matching/blob/main/calculations/outputs/u_probabilities.md), and [`docs/conservative_u_comparison.md`](https://github.com/icanbwell/cms-hte-patient-matching/blob/main/calculations/docs/conservative_u_comparison.md).*
 
 These limits apply to the empirical estimates from the calculations project. They are not limits of the specification itself, although they bear on how much weight the comparison with the specification's conservative values can carry.
 
