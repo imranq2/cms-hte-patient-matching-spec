@@ -21,7 +21,7 @@ from pathlib import Path
 
 SPEC_VERSION = "3.4.0"
 CHART_URL = (
-    "https://raw.githubusercontent.com/imranq2/cms-hte-patient-matching-spec/v1.0/"
+    "https://raw.githubusercontent.com/imranq2/cms-hte-patient-matching-spec/main/"
     "assets/images/spec-v3-4-0-selectivity-distribution.png"
 )
 CHART_ALT = (

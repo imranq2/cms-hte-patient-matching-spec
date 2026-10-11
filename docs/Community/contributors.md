@@ -17,6 +17,7 @@ Thank you to everyone who has contributed to the CMS HTE Patient Matching specif
 | Aaron Madsen | Portobello Health |
 | Nicholas Orser | Verato |
 | Andre Quina | Arcadia |
+| Imran Qureshi | b.well Connected Health |
 
 ## Organizations
 

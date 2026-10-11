@@ -24,7 +24,7 @@ Uses `@readme/cli` via `npx` (no local install):
 
 - `docs/` — guides, in six categories (each a subdirectory): `Getting Started` (landing page and audience pages), `Specification` (spec v3.4.0), `Methodology` (probability calculations, test-set methodology), `Implement and Test`, `Changes` (changelog and proposals), `Community`. Pages with children are a folder with an `index.md` plus an `_order.yaml` (the folder name is the slug).
 - `reference/` — API reference section. `reference/ReadMeConfig/` holds the stub pages that configure ReadMe's API Explorer via `api_config`; they are `hidden: true`. No OpenAPI spec is published; the service page links to the service repo instead.
-- `tools/` — scripts that generate or check content (not published). `assets/` — images and data files linked from pages by `raw.githubusercontent.com` URLs on the `v1.0` branch. `design/` — the site design document (not published).
+- `tools/` — scripts that generate or check content (not published). `assets/` — images and data files linked from pages by `raw.githubusercontent.com` URLs on the `main` branch. `design/` — the site design document (not published).
 - Proposals are GitHub Issues in this repo (labels `proposal` and `status: under-review|accepted|rejected|withdrawn`); the site's Proposals pages index them.
 
 ## Specification pages are generated

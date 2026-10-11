@@ -19,7 +19,7 @@ of zero are excluded in the following chart (e.g. namespace bound unique identif
 
 *Table 3 Distribution of Collision probabilities. Zero values excluded.*
 
-![Bar chart titled Selectivity Distribution. X axis: collision probability bucket. Y axis: combo count. Series: all canonical combos (692), threshold-qualified combos (556), combos that are not a superset of a threshold-qualified combo (224), and reference-list minimal rows (20).](https://raw.githubusercontent.com/imranq2/cms-hte-patient-matching-spec/v1.0/assets/images/spec-v3-4-0-selectivity-distribution.png)
+![Bar chart titled Selectivity Distribution. X axis: collision probability bucket. Y axis: combo count. Series: all canonical combos (692), threshold-qualified combos (556), combos that are not a superset of a threshold-qualified combo (224), and reference-list minimal rows (20).](https://raw.githubusercontent.com/imranq2/cms-hte-patient-matching-spec/main/assets/images/spec-v3-4-0-selectivity-distribution.png)
 
 There are approximately 68 additional unique combinations that could be added to the approved list based on threshold, however, passing the threshold should be treated as a necessary condition for approval, not a sufficient one. Combinations that fall below the threshold may still warrant restriction, exact-only treatment, limitation to certain query contexts, or exclusion from Table 2 if they rely too heavily on shared, mutable, or household-level data. Because demographic variables are often correlated, the model applies conservative dependency adjustments to avoid overstating uniqueness.
 
