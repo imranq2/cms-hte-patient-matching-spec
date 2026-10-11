@@ -207,7 +207,7 @@ Pages under a **Community** nav entry (Contributors, Report an Issue, Contribute
 
 | What | Where it goes |
 |---|---|
-| Spec content: unclear, incorrect, or a comment on the draft | GitHub Issues on this docs repo (label `spec-comment`, to be created), during the comment period; a substantive change is filed as a proposal (see Contribute) |
+| Spec content: unclear, incorrect, or a comment on the draft | GitHub Issues on this docs repo (titled with a "Spec comment:" prefix; maintainers apply labels), during the comment period; a substantive change is filed as a proposal (see Contribute) |
 | Test set: wrong label, bad case, format problem | GitHub Issues on `cms-hte-patient-matching-test-set` |
 | Reference library: bug or rule-coverage gap | GitHub Issues on `cms-hte-patient-matching` |
 | Hosted UI | Contact route not decided (see Remaining open items) |
@@ -286,7 +286,7 @@ Because `v1.0` publishes on push, work goes through PRs into `v1.0`. Each PR is 
 
 | PR | Scope | Defers |
 |---|---|---|
-| 0. Repo readiness | Apache-2.0 LICENSE file, `spec-comment` label, proposal issue template, local-preview instructions, resolve ReadMe version naming | All content |
+| 0. Repo readiness | Apache-2.0 LICENSE file, proposal issue template, local-preview instructions, resolve ReadMe version naming | All content |
 | 1. Skeleton | `_order.yaml` files for the six sections, titled hidden pages, remove template callouts, rule-ID anchor test | All content |
 | 2. Spec: framing | Summary and Purpose, Core Principles, Risk Framework | Rules, model |
 | 3. Spec: Matching Rules | Table 2, 2-H, 2-I, Category 2, Table 4, twins, how-to-apply, IAL2 tokens, Find a Rule index | Probability model |

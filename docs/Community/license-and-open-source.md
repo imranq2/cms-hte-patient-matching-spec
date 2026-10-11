@@ -4,16 +4,18 @@ excerpt: "The licenses that cover the site, the specification text, the code, an
 hidden: true
 ---
 
-The documentation site, the reference implementations, the probability calculations, and the test set are open source.
+The documentation site, the patient matching library, the probability calculations, the matching service, and the test set have public source. The IAL2 reader is published on PyPI, but its source repository is private.
 
 ## Licenses
 
 | Component | License |
 |---|---|
 | This site and the specification text | Apache-2.0 |
-| Patient matching library (`cms-hte-patient-matching`), including the probability calculations in `calculations/` | Apache-2.0 (the repository's LICENSE file, and the package metadata on PyPI) |
+| Patient matching library (`cms-hte-patient-matching`) | Apache-2.0 (the repository's LICENSE file, and the package metadata on PyPI) |
+| Probability calculations (`calculations/` in the library repository) | The library repository's LICENSE file (Apache-2.0). The calculations are not part of the PyPI package. |
 | Test set (`cms-hte-patient-matching-test-set`) | Apache-2.0 (the repository's LICENSE file) |
-| Patient matching service | Apache-2.0 (the repository's LICENSE file) |
+| Patient matching service | Apache-2.0 (the repository's LICENSE file). Its README says the repository is temporarily public. |
+| IAL2 reader (`cms-hte-ial2-reader`) | Source repository not public; see its PyPI page |
 
 Copyright in the library and test set is held by b.well Connected Health, Inc., according to their LICENSE files.
 

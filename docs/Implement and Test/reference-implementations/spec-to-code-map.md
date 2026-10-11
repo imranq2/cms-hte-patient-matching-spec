@@ -4,7 +4,7 @@ excerpt: "Which code in the reference library implements each Table 2 rule."
 hidden: true
 ---
 
-*Maintained by the library maintainers as part of the library's release process. Built against specification v3.4.0 and `cms-hte-patient-matching` 0.0.12 (published on PyPI 2026-10-07). The code is in the [library repository](https://github.com/icanbwell/cms-hte-patient-matching), under `patient_matching/matching/`. If this page and the repository differ, the repository is correct. See also the [Compatibility Matrix](/docs/compatibility-matrix).*
+*Written in this docs repository, against specification v3.4.0 and `cms-hte-patient-matching` 0.0.12 (published on PyPI 2026-10-07). The project's intent is for the library maintainers to keep it current, but the library repository has no process for that yet. The code is in the [library repository](https://github.com/icanbwell/cms-hte-patient-matching), under `patient_matching/matching/`. If this page and the repository differ, the repository is correct. See also the [Compatibility Matrix](/docs/compatibility-matrix).*
 
 ## Category 1 rules
 

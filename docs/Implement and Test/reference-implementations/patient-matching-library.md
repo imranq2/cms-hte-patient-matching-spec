@@ -32,8 +32,10 @@ The simplest entry point is `PatientMatcherService`, which chains normalization 
 
 ```python
 from patient_matching.api import PatientMatcherService
+from patient_matching.cache import DuckDBCache
 
-service = PatientMatcherService(engine=engine, normalizer=normalizer)
+cache = DuckDBCache()  # populate it first, for example with CacheManager
+service = PatientMatcherService(cache=cache)
 response = await service.match_patient(query_patient)
 
 print(response.outcome)           # "match", "no_match", or "ambiguous"
@@ -41,7 +43,7 @@ print(response.confidence_score)  # 0.0 - 1.0
 print(response.matched_patient_ids)
 ```
 
-Setting up the `engine`, `normalizer`, and cache is shown in the README's Quick Start. All the matching and cache methods are `async`.
+Populating the cache, and building a `MatchingEngine` directly instead, are shown in the README's Quick Start. All the matching and cache methods are `async`. The README's own `PatientMatcherService` example passes an `engine` argument that the constructor does not accept; the constructor takes `cache`, and optionally `normalizer` and `config`, as keyword arguments.
 
 ## IAL2 tokens
 

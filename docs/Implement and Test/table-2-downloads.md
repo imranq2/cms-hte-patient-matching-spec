@@ -29,4 +29,4 @@ The specification's tables as machine-readable files, so you do not need to rety
 
 ## Regenerating
 
-`tools/export_tables.py` in the [docs repository](https://github.com/imranq2/cms-hte-patient-matching-spec) produces these files from the specification document's data. It is run for each new specification version.
+`tools/export_tables.py` in the [docs repository](https://github.com/imranq2/cms-hte-patient-matching-spec) produces these files from the source document's Google Docs API JSON export. It is run by the maintainers for each new specification version; the repository's `CLAUDE.md` describes the inputs.

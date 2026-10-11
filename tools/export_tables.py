@@ -27,6 +27,11 @@ TABLES = {
 }
 
 
+# Expected first header cell of each table, so that a table added to or removed from the Doc fails
+# loudly instead of exporting the wrong table under a good name.
+EXPECTED_HEADER = {1: "ID", 2: "ID", 3: "ID", 4: "Household leg", 5: "Candidate combination", 7: "Field", 8: "Candidate combination"}
+
+
 def cell_text(cell: dict) -> str:
     parts = []
     for c in cell["content"]:
@@ -53,6 +58,8 @@ def main() -> None:
     for pos, (stem, title) in TABLES.items():
         rows = [[cell_text(c) for c in r["tableCells"]] for r in tables[pos]["tableRows"]]
         header, body = rows[0], rows[1:]
+        if header[0] != EXPECTED_HEADER[pos]:
+            raise SystemExit(f"table {pos} header is {header[0]!r}, expected {EXPECTED_HEADER[pos]!r}: the Doc's table order changed")
         base = f"spec-v{SPEC_VERSION.replace('.', '-')}-{stem}"
         with open(out / f"{base}.csv", "w", newline="", encoding="utf-8") as f:
             w = csv.writer(f)

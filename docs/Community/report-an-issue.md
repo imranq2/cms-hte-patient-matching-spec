@@ -8,7 +8,7 @@ Choose the row that matches what you found, so your report reaches the right pla
 
 | What you found | Where to report it |
 |---|---|
-| **Specification content:** something unclear, incorrect, or missing, or a comment on the draft | Open an issue in the [docs repository](https://github.com/imranq2/cms-hte-patient-matching-spec/issues) and add the label `spec-comment`. If you are proposing a substantive change, file a proposal instead; see [Contribute](/docs/contribute). |
+| **Specification content:** something unclear, incorrect, or missing, or a comment on the draft | Open an issue in the [docs repository](https://github.com/imranq2/cms-hte-patient-matching-spec/issues) and start the title with "Spec comment:". Maintainers apply labels. If you are proposing a substantive change, file a proposal instead; see [Contribute](/docs/contribute). |
 | **Test set:** a wrong label, a bad case, or a format problem | [Test set issues](https://github.com/icanbwell/cms-hte-patient-matching-test-set/issues) |
 | **Reference library:** a bug or a rule-coverage gap | [Library issues](https://github.com/icanbwell/cms-hte-patient-matching/issues) |
 | **Matching service or hosted testing page** | [Service issues](https://github.com/icanbwell/cms-hte-patient-matching-service/issues) |

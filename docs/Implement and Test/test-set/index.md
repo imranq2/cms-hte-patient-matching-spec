@@ -31,6 +31,7 @@ This test set is built from the ONC dataset. Whether it counts as an approved su
 
 - **It does not certify a P(collision) of 2e-12.** Section VI.B asks for validation of P(collision) values using population-scale datasets totaling at least 1 million records. The test set's pools, even in the population tier, are far smaller. The test set README states this limitation.
 - **Category counts are not real-world prevalence.** Do not weight categories by their counts to estimate real-world accuracy.
+- **Some behavior is not covered.** The test set's README says administrative-restriction and insurance-identifier coverage are not in either tier yet, so Table 2 rules that use insurance identifiers are not exercised. Literal twins are deliberately excluded. True-match pairs that only rule 29 could link are excluded from both tiers. In the committed population tier, every query has a pool of 40 candidates and at least one expected match, so the case of a query with no true match, which the format allows, is not exercised.
 
 ## Contributing test data
 

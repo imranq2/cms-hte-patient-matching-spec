@@ -9,7 +9,7 @@ hidden: true
 
 The specification defines when a responding entity SHALL return matching patient records. If the identity attributes in a query correspond to a combination listed in Table 2, and the query produces a unique candidate, the responding entity returns the records for that patient within the permitted scope for that query, subject to the administrative controls in section IV.D and Table 4. Table 2 lists combinations whose conservative probability of collision is 2e-12 (1 in 500 billion) or lower and that satisfy additional administrative controls. Two relationship-based rows carry caveats that the specification itself flags as unresolved.
 
-This site hosts the specification, explains how its numbers are derived, and gives you the software and test data to check your implementation. Everything here is open source.
+This site hosts the specification, explains how its numbers are derived, and gives you the software and test data to check your implementation. The code, data, and documentation behind it are public.
 
 ## Start with your role
 

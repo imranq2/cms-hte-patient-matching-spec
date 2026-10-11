@@ -23,7 +23,7 @@ Clone or download the [test set repository](https://github.com/icanbwell/cms-hte
 | `target` | The "Internal Record" or candidate FHIR `Patient` |
 | `expected_match` | The gold label: `true` if both records are the same person |
 | `rationale` | The category and subtype the case traces to, such as `fuzzy_variant/dob_day` or `special_population/shelter` |
-| `frequency` | A relative prevalence weight; currently `1.0` for every case, meaning no real-world weighting has been applied |
+| `frequency` | A relative real-world prevalence weight for the case's category. In the committed 0.0.5 file most cases carry `1.0`, but some categories (for example normalization edge cases and special populations) carry researched weights below 1. The repository README describes this field inconsistently, so check the README before using it. |
 
 **To score:** stream the file, give each `source` and `target` to your algorithm, compare its answer with `expected_match`, and tally true positives, false positives, false negatives, and true negatives. Compute metrics from the tallies, never per case and never by averaging per-case percentages.
 
@@ -41,7 +41,7 @@ Clone or download the [test set repository](https://github.com/icanbwell/cms-hte
 ## Reporting rules
 
 - **Use the right metrics for each tier.** On tier 1, trust only recall and false-positive rate. Compute precision, FDR, F1, and accuracy on tier 2.
-- **Break results out by `rationale`,** using the prefix before the `/`, such as `fuzzy_variant` or `hard_negative`. A single blended number hides categories your algorithm handles poorly.
+- **Break results out by category,** using `rationale`. A single blended number hides categories your algorithm handles poorly. Many rationale values have the form `category/subtype` (for example `fuzzy_variant/dob_day`), but about 39% of the committed pairs have rationales with no `/` and with parameters appended (for example `hard_negative (birthDate=..., postalCode=...)`, `compound_variant (mutations=...)`, `marriage_variant`), so group on the leading category name, not only on the text before a `/`.
 - **Report skipped cases separately.** If your algorithm cannot evaluate a case, count it. Do not exclude it silently.
 - **Do not infer real-world prevalence** from category counts.
 
