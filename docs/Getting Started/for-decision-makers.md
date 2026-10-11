@@ -1,0 +1,63 @@
+---
+title: "For Decision Makers"
+excerpt: "What the specification requires of an organization, in plain language."
+hidden: true
+---
+
+This page summarizes the specification for readers who do not need the technical detail. It adds no requirements. **The specification text governs**, and each point links to where it comes from.
+
+## The problem it addresses
+
+The specification's Executive Summary cites a 2020 eHealth Initiative and NextGate survey in which about 38% of U.S. providers experienced an adverse event in the prior two years that was attributable to incorrect patient matching. It says matching rates between organizations are low, at around 50%, and that some ecosystem pledgees report closer to 40% in real data exchange and worse for patient-initiated access.
+
+The [Risk Framework](/docs/risk-framework) argues that failing to return a record that should have been returned is a real harm that goes unnoticed, because "no one logs a match that should have happened but didn't". It sets that against the risk of returning a record to the wrong person, which is discrete, detectable, and correctable.
+
+## What it requires
+
+In the specification's words: if the identity attributes in a query correspond to a field combination listed in Table 2, and the query produces a unique candidate subject, the responding entity SHALL return matching records for that patient within the permitted scope for that query context. **Failing to return records when a query satisfies a Table 2 combination and produces a unique candidate is non-compliant.**
+
+- **Table 2** lists approved combinations of identity attributes (for example, first name, date of birth, and phone number). Each has a conservative probability of collision at or below 2e-12.
+- **A unique candidate is required.** A match is satisfied only when it produces a unique candidate at the source system. When there is more than one candidate, the specification describes escalation and, in some cases, declining.
+- **Data is cleaned first.** Implementations normalize identity attributes and remove placeholder values such as test names or default dates of birth.
+- **Verified identity for patient-facing apps.** A patient-facing app includes an IAL2 Claims Token issued by a Credential Service Provider. Covered entities may request records from other covered entities without a signed token.
+
+See [Summary and Purpose](/docs/summary-and-purpose) and [Core Principles](/docs/core-principles).
+
+## Who it applies to
+
+The Executive Summary says CMS intends to publish the proposal as part of the CMS Interoperability Framework, which ecosystem pledgees agree to follow. Because Medicare is also a respondent in the Payer pledge category, CMS will be a direct implementer as well as the sponsor. Compliance is assessed at the source-system level for each participant (Core Principle 4).
+
+## Two ways to comply
+
+The specification describes two compliance paths:
+
+- **Path A, Assumed Compliance (rules-based).** The audit sections describe Path A audits as verifying the correct application and integrity of the Table 2 rules.
+- **Path B, Empirical Compliance (performance-based).** The audit sections describe Path B audits as focused on macro-level outcome metrics such as match, no-candidate, and ambiguous rates, correction rate, and appeal rate.
+
+It also proposes a phased adoption period and a documented safe harbor for organizations whose current matching performance is demonstrably at or above its collision and recall benchmarks, whatever method they use. See [Implementation and Testing](/docs/implementation-and-testing), [Audit and Monitoring](/docs/audit-and-monitoring), and [Validation Requirements](/docs/validation-requirements).
+
+## What it deliberately does not do
+
+- It does not set governance or protocol recommendations beyond matching, such as what data is returned, exchange purposes, or enforcement (Purpose).
+- It does not govern wire-transaction payload formats. It governs source-system matching at responding endpoints (Purpose).
+- It does not permit full SSN or full ITIN in matching queries. Using the last four digits is optional, and choosing not to collect SSN or ITIN is not non-compliance ([SSN and ITIN](/docs/ssn-and-itin)).
+
+## Timing
+
+The specification is a draft open for public comment. Its effective date has not been set. See [Adoption Timeline](/docs/adoption-timeline) and [Status](/docs/status).
+
+## What organizations typically need to plan for
+
+These are the activities the specification describes, not additional requirements:
+
+- Normalization and placeholder handling for every identity field ([Normalization](/docs/normalization)).
+- Evidence of performance on the ONC patient matching test dataset, or a successor or approved third-party assessment, including precision, recall, and false-positive rate ([Validation Requirements](/docs/validation-requirements)).
+- Audit and monitoring sufficient to explain match decisions and detect degradation ([Audit and Monitoring](/docs/audit-and-monitoring)).
+- Participation in the governance process for changes ([Governance and Versioning](/docs/governance-and-versioning)).
+
+## Where to go next
+
+- [FAQ](/docs/faq)
+- [Adoption Timeline](/docs/adoption-timeline)
+- [Glossary](/docs/glossary)
+- [Implementation Guide](/docs/implementation-guide), for the engineers on your team.
