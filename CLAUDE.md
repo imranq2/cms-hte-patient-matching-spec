@@ -4,7 +4,13 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## What this repo is
 
-A [ReadMe](https://readme.com) docs-as-code repository for the CMS HTE Patient Matching API documentation. It contains only Markdown/MDX content and YAML ordering files — no application code, build system, or tests. The default branch is `v1.0` (ReadMe version), not `main`.
+The source for the Patient Matching documentation site, which is git-synced with [ReadMe](https://readme.com) (readme.io). It contains only Markdown/MDX content and YAML ordering files — no application code, build system, or tests.
+
+The default branch is `v1.0`, which corresponds to ReadMe docs version 1.0 (not `main`). Because of the sync, this repo is the published site's source of truth:
+
+- Content merged/pushed to `v1.0` is what ReadMe publishes, so treat commits there as publishing changes. Prefer a branch and PR for non-trivial edits.
+- Edits made in the ReadMe web editor are committed back to this repo automatically (the `Created "<Page>" in docs|reference` commits). Pull before editing locally to avoid conflicts.
+- Page slugs, frontmatter, and `_order.yaml` entries drive the live site's URLs and navigation, so renaming or deleting a page changes or breaks published links.
 
 ## Commands
 
@@ -26,4 +32,3 @@ Uses `@readme/cli` via `npx` (no local install):
 - Pages begin with YAML frontmatter (`title`, `hidden`, optionally `excerpt`, `icon`, `api_config`).
 - Pages use ReadMe MDX components (`<Callout>`, `<Cards>`/`<Card>`), not plain Markdown equivalents.
 - `docs/Getting Started/getting-started.md` is still the unedited ReadMe template (contains a "Template: Delete this callout" notice and placeholder `href="#"` links).
-- Commit messages in history follow ReadMe's auto-generated style (`Created "<Page>" in docs|reference`), reflecting edits made through the ReadMe web editor that sync back to this repo.
