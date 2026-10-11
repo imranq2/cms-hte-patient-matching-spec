@@ -85,6 +85,11 @@ Proposals
   Accepted                             index table: ID, title, summary, spec version it shipped in, effective date, link
   Proposals/<ID>-<slug>                one page per proposal (see below)
 
+Community
+  Contributors                         people and organizations that have contributed to the spec and tooling
+  Report an Issue                      where to send what: spec feedback, test-set bugs, library bugs, site errors
+  Contribute                           how to contribute: spec proposals, test data, code, docs
+
 Try It
   Patient Matching Service UI          what the hosted UI does, who can use it, link to patient-matching-service.bwell.com
   Walkthrough                          run a sample query end to end, how results map to Table 2 rule IDs
@@ -132,6 +137,36 @@ Approximate page count: 40 for the spec, test set, and implementations, plus one
 - **Replace the spec's lettering with descriptive page titles** and keep the original section label in each page's frontmatter excerpt or a first-line "Spec section: C.7" note, so people citing the PDF/Doc can still find the page.
 - **Prev/next and "Related pages" footer** on spec pages to preserve linear reading for people who want it.
 
+## Community: contributors, issues, contributing
+
+Three pages under a **Community** nav entry, linked from the landing page and the site footer-level "Related" links on spec pages.
+
+**Report an Issue.** One page that routes by what the reader found, so reports land in the right place:
+
+| What | Where it goes |
+|---|---|
+| Spec content: unclear, incorrect, or a change request | The spec's public comment process (Document Control and Comments page) during a comment period; afterwards, submit a proposal (see Contribute) |
+| Test set: wrong label, bad case, format problem | GitHub Issues on `cms-hte-patient-matching-test-set` |
+| Reference library: bug or rule-coverage gap | GitHub Issues on `cms-hte-patient-matching` |
+| Hosted UI | Contact route TBD (see Open questions) |
+| This site: typo, broken link, stale content | GitHub Issues on this docs repo, or a "Suggest edits" link, depending on whether the repo is made public |
+
+The page lists what to include in a report (spec version or library/test-set version, rule ID, minimal example using synthetic data only, expected vs. actual) and carries a prominent "never include real patient data" warning. Per-repo issue templates are optional follow-up work in those repos, not part of this plan.
+
+**Contribute.** One page with a section per contribution type, each linking to the authoritative instructions rather than restating them:
+
+- **Spec changes:** submit a proposal containing the elements the Governance section requires (description, rationale, implementation impact, validation plan or evidence). Describes the path Under Review → Accepted, the 30-day comment period, and the 90-day transition for substantive changes. Links to the Proposals pages and the proposal template.
+- **Test data:** link to the test set's `CONTRIBUTING.md`. Summarize its key rules in a few lines (only synthetic records derived from a disclosed method, or cited aggregate statistics; no raw real records; fabricated values marked as synthetic).
+- **Code (library, test set):** link to each repo's `CONTRIBUTING.md` (dev setup, tests, pre-commit) and their license (Apache-2.0).
+- **Docs (this site):** how to edit and submit a change. Local edit, `npx @readme/cli lint`, PR into `v1.0`, with the note that merged changes publish. The ReadMe web editor path, if contributors are allowed to use it.
+- **Licensing:** contributions are accepted under the target repo's license; state that on the page.
+
+**Contributors.** A page listing contributors, grouped as Spec authors and workgroup, Test set and library contributors, and Organizations. Built from a curated list, not a raw `git log` dump, because:
+- the repos' contributor lists include bots (`claude[bot]`, `bwell-dev`) and GitHub handles rather than names;
+- listing a person by name publicly should be their choice.
+
+Each entry: name or handle, organization, role, optional link. Source is a `contributors` data block in the page, edited by PR. Seed it from the spec's workgroup/author information and the GitHub contributor lists, then confirm names with each person before publishing.
+
 ## Hosted testing UI
 
 b.well also runs a service with a UI for testing patient matching: https://patient-matching-service.bwell.com. The site gets a **Try It** section for it.
@@ -174,6 +209,7 @@ Because `v1.0` publishes on push, work goes through PRs into `v1.0`. Each PR is 
 | 4. Spec: Probability Model | Model & Assumptions pages incl. insurance identifiers, reference script | Normalization onward |
 | 5. Spec: Normalization, Validation, Audit, Governance, References, Document Control | Remainder of the spec | Test set / implementations |
 | 6. Test Set section | 3 pages | Spec-to-code map |
+| 7a. Community | Contributors, Report an Issue, Contribute | Contributor list contents beyond what is confirmed |
 | 7. Reference Implementations and Try It | 4 implementation pages including Spec-to-Code Map, 2 Try It pages for the hosted UI | — |
 | 8. Changelog and Proposals | Overview pages, proposal template, changelog entry for v3.4.0, any existing proposals (Under Review / Accepted) | Backfill of versions before v3.4.0 unless source material exists |
 | 9. Unhide + landing page finalization | Flip `hidden`, fill Quick Start and cross-links | — |
@@ -201,3 +237,7 @@ Pages stay `hidden: true` until PR 9 so partial content is never public.
 11. **Hosted UI access and audience:** is `patient-matching-service.bwell.com` public, login-gated, or internal? Which spec version and library version does it run? If it is not open to site readers, the Try It pages need an access-request path instead of a plain link.
 12. **Hosted UI data handling:** does it accept real patient data? If it can, the page needs an explicit "use synthetic data only" warning, and the walkthrough and screenshots must use test-set records.
 13. **Delivery slot for Try It:** proposed as part of PR 7 (Reference Implementations) since the service wraps the library; say if it should ship separately.
+14. **Who are the contributors, and do they consent to being listed?** Who are the spec authors and workgroup members and organizations to credit, and in what form (name, handle, organization)?
+15. **Where do issue reports go for the spec and the hosted UI?** The docs repo `icanbwell/cms-hte-patient-matching-spec` is private, so readers cannot file issues there. Options: make it public, point the site at a public repo or intake form, or use an email/form alias. Which one?
+16. **Who triages reports and who approves proposals?** The Report an Issue and Contribute pages need a named owner or alias and an expected response, or readers get no answer.
+17. **Can external contributors edit the docs?** Today only people with access to this private repo can open PRs. If not, the Contribute page's docs section becomes "suggest an edit" via the issue route.
