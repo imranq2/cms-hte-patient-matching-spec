@@ -1,0 +1,31 @@
+---
+title: License and Open Source
+excerpt: The licenses that cover the site, the specification text, the code, and the data.
+hidden: false
+---
+
+The documentation site, the patient matching library, the probability calculations, the matching service, and the test set have public source. The IAL2 reader is published on PyPI, but its source repository is private.
+
+## Licenses
+
+| Component | License |
+| --- | --- |
+| This site and the specification text | Apache-2.0 |
+| Patient matching library (`cms-hte-patient-matching`) | Apache-2.0 (the repository's LICENSE file, and the package metadata on PyPI) |
+| Probability calculations (`calculations/` in the library repository) | The library repository's LICENSE file (Apache-2.0). The calculations are not part of the PyPI package. |
+| Test set (`cms-hte-patient-matching-test-set`) | Apache-2.0 (the repository's LICENSE file) |
+| Patient matching service | Apache-2.0 (the repository's LICENSE file). Its README says the repository is temporarily public. |
+| IAL2 reader (`cms-hte-ial2-reader`) | Source repository not public; see its PyPI page |
+
+Copyright in the library and test set is held by b.well Connected Health, Inc., according to their LICENSE files.
+
+## Data
+
+The code is licensed as above, but the data these projects use comes from public sources that have their own terms:
+
+- **ONC 2017 Patient Matching Algorithm Challenge dataset**, used to build the test set. The test set's README advises independently confirming the terms ONC published it under before redistributing it further.
+- **U.S. Census Bureau, CMS, CDC/NCHS, and SSA public data**, used by the probability calculations. See [Data Sources](/docs/data-sources).
+
+## Contributing
+
+Contributions are accepted under the license of the repository they go to. See [Contribute](/docs/contribute).
