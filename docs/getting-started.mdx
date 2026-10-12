@@ -1,0 +1,63 @@
+---
+title: Welcome to Patient Matching
+excerpt: The CMS HealthTech Ecosystem Patient Matching Specification, with the tools to implement and test it.
+hidden: false
+---
+
+<Callout>
+  <strong>Status:</strong> specification v3.4.0, Final Consolidated Draft. Its effective date has not been set, and the end of its comment period is a placeholder in the specification. Two proposals are [under review](/docs/proposals-under-review). See [Status](/docs/status).
+</Callout>
+
+The specification defines when a responding entity SHALL return matching patient records. If the identity attributes in a query correspond to a combination listed in Table 2, and the query produces a unique candidate, the responding entity returns the records for that patient within the permitted scope for that query, subject to the administrative controls in section IV.D and Table 4. Table 2 lists combinations whose conservative probability of collision is 2e-12 (1 in 500 billion) or lower and that satisfy additional administrative controls. Two relationship-based rows carry caveats that the specification itself flags as unresolved.
+
+This site hosts the specification, explains how its numbers are derived, and gives you the software and test data to check your implementation. The code, data, and documentation behind it are public.
+
+## Start with your role
+
+<Columns cols={2}>
+  <Card title="Decision makers" href="/docs/for-decision-makers" icon="briefcase">
+    What the specification requires of an organization, and why
+  </Card>
+
+  <Card title="Engineers" href="/docs/implementation-guide" icon="code">
+    How to evaluate a query, and how to show your implementation conforms
+  </Card>
+
+  <Card title="Data scientists" href="/docs/how-the-numbers-are-derived" icon="chart-line">
+    How the collision probabilities were calculated, from what data
+  </Card>
+
+  <Card title="Reviewers and commenters" href="/docs/summary-and-purpose" icon="comments">
+    Read the specification, review proposals, and send comments
+  </Card>
+</Columns>
+
+## What's here
+
+<Columns cols={2}>
+  <Card title="Specification" href="/docs/summary-and-purpose" icon="book">
+    The full text of v3.4.0, one topic per page
+  </Card>
+
+  <Card title="Test set" href="/docs/test-set" icon="vial">
+    Labeled cases for validating an algorithm
+  </Card>
+
+  <Card title="Reference implementations" href="/docs/reference-implementations" icon="terminal">
+    A Python library and a matching service
+  </Card>
+
+  <Card title="Changelog" href="/docs/changelog" icon="clock-rotate-left">
+    What changed in each version
+  </Card>
+
+  <Card title="Proposals" href="/docs/proposals" icon="file-pen">
+    Proposals under review and accepted
+  </Card>
+</Columns>
+
+## Get involved
+
+- [Report an issue](/docs/report-an-issue) or comment on the draft.
+- [Contribute](/docs/contribute) a proposal, test data, code, or documentation.
+- See who has [contributed](/docs/contributors).
