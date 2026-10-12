@@ -1,0 +1,82 @@
+---
+title: Spec-to-Code Map
+excerpt: Which code in the reference library implements each Table 2 rule.
+hidden: false
+---
+
+<em>Written in this docs repository, against specification v3.4.0 and `cms-hte-patient-matching` 0.0.12 (published on PyPI 2026-10-07). The project's intent is for the library maintainers to keep it current, but the library repository has no process for that yet. The code is in the [library repository](https://github.com/icanbwell/cms-hte-patient-matching), under `patient_matching/matching/`. If this page and the repository differ, the repository is correct. See also the [Compatibility Matrix](/docs/compatibility-matrix).</em>
+
+## Category 1 rules
+
+Specification rule IDs 01 to 30 ([Table 2: Category 1 Rules](/docs/table-2-category-1-rules)). The library defines each rule in `table2_rules.py`, in the `APPROVED_RULES` tuple, with the same two-digit `rule_id`.
+
+| Spec rule | Approved field combination | Library |
+| --- | --- | --- |
+| 01 | First Name\* + Last Name\* + DOB\* + Street Line\* | `01` in `APPROVED_RULES` |
+| 02 | First Name + Last Name\* + DOB\* + Phone Number | `02` in `APPROVED_RULES` |
+| 03 | First Name\* + Last Name\* + DOB\* + Email Address | `03` in `APPROVED_RULES` |
+| 04 | First Name\* + Last Name + DOB + SSN Last 4 | `04` in `APPROVED_RULES` |
+| 05 | First Name + Last Name\* + DOB + SSN Last 4 | `05` in `APPROVED_RULES` |
+| 06 | First Name\* + Last Name + DOB + ITIN Last 4 | `06` in `APPROVED_RULES` |
+| 07 | First Name + Last Name\* + DOB + ITIN Last 4 | `07` in `APPROVED_RULES` |
+| 08 | First Name + DOB + MBI | `08` in `APPROVED_RULES` |
+| 09 | First Name + DOB + Legal ID | `09` in `APPROVED_RULES` |
+| 10 | Last Name\* + DOB\* + Legal ID | `10` in `APPROVED_RULES` |
+| 11 | First Name + DOB + Phone Number | `11` in `APPROVED_RULES` |
+| 12 | First Name + DOB + Email Address | `12` in `APPROVED_RULES` |
+| 13 | First Name + Phone Number + SSN Last 4 | `13` in `APPROVED_RULES` |
+| 14 | First Name + Phone Number + ITIN Last 4 | `14` in `APPROVED_RULES` |
+| 15 | First Name + Email Address + SSN Last 4 | `15` in `APPROVED_RULES` |
+| 16 | First Name + Email Address + ITIN Last 4 | `16` in `APPROVED_RULES` |
+| 17 | Phone Number + MBI | `17` in `APPROVED_RULES` |
+| 18 | Phone Number + Legal ID (w/issuing-authority namespace) | `18` in `APPROVED_RULES` |
+| 19 | Email Address + MBI | `19` in `APPROVED_RULES` |
+| 20 | Email Address + Legal ID (w/issuing-authority namespace) | `20` in `APPROVED_RULES` |
+| 21 | Legal ID + MBI | `21` in `APPROVED_RULES` |
+| 22 | Namespace bound unique identifiers (e.g. EMPI, FHIR Patient Identifier, CSP UUID, etc) | `22` in `APPROVED_RULES` |
+| 23 | First Name + DOB + Member ID (w/ Payer namespace) | `23` in `APPROVED_RULES` |
+| 24 | Last Name\* + DOB\* + Member ID (w/ Payer namespace) | `24` in `APPROVED_RULES` |
+| 25 | Phone Number + Member ID (w/ Payer namespace) | `25` in `APPROVED_RULES` |
+| 26 | Email Address + Member ID (w/ Payer namespace) | `26` in `APPROVED_RULES` |
+| 27 | First Name\* + Last Name + DOB + Subscriber ID (w/ Payer namespace) | `27` in `APPROVED_RULES` |
+| 28 | First Name + Last Name\* + DOB + Subscriber ID (w/ Payer namespace) | `28` in `APPROVED_RULES` |
+| 29 | First Name\* + Last Name\* + Phone Number + ZIP | Not implemented (see note) |
+| 30 | Last Name\* + DOB + Phone Number | `30` in `APPROVED_RULES` |
+
+<strong>Rule 29.</strong> The specification v3.4.0 lists rule 29. The library does not implement it, ahead of proposal v3.4.1 (remove rule 29), which is under review ([issue #7](https://github.com/imranq2/cms-hte-patient-matching-spec/issues/7)). Its ID is left unassigned in the library, and rule 30 is not renumbered.
+
+## Category 2 rules
+
+The specification's [Category 2](/docs/category-2-household-and-individual-rules) section lists ten pairings in its section III.C.4 table: eight household-then-individual pairings, and two relationship-linkage pairings. The specification does not assign them IDs. Its section III.C.8 prose refers to "Rules 13, 14, 15, 16, 34, 35, 37, and 38" for the eight household-then-individual pairings, using numbers from an earlier proposal. Those numbers collide with Category 1 rules 13 to 16, so the library prefixes them with `C2-`.
+
+| Spec section III.C.4 pairing | Library rule | Code |
+| --- | --- | --- |
+| H-01 (SSN Last 4 + Phone) with I-01 (First Name + DOB) | `C2-13` | `household_rules.py`, `CATEGORY_2_RULES` |
+| H-04 (ITIN Last 4 + Phone) with I-01 | `C2-14` | `household_rules.py` |
+| H-02 (SSN Last 4 + Email) with I-01 | `C2-15` | `household_rules.py` |
+| H-05 (ITIN Last 4 + Email) with I-01 | `C2-16` | `household_rules.py` |
+| H-12 (Phone + ZIP) with I-01 | `C2-34` | `household_rules.py` |
+| H-13 (Email + ZIP) with I-01 | `C2-35` | `household_rules.py` |
+| H-14 (Phone + Street Line) with I-01 | `C2-37` | `household_rules.py` |
+| H-07 (Subscriber ID + Phone) with I-01 | `C2-38` | `household_rules.py` |
+| Guardian's identity (independently matched under Table 2) + Street Line, with Relationship Linkage (clinical, child-of guardian) + First Name + DOB | `C2-39` | `relationship_linkage_rules.py` |
+| Mother's identity (independently matched under Table 2), with Relationship Linkage (clinical, newborn-of mother) + DOB + per-encounter namespace-bound birth-encounter ID | `C2-40` | `relationship_linkage_rules.py` |
+
+The household rows (Table 2-H, H-01 to H-14) and individual rows (Table 2-I, I-01 to I-03) are defined as building blocks in `household_rules.py` (`HOUSEHOLD_ROWS`, `INDIVIDUAL_ROWS`). Only the rules above are built from them.
+
+## Other behavior
+
+| Specification | Library |
+| --- | --- |
+| Multiple births ([Multiple Births](/docs/multiple-births)) | Tie-resolution logic in `matching_engine.py`, not additional rule IDs |
+| Generational suffix conflict negates a match ([Required Normalization, Names, and Demographic Fields](/docs/required-normalization-names-and-demographics), V.B item 5) | Normalization pipeline; the README calls this the suffix conflict rule |
+| Placeholder suppression ([Placeholder Values](/docs/placeholder-values)) | `PlaceholderDetector` in `patient_matching/normalization/` |
+
+## Differences to be aware of
+
+These come from comparing the library's README and source comments with specification v3.4.0. They are for the library maintainers to confirm or correct.
+
+- **Rule 29** is not implemented (above).
+- <strong>P(collision) figures.</strong> The library README's rule table lists fuzzy P(collision) of 1.50e-12 for rules 04, 06, and 27, where the specification's Table 2 lists 2e-12. It lists 1.00e-15 for rule 22, where the specification lists ≈0. The library computes its figures from per-field u-values in `collision.py` rather than copying the specification's table.
+- <strong>`C2-37`.</strong> A source comment says the household leg should be gated on an institutional-address exclusion (proposal v3.3.6, under review) and that this is not yet implemented.
+- <strong>`C2-39` and `C2-40`.</strong> The specification's III.C.4 table flags unresolved caveats for both (a dependency discount for the Street Line term in the guardian rule, and the need for a per-encounter identifier in the newborn rule). The library implements them on a best-effort basis and carries the same caveats in source comments.
