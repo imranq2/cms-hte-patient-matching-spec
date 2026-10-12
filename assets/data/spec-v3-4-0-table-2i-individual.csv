@@ -1,4 +1,0 @@
-ID,Individual field combination,P(individual | household),Gating condition
-I-01,First Name + Date of Birth,2.0e-6 (exact) / 3.0e-6 (fuzzy),Default combination. Use exact First Name whenever DOB is shared by another candidate in the resolved household.
-I-02,First Name + Last Name + Date of Birth,1.0e-8,"Optional, extra-conservative variant. This is the one exception to Last Name being excluded from Table 2-I: an implementer may opt into scoring it here for added conservatism, but I-01 already clears the threshold without it — Last Name is not required."
-I-03,First Name alone (exact),0.02,General rule: permitted only when paired with a Household row whose own P(household collision) ≤ 1.0e-10 — First Name alone is too weak to safely pair with a weaker household row.

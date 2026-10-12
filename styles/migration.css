@@ -1,0 +1,37 @@
+/*
+ * Finishing rules for content written by the Documentation.AI migrator.
+ * Scoped to dai-mig-* hooks the migration emits. Safe to edit or remove.
+ */
+
+/* A badge the source drew inline (Mintlify <Badge>, a "Deprecated" pill). */
+.dai-mig-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.05em 0.6em;
+  margin: 0 0.15em;
+  border-radius: 999px;
+  font-size: 0.75em;
+  font-weight: 600;
+  line-height: 1.7;
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+  vertical-align: middle;
+  color: var(--brand);
+  background: color-mix(in srgb, var(--brand) 12%, transparent);
+  border: 1px solid color-mix(in srgb, var(--brand) 25%, transparent);
+}
+
+/* The source showed this image without a caption: its alt text is for screen readers, not for print. */
+figure.dai-mig-no-caption > figcaption {
+  display: none;
+}
+
+/* A picture the source drew behind its landing page's heading: decoration, not an illustration. */
+figure.dai-mig-decorative {
+  margin: 0 !important;
+  pointer-events: none;
+  user-select: none;
+}
+figure.dai-mig-decorative [data-rmiz-content] {
+  cursor: default;
+}

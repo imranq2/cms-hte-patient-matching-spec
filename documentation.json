@@ -1,0 +1,371 @@
+{
+  "name": "Documentation",
+  "initialRoute": "docs/getting-started",
+  "template": "classic",
+  "icons": {
+    "library": "fontawesome"
+  },
+  "customCss": [
+    {
+      "src": "styles/migration.css"
+    }
+  ],
+  "navigation": {
+    "groups": [
+      {
+        "group": "Getting Started",
+        "pages": [
+          {
+            "title": "Welcome to Patient Matching",
+            "path": "docs/getting-started",
+            "icon": "lucide:sparkles"
+          },
+          {
+            "title": "For Decision Makers",
+            "path": "docs/for-decision-makers",
+            "icon": "lucide:file-text"
+          },
+          {
+            "title": "Adoption Timeline",
+            "path": "docs/adoption-timeline",
+            "icon": "lucide:file-text"
+          },
+          {
+            "title": "FAQ",
+            "path": "docs/faq",
+            "icon": "lucide:circle-help"
+          },
+          {
+            "title": "Glossary",
+            "path": "docs/glossary",
+            "icon": "lucide:book-a"
+          },
+          {
+            "title": "Status",
+            "path": "docs/status",
+            "icon": "lucide:activity"
+          }
+        ],
+        "icon": "lucide:rocket"
+      },
+      {
+        "group": "Specification",
+        "pages": [
+          {
+            "title": "Summary and Purpose",
+            "path": "docs/summary-and-purpose",
+            "icon": "lucide:file-text"
+          },
+          {
+            "title": "Core Principles",
+            "path": "docs/core-principles",
+            "icon": "lucide:file-text"
+          },
+          {
+            "group": "Risk Framework",
+            "path": "docs/risk-framework",
+            "pages": [
+              {
+                "title": "Harm of Non-Return",
+                "path": "docs/harm-of-non-return"
+              },
+              {
+                "title": "Collision Risk vs. Non-Return Risk",
+                "path": "docs/collision-risk-vs-non-return-risk"
+              },
+              {
+                "title": "Risk of False Positives",
+                "path": "docs/risk-of-false-positives"
+              }
+            ],
+            "icon": "lucide:folder"
+          },
+          {
+            "group": "Matching Rules",
+            "path": "docs/matching-rules",
+            "pages": [
+              {
+                "title": "Table 2: Category 1 Rules",
+                "path": "docs/table-2-category-1-rules",
+                "icon": "lucide:table"
+              },
+              {
+                "title": "Category 2: Household and Individual Rules",
+                "path": "docs/category-2-household-and-individual-rules",
+                "icon": "lucide:tags"
+              },
+              {
+                "title": "Administrative Restrictions",
+                "path": "docs/administrative-restrictions",
+                "icon": "lucide:file-text"
+              },
+              {
+                "title": "Multiple Births",
+                "path": "docs/multiple-births",
+                "icon": "lucide:file-text"
+              },
+              {
+                "title": "Applying the Tables",
+                "path": "docs/applying-the-tables",
+                "icon": "lucide:table"
+              }
+            ],
+            "icon": "lucide:folder"
+          },
+          {
+            "title": "IAL2 Claims Tokens",
+            "path": "docs/ial2-claims-tokens",
+            "icon": "lucide:key"
+          },
+          {
+            "group": "Probability Model",
+            "path": "docs/probability-model",
+            "pages": [
+              {
+                "title": "Assumptions and Probability of Collision",
+                "path": "docs/assumptions-and-probability-of-collision"
+              },
+              {
+                "title": "Per-Field Collision Probabilities",
+                "path": "docs/per-field-collision-probabilities"
+              },
+              {
+                "title": "Joint Collision Probability",
+                "path": "docs/joint-collision-probability"
+              },
+              {
+                "title": "SSN and ITIN",
+                "path": "docs/ssn-and-itin"
+              },
+              {
+                "title": "Ecosystem-Specific Collision Validation",
+                "path": "docs/ecosystem-specific-collision-validation"
+              },
+              {
+                "title": "Twins and Fragile Identities",
+                "path": "docs/twins-and-fragile-identities"
+              },
+              {
+                "title": "Insurance Identifiers",
+                "path": "docs/insurance-identifiers"
+              },
+              {
+                "title": "Reference Script",
+                "path": "docs/reference-script"
+              }
+            ],
+            "icon": "lucide:database"
+          },
+          {
+            "group": "Normalization",
+            "path": "docs/normalization",
+            "pages": [
+              {
+                "title": "Required Normalization, Names, and Demographic Fields",
+                "path": "docs/required-normalization-names-and-demographics"
+              },
+              {
+                "title": "Placeholder Values",
+                "path": "docs/placeholder-values"
+              },
+              {
+                "title": "Fuzzy Matching",
+                "path": "docs/fuzzy-matching"
+              }
+            ],
+            "icon": "lucide:folder"
+          },
+          {
+            "title": "Validation Requirements",
+            "path": "docs/validation-requirements",
+            "icon": "lucide:file-text"
+          },
+          {
+            "title": "Audit and Monitoring",
+            "path": "docs/audit-and-monitoring",
+            "icon": "lucide:clipboard-list"
+          },
+          {
+            "title": "Governance and Versioning",
+            "path": "docs/governance-and-versioning",
+            "icon": "lucide:git-branch"
+          },
+          {
+            "title": "Implementation and Testing",
+            "path": "docs/implementation-and-testing",
+            "icon": "lucide:test-tube"
+          },
+          {
+            "title": "References",
+            "path": "docs/references",
+            "icon": "lucide:file-text"
+          },
+          {
+            "title": "Document Control and Comments",
+            "path": "docs/document-control-and-comments",
+            "icon": "lucide:file-text"
+          }
+        ],
+        "icon": "lucide:folder"
+      },
+      {
+        "group": "Methodology",
+        "pages": [
+          {
+            "title": "How the Numbers Are Derived",
+            "path": "docs/how-the-numbers-are-derived"
+          },
+          {
+            "title": "u-Probability Calculations",
+            "path": "docs/u-probability-calculations"
+          },
+          {
+            "title": "Data Sources",
+            "path": "docs/data-sources"
+          },
+          {
+            "title": "Empirical vs. Conservative Values",
+            "path": "docs/empirical-vs-conservative-values"
+          },
+          {
+            "title": "Known Limitations",
+            "path": "docs/known-limitations"
+          },
+          {
+            "title": "Reproducing the Calculations",
+            "path": "docs/reproducing-the-calculations"
+          },
+          {
+            "title": "Test Set Methodology",
+            "path": "docs/test-set-methodology"
+          }
+        ],
+        "icon": "lucide:folder"
+      },
+      {
+        "group": "Implement and Test",
+        "pages": [
+          {
+            "title": "Implementation Guide",
+            "path": "docs/implementation-guide",
+            "icon": "lucide:book-open"
+          },
+          {
+            "title": "Conformance Checklist",
+            "path": "docs/conformance-checklist",
+            "icon": "lucide:list-checks"
+          },
+          {
+            "title": "Table 2 Downloads",
+            "path": "docs/table-2-downloads",
+            "icon": "lucide:table"
+          },
+          {
+            "group": "Reference Implementations Overview",
+            "path": "docs/reference-implementations",
+            "pages": [
+              {
+                "title": "Patient Matching Library",
+                "path": "docs/patient-matching-library"
+              },
+              {
+                "title": "Service and IAL2 Reader",
+                "path": "docs/service-and-ial2-reader"
+              },
+              {
+                "title": "Spec-to-Code Map",
+                "path": "docs/spec-to-code-map"
+              }
+            ],
+            "icon": "lucide:book-marked"
+          },
+          {
+            "group": "Test Set Overview",
+            "path": "docs/test-set",
+            "pages": [
+              {
+                "title": "Running the Test Set",
+                "path": "docs/running-the-test-set",
+                "icon": "lucide:test-tube"
+              }
+            ],
+            "icon": "lucide:test-tube"
+          },
+          {
+            "title": "Compatibility Matrix",
+            "path": "docs/compatibility-matrix",
+            "icon": "lucide:file-text"
+          }
+        ],
+        "icon": "lucide:test-tube"
+      },
+      {
+        "group": "Changes",
+        "pages": [
+          {
+            "group": "Changelog Overview",
+            "path": "docs/changelog",
+            "pages": [
+              {
+                "title": "v3.4.0",
+                "path": "docs/v3-4-0"
+              }
+            ],
+            "icon": "lucide:clock"
+          },
+          {
+            "group": "Proposals",
+            "path": "docs/proposals",
+            "pages": [
+              {
+                "title": "Proposals Under Review",
+                "path": "docs/proposals-under-review"
+              },
+              {
+                "title": "Accepted Proposals",
+                "path": "docs/proposals-accepted"
+              },
+              {
+                "title": "Rejected and Withdrawn Proposals",
+                "path": "docs/proposals-rejected-and-withdrawn"
+              }
+            ],
+            "icon": "lucide:folder"
+          }
+        ],
+        "icon": "lucide:folder"
+      },
+      {
+        "group": "Community",
+        "pages": [
+          {
+            "title": "Contributors",
+            "path": "docs/contributors",
+            "icon": "lucide:file-text"
+          },
+          {
+            "title": "Report an Issue",
+            "path": "docs/report-an-issue",
+            "icon": "lucide:chart-column"
+          },
+          {
+            "title": "Contribute",
+            "path": "docs/contribute",
+            "icon": "lucide:handshake"
+          },
+          {
+            "title": "License and Open Source",
+            "path": "docs/license-and-open-source",
+            "icon": "lucide:scroll"
+          },
+          {
+            "title": "How to Cite",
+            "path": "docs/how-to-cite",
+            "icon": "lucide:file-text"
+          }
+        ],
+        "icon": "lucide:users"
+      }
+    ]
+  }
+}
