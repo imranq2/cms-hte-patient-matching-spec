@@ -1,0 +1,31 @@
+{
+  "specification_version": "3.4.0",
+  "source_document_revision": "AHj4eMT9yK21YUzFwGGh-vnHaxeOM8sbBtiC8OSfCm71Y1VYtWxOuiy2SG3GJI-8WRSfEwjhtEaCMBLoCWf40ZnyE823r9u8RkNjxBh2Qg",
+  "table": "Table 2-I: Individual within household",
+  "columns": [
+    "ID",
+    "Individual field combination",
+    "P(individual | household)",
+    "Gating condition"
+  ],
+  "rows": [
+    {
+      "ID": "I-01",
+      "Individual field combination": "First Name + Date of Birth",
+      "P(individual | household)": "2.0e-6 (exact) / 3.0e-6 (fuzzy)",
+      "Gating condition": "Default combination. Use exact First Name whenever DOB is shared by another candidate in the resolved household."
+    },
+    {
+      "ID": "I-02",
+      "Individual field combination": "First Name + Last Name + Date of Birth",
+      "P(individual | household)": "1.0e-8",
+      "Gating condition": "Optional, extra-conservative variant. This is the one exception to Last Name being excluded from Table 2-I: an implementer may opt into scoring it here for added conservatism, but I-01 already clears the threshold without it — Last Name is not required."
+    },
+    {
+      "ID": "I-03",
+      "Individual field combination": "First Name alone (exact)",
+      "P(individual | household)": "0.02",
+      "Gating condition": "General rule: permitted only when paired with a Household row whose own P(household collision) ≤ 1.0e-10 — First Name alone is too weak to safely pair with a weaker household row."
+    }
+  ]
+}
