@@ -1,0 +1,14 @@
+---
+title: Administrative Restrictions
+excerpt: Specification v3.4.0, section III.C.6
+hidden: false
+---
+
+*Specification v3.4.0, section III.C.6*
+
+The following combinations pass the collision threshold but should be administratively restricted:
+
+| **Candidate combination** | <strong>P(collision)</strong> | **Secondary risk category** | <strong>Why the risk is not fully captured by P(collision)</strong> |
+| --- | --- | --- | --- |
+| Member ID + Payer namespace alone | 1e-6 | Above threshold | Does not meet the 2e-12 threshold and is excluded on that basis, independent of any administrative review. |
+| Subscriber ID + Group Number + Payer namespace | ~1e-8 | Data independence risk; recyclability risk | Group number is an employer-level field, not an individual-level field; it provides no incremental individual discrimination and may be shared by hundreds or thousands of members. Group number would transfer to a new member receiving a recycled subscriber ID and therefore provides no recyclability mitigation. |

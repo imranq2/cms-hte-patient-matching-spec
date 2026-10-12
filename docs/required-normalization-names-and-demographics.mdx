@@ -1,0 +1,33 @@
+---
+title: Required Normalization, Names, and Demographic Fields
+excerpt: Specification v3.4.0, section V.A to V.C
+hidden: false
+---
+
+*Specification v3.4.0, section V.A to V.C*
+
+## A. Required Normalization
+
+1. All string matching SHALL be case insensitive
+2. All whitespace SHALL be removed or ignored during matching except as required in normalized address fields
+3. All punctuation (e.g. hyphens, periods, apostrophes, etc) SHALL be removed or ignored during matching except as required in normalized address fields
+4. All string fields shall implement Diacritic folding as part of the matching process
+5. Date of birth SHALL be represented in YYYY-MM-DD format when the full date is known. If only year or year-month is known, the value SHALL be transmitted as partial and SHALL NOT be imputed, padded, or converted to a full date for matching.
+
+## B. Name Handling
+
+1. Each implementation SHALL maintain a versioned reference table of nickname values first name field used in matching.
+2. All name fields including First, Middle, Last, Prefix, Suffix, Title and any others SHALL be separated into discrete components used for matching
+3. Matching algorithms SHALL match against ALL known names (maiden, previous, AKA)
+4. For the avoidance of doubt, matching SHALL ignore or remove all punctuation and whitespace in name fields
+5. If a generational suffix can be identified on both the query and the response and they do not match then the responder SHALL NOT return the match. For the avoidance of doubt, this rule SHALL negate a match that was made by matching a combination in table 2.
+6. Suffix expansion tables SHALL be maintained and integrated to support abbreviations and shorthand.
+
+## C. Demographic Fields
+
+1. All addresses SHALL be normalized to Project US@ standard formats by the Requestor and Responder
+2. Address SHALL match regardless of designated type (home, legal, office, physical, postal, etc)
+3. All phone numbers SHALL be normalized to E.164 specifications for matching purposes and
+4. Phone numbers SHALL match regardless of designated type (home, cell, work, etc)
+5. Responders SHALL match against ALL known values, current or historical.
+6. Demographic matching SHALL be performed in a case insensitive manner

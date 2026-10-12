@@ -1,9 +1,0 @@
----
-title: "Implementation and Testing"
-excerpt: "Specification v3.4.0, section IX"
-hidden: false
----
-
-*Specification v3.4.0, section IX*
-
-The framework is proposed as a baseline against which existing methods can be tested, not a mandated replacement of methods that already meet or exceed the framework’s performance. We propose a phased adoption period and a documented safe harbor for organizations whose current matching performance is demonstrably at or above the framework’s collision and recall benchmarks, regardless of the specific methodology used. The §VI validation requirements provide the empirical basis for that safe harbor: organizations would self-attest performance against the standardized test datasets and report results under §VII.

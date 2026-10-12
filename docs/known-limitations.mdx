@@ -1,0 +1,41 @@
+---
+title: Known Limitations
+excerpt: Limits of the empirical u-probability estimates, as documented by the calculations project.
+hidden: false
+---
+
+<em>Source of truth: the "Known limitations" section of [`calculations/README.md`](https://github.com/icanbwell/cms-hte-patient-matching/blob/main/calculations/README.md), [`docs/PROCESS.md`](https://github.com/icanbwell/cms-hte-patient-matching/blob/main/calculations/docs/PROCESS.md), the caveats in [`outputs/u_probabilities.md`](https://github.com/icanbwell/cms-hte-patient-matching/blob/main/calculations/outputs/u_probabilities.md), and [`docs/conservative_u_comparison.md`](https://github.com/icanbwell/cms-hte-patient-matching/blob/main/calculations/docs/conservative_u_comparison.md).</em>
+
+These limits apply to the empirical estimates from the calculations project. They are not limits of the specification itself, although they bear on how much weight the comparison with the specification's conservative values can carry.
+
+## Population and geography
+
+- <strong>National, not member populations.</strong> All inputs are U.S. national population estimates, not any specific payer's or provider's member population. An age-skewed membership, such as Medicare Advantage, could differ.
+- <strong>ZCTA is not ZIP.</strong> ZIP codes are approximated by Census ZIP Code Tabulation Areas, which are built from whole census blocks and do not track USPS boundary changes, P.O.-box-only ZIPs, or unique-organization ZIPs.
+- <strong>City covers part of the population.</strong> Census places and Census Designated Places cover about 63.1% of the national population. Census place geography is also not the USPS mailing city, which pulls in the opposite direction.
+
+## Name fields
+
+- <strong>Suppression.</strong> Census name files list only names occurring 100 or more times. Two bounds are reported for each name field; the headline renormalizes the listed names and so ignores the unlisted tail.
+- <strong>Middle name is a proxy.</strong> Census publishes no middle-name table, so the first-name distribution is reused. True concentration could be higher or lower.
+
+## Dates
+
+- <strong>Uniform birthdates assumed.</strong> Full date of birth assumes a uniform distribution within a birth year. Real birth dates have mild seasonal non-uniformity, so the estimate is slightly low.
+- <strong>Year of birth has a thin margin.</strong> 1.27x against the specification's value. The tool's own sanity-check range was corrected to reflect an all-ages population.
+
+## Floors, closed forms, and namespace sizes
+
+- <strong>Street line and ZIP is a floor.</strong> It models only two people sharing a household, and ignores street-name collisions between unrelated households in the same ZIP. Real street-line agreement is at least this high.
+- <strong>Phone is a floor.</strong> It captures only co-resident landline sharing. It excludes non-co-resident sharing (for example, a family member's number listed for someone living elsewhere) and mobile number reassignment. The tool names reassignment but does not quantify it, because turning the cited churn rate into a u-value would need information about how long record systems go without refreshing a phone number, for which no public data was found.
+- <strong>SSN and ITIN last 4 cover only post-2011 SSNs.</strong> The closed form `1/9999` applies to SSNs issued on or after 2011-06-25. Earlier SSNs were assigned sequentially in area and group blocks, so the true population-wide value is likely higher. The tool does not estimate that cohort, which would need SSA's historical High Group List. ITIN uses the same math by analogy, and the IRS has not published an equivalent randomization policy.
+- <strong>MBI is a namespace-size floor.</strong> It assumes every MBI is issued to exactly one person, and ignores duplicate issuance, reissuance, and transcription-error collisions. Total enrollment is a person-year count, which approximates but is not the distinct-beneficiary count.
+
+## Fields with no empirical estimate
+
+Email, Legal ID, namespace-bound unique identifiers, Insurance Member ID and Subscriber ID, suffix, and the Relationship Linkage tiers have no empirical estimate from public data. See [Empirical vs. Conservative Values](/docs/empirical-vs-conservative-values).
+
+## Not yet implemented in the tool
+
+- The HUD USPS ZIP-to-city crosswalk is skipped without a `HUD_TOKEN`.
+- A check of joint independence for age, sex, and PUMA, using ACS PUMS data, is documented as not implemented.
