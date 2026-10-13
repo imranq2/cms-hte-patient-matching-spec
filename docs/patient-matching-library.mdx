@@ -52,7 +52,7 @@ The library does not verify or extract IAL2 tokens. Convert the token to a FHIR 
 ## How it relates to the specification
 
 - <strong>Version.</strong> The README describes it as an implementation of the CMS Patient Matching Proposal v3.4.0.
-- <strong>Rule 29 is not implemented.</strong> The specification v3.4.0 still lists rule 29 in Table 2. The library omits it ahead of proposal v3.4.1, which would remove it and is currently under review ([issue #7](https://github.com/imranq2/cms-hte-patient-matching-spec/issues/7)). This is why the library's rule count is one lower than the specification's Category 1 count.
+- <strong>Rule 29 is not implemented.</strong> The specification v3.4.0 still lists rule 29 in Table 2. The library omits it ahead of proposal v3.4.1, which removes it and has been accepted ([issue #7](https://github.com/imranq2/cms-hte-patient-matching-spec/issues/7)), although it is not yet in a published version. This is why the library's rule count is one lower than the specification's Category 1 count.
 - <strong>Rule IDs.</strong> The library keeps the specification's Category 1 IDs. It prefixes Category 2 IDs with `C2-` (for example `C2-13`) because the specification's section III.C.8 prose uses the legacy numbers 13, 14, 15, 16, 34, 35, 37 and 38 for the household-then-individual rules, which would collide with Category 1 rules 13 to 16. See the [Spec-to-Code Map](/docs/spec-to-code-map).
 - <strong>P(collision) values.</strong> The library computes each rule's figures from per-field u-values. Its README table lists a few values that differ from the specification's Table 2 (see the Spec-to-Code Map).
 

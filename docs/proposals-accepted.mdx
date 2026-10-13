@@ -1,10 +1,12 @@
 ---
 title: Accepted Proposals
-excerpt: Proposals that were accepted and are part of specification v3.4.0.
+excerpt: Proposals that were accepted, including those incorporated in specification v3.4.0 and those accepted against it.
 hidden: false
 ---
 
 The Executive Summary of [v3.4.0](/docs/v3-4-0) says that version incorporates all five accepted proposals. That does not mean every edit a proposal lists appears in v3.4.0's text. For example, proposal v3.3.5 charters a new section VI.C, which v3.4.0 does not contain, and the Path A and Path B compliance paths from proposal v3.3.2 appear in the Executive Summary and in the audit section, not in section VI.A. Check the specification text for what v3.4.0 says.
+
+Proposal v3.4.1 was accepted after v3.4.0 and modifies it. Its change is not in the text of v3.4.0, which still lists rule 29 in Table 2.
 
 | Proposal | Summary | Affected specification sections | Submitted | Incorporated in, per the Executive Summary | Discussion |
 | --- | --- | --- | --- | --- | --- |
@@ -13,5 +15,6 @@ The Executive Summary of [v3.4.0](/docs/v3-4-0) says that version incorporates a
 | **v3.3.3**: Relationship-Based Matching for Minors and Newborns | Uses relationship data defensively, to flag same-household false positives, and offensively, with new rules 39 (guardian-verified minor) and 40 (newborn via maternal linkage). | IV.D, Table 2, Table 3, as numbered in the proposal | 2026-07-15 | [v3.4.0](/docs/v3-4-0) | [Issue #3](https://github.com/imranq2/cms-hte-patient-matching-spec/issues/3) |
 | **v3.3.4**: Placeholder Value Exclusion in Patient Matching | Treats known placeholder values as if the field were blank, for every field Table 2 relies on, using a reference table of patterns that is maintained through governance. | V.D, VIII, as numbered in the proposal | 2026-07-15 | [v3.4.0](/docs/v3-4-0) | [Issue #4](https://github.com/imranq2/cms-hte-patient-matching-spec/issues/4) |
 | **v3.3.5**: Test Dataset & Accuracy Methodology | States the commitment to an accuracy floor up front in the core principles and charters a follow-on effort to define the number and build the test dataset. It does not set the number. | II, VI, as numbered in the proposal | 2026-07-15 | [v3.4.0](/docs/v3-4-0) | [Issue #5](https://github.com/imranq2/cms-hte-patient-matching-spec/issues/5) |
+| **v3.4.1**: Remove Rule 29 (First Name + Last Name + Phone Number + ZIP) | Removes rule 29 from Table 2, retiring its ID without renumbering, because the rule has no date of birth and matched a parent and child sharing a name, phone number, and ZIP code in testing. Updates the Category 1 count from 30 to 29. Notes that rule 29 is currently the only approved rule that can evaluate provider data of the NPPES shape, so provider matching needs a separate follow-up, and says the removal should not be adopted without a decision on provider matching. It also notes that patient queries with name, phone, and ZIP but no date of birth would no longer match. | Section III.C (Table 2), Executive Summary, validation datasets | 2026-10-05 | Not yet incorporated in a published version. v3.4.0 still lists rule 29. | [Issue #7](https://github.com/imranq2/cms-hte-patient-matching-spec/issues/7) |
 
 "Submitted" is the date printed on each proposal.
