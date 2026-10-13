@@ -307,6 +307,10 @@
             "path": "docs/changelog",
             "pages": [
               {
+                "title": "v3.4.1",
+                "path": "docs/v3-4-1"
+              },
+              {
                 "title": "v3.4.0",
                 "path": "docs/v3-4-0"
               }

@@ -1,0 +1,39 @@
+---
+title: v3.4.1
+excerpt: Changes in specification version 3.4.1, which removes rule 29 from v3.4.0.
+hidden: false
+---
+
+|  |  |
+| --- | --- |
+| **Version** | 3.4.1 |
+| **Status** | Final. v3.4.0 was a Final Consolidated Draft. |
+| **Release date** | Not stated for v3.4.1. v3.4.0 was 9/10/2026. |
+| **Effective date** | October 1, 2026. v3.4.0 gave the placeholder `[TBD after finalization]`. |
+| **Comment period** | Closed for this version. The specification is open for proposals. v3.4.0 gave the placeholder `[Date + 60 days]`. |
+| **Increment** | Patch number. By the specification's own definitions, a removal from Table 2 is a Minor change, so the number does not follow those definitions. |
+| **Builds on** | [v3.4.0](/docs/v3-4-0) |
+
+## What changed
+
+### Removed
+
+- **Rule 29 (First Name\* + Last Name\* + Phone Number + ZIP) is removed from Table 2** ([Proposal v3.4.1](https://github.com/imranq2/cms-hte-patient-matching-spec/issues/7)).
+  - The rule has no date of birth, so it matched a parent and child who share a name, phone number, and ZIP code.
+  - Its ID is retired and not reused. Rules 30 and above are not renumbered, so IDs run 01 to 30 with 29 absent. [Table 2](/docs/table-2-category-1-rules) shows rule 29 struck through.
+  - The Category 1 count changes from 30 to 29. The Category 2 count of 8 is unchanged.
+
+### Consequences the proposal notes
+
+- Rule 29 was the only approved rule that could evaluate provider data of the NPPES shape, so provider matching needs a separate follow-up.
+- A patient query with name, phone, and ZIP but no date of birth no longer matches under Table 2.
+
+### Everything else
+
+Unchanged from [v3.4.0](/docs/v3-4-0), except the Category 1 count in the [Executive Summary](/docs/summary-and-purpose), the version, effective date and comment period in [Document Control](/docs/document-control-and-comments), and the [downloads](/docs/table-2-downloads), which no longer include rule 29. Pages on this site show "Specification v3.4.1" in their headers for that reason.
+
+## Not in this version
+
+- [Proposal 10](https://github.com/imranq2/cms-hte-patient-matching-spec/issues/6), Institutional Address Identification Methodology, is under review.
+
+See [Under Review](/docs/proposals-under-review).

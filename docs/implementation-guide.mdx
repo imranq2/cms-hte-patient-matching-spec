@@ -100,7 +100,7 @@ These use fictional records. They illustrate the flow; they are not test cases.
 
 <strong>Category 2 arithmetic.</strong> The combined probability of a household-then-individual rule is the product of the two rows. For rows H-12 (Phone Number + ZIP Code, 3.0e-10) and I-01 (First Name + Date of Birth, 2.0e-6 exact), the product is 6.0e-16, which the specification lists in its section III.C.4 table. That is at most 2e-12, so the pairing qualifies if both steps each resolve to exactly one candidate.
 
-<strong>Why date of birth matters.</strong> Proposal v3.4.1, which is under review ([issue #7](https://github.com/imranq2/cms-hte-patient-matching-spec/issues/7)), describes two synthetic test-set records for a father and a son with the same first and last name, the same phone number, and the same ZIP code but dates of birth 45 years apart. A rule with no date of birth would match them. The proposal reports that the household-then-individual path (H-12 with I-01) rejects them on the date of birth check.
+<strong>Why date of birth matters.</strong> Proposal v3.4.1, which removes rule 29 ([issue #7](https://github.com/imranq2/cms-hte-patient-matching-spec/issues/7)), describes two synthetic test-set records for a father and a son with the same first and last name, the same phone number, and the same ZIP code but dates of birth 45 years apart. A rule with no date of birth would match them. The proposal reports that the household-then-individual path (H-12 with I-01) rejects them on the date of birth check.
 
 ## Where to go next
 

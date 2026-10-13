@@ -1,5 +1,5 @@
 {
-  "specification_version": "3.4.0",
+  "specification_version": "3.4.1",
   "source_document_revision": "AHj4eMT9yK21YUzFwGGh-vnHaxeOM8sbBtiC8OSfCm71Y1VYtWxOuiy2SG3GJI-8WRSfEwjhtEaCMBLoCWf40ZnyE823r9u8RkNjxBh2Qg",
   "table": "Table 2: Approved matching combinations and conservative collision estimates (Category 1)",
   "columns": [
@@ -176,12 +176,6 @@
       "Approved field combination": "First Name + Last Name* + DOB + Subscriber ID (w/ Payer namespace)",
       "P(collision), exact": "1e-12",
       "P(collision), fuzzy": "2e-12"
-    },
-    {
-      "ID": "29",
-      "Approved field combination": "First Name* + Last Name* + Phone Number + ZIP",
-      "P(collision), exact": "3e-14",
-      "P(collision), fuzzy": "9e-14"
     },
     {
       "ID": "30",
