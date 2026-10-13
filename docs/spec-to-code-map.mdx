@@ -4,7 +4,7 @@ excerpt: Which code in the reference library implements each Table 2 rule.
 hidden: false
 ---
 
-<em>Written in this docs repository, against specification v3.4.0 and `cms-hte-patient-matching` 0.0.12 (published on PyPI 2026-10-07). The project's intent is for the library maintainers to keep it current, but the library repository has no process for that yet. The code is in the [library repository](https://github.com/icanbwell/cms-hte-patient-matching), under `patient_matching/matching/`. If this page and the repository differ, the repository is correct. See also the [Compatibility Matrix](/docs/compatibility-matrix).</em>
+<em>Written in this docs repository, against specification v3.4.1 and `cms-hte-patient-matching` 0.0.12 (published on PyPI 2026-10-07). The project's intent is for the library maintainers to keep it current, but the library repository has no process for that yet. The code is in the [library repository](https://github.com/icanbwell/cms-hte-patient-matching), under `patient_matching/matching/`. If this page and the repository differ, the repository is correct. See also the [Compatibility Matrix](/docs/compatibility-matrix).</em>
 
 ## Category 1 rules
 
@@ -40,10 +40,10 @@ Specification rule IDs 01 to 30 ([Table 2: Category 1 Rules](/docs/table-2-categ
 | 26 | Email Address + Member ID (w/ Payer namespace) | `26` in `APPROVED_RULES` |
 | 27 | First Name\* + Last Name + DOB + Subscriber ID (w/ Payer namespace) | `27` in `APPROVED_RULES` |
 | 28 | First Name + Last Name\* + DOB + Subscriber ID (w/ Payer namespace) | `28` in `APPROVED_RULES` |
-| 29 | First Name\* + Last Name\* + Phone Number + ZIP | Not implemented (see note) |
+| ~~29~~ | ~~First Name\* + Last Name\* + Phone Number + ZIP~~ | Retired in v3.4.1; not implemented (see note) |
 | 30 | Last Name\* + DOB + Phone Number | `30` in `APPROVED_RULES` |
 
-<strong>Rule 29.</strong> The specification v3.4.0 lists rule 29. The library does not implement it, ahead of proposal v3.4.1 (remove rule 29), which has been accepted ([issue #7](https://github.com/imranq2/cms-hte-patient-matching-spec/issues/7)). Its ID is left unassigned in the library, and rule 30 is not renumbered.
+<strong>Rule 29.</strong> Specification v3.4.0 listed rule 29, and v3.4.1 removes it ([issue #7](https://github.com/imranq2/cms-hte-patient-matching-spec/issues/7)). The library does not implement it. Its ID is left unassigned in the library, and rule 30 is not renumbered.
 
 ## Category 2 rules
 
@@ -74,9 +74,8 @@ The household rows (Table 2-H, H-01 to H-14) and individual rows (Table 2-I, I-0
 
 ## Differences to be aware of
 
-These come from comparing the library's README and source comments with specification v3.4.0. They are for the library maintainers to confirm or correct.
+These come from comparing the library's README and source comments with specification v3.4.1. They are for the library maintainers to confirm or correct.
 
-- **Rule 29** is not implemented (above).
 - <strong>P(collision) figures.</strong> The library README's rule table lists fuzzy P(collision) of 1.50e-12 for rules 04, 06, and 27, where the specification's Table 2 lists 2e-12. It lists 1.00e-15 for rule 22, where the specification lists ≈0. The library computes its figures from per-field u-values in `collision.py` rather than copying the specification's table.
 - <strong>`C2-37`.</strong> A source comment says the household leg should be gated on an institutional-address exclusion (proposal v3.3.6, under review) and that this is not yet implemented.
 - <strong>`C2-39` and `C2-40`.</strong> The specification's III.C.4 table flags unresolved caveats for both (a dependency discount for the Street Line term in the guardian rule, and the need for a per-encounter identifier in the newborn rule). The library implements them on a best-effort basis and carries the same caveats in source comments.

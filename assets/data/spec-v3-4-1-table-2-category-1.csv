@@ -27,5 +27,4 @@ ID,Approved field combination,"P(collision), exact","P(collision), fuzzy"
 26,Email Address + Member ID (w/ Payer namespace),1e-12,
 27,First Name* + Last Name + DOB + Subscriber ID (w/ Payer namespace),1e-12,2e-12
 28,First Name + Last Name* + DOB + Subscriber ID (w/ Payer namespace),1e-12,2e-12
-29,First Name* + Last Name* + Phone Number + ZIP,3e-14,9e-14
 30,Last Name* + DOB + Phone Number,5e-13,1e-12

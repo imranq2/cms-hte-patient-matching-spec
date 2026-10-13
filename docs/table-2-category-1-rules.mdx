@@ -1,14 +1,14 @@
 ---
 title: "Table 2: Category 1 Rules"
-excerpt: Specification v3.4.0, section III.C
+excerpt: Specification v3.4.1, section III.C
 hidden: false
 ---
 
-*Specification v3.4.0, section III.C*
+*Specification v3.4.1, section III.C*
 
 The approved combinations provided in Table 2 are the baseline matching rules eligible for implementation . Additional detail on model construction and threshold selection are provided in a later section.
 
-As of v3.4.0, Table 2 is divided into <strong>Category 1 (Direct Match Rules)</strong> — 30 rules evaluated in a single step, exactly as in v3.3.0 — and <strong>Category 2 (Household + Individual Rules)</strong> — 8 rules evaluated in two steps.
+As of v3.4.1, Table 2 is divided into <strong>Category 1 (Direct Match Rules)</strong> — 29 rules evaluated in a single step, as in v3.3.0 except that rule 29 is removed — and <strong>Category 2 (Household + Individual Rules)</strong> — 8 rules evaluated in two steps.
 
 <em>Table 2 Approved matching combinations and conservative collision estimates. Fields with a \* may be fuzzy.</em>
 
@@ -42,8 +42,10 @@ As of v3.4.0, Table 2 is divided into <strong>Category 1 (Direct Match Rules)</s
 | 26 | Email Address + Member ID (w/ Payer namespace) | 1e-12 |  |
 | 27 | First Name\* + Last Name + DOB + Subscriber ID (w/ Payer namespace) | 1e-12 | 2e-12 |
 | 28 | First Name + Last Name\* + DOB + Subscriber ID (w/ Payer namespace) | 1e-12 | 2e-12 |
-| 29 | First Name\* + Last Name\* + Phone Number + ZIP | 3e-14 | 9e-14 |
+| ~~29~~ | ~~First Name\* + Last Name\* + Phone Number + ZIP~~ | ~~3e-14~~ | ~~9e-14~~ |
 | 30 | Last Name\* + DOB + Phone Number | 5e-13 | 1e-12 |
+
+<em>Rule 29 (struck through) was removed in v3.4.1 ([Proposal v3.4.1](https://github.com/imranq2/cms-hte-patient-matching-spec/issues/7)). Its ID is retired, not reused, and rules 30 and above are not renumbered.</em>
 
 Except where this framework expressly provides a deterministic contraindication, disagreement in additional data elements present in the query or source record, but not included in the qualifying Table 2 combination, does not by itself negate the match. In such cases, the more likely implication is that one or more non-qualifying data elements are inaccurate, stale, or incomplete, not that the otherwise qualifying match is incorrect. Organizations MAY flag such queries for review, audit, or data-quality follow-up. This framework further mitigates risk of an incorrect match by requiring that a match is satisfied only when it produces a unique candidate subject at the source system.
 
