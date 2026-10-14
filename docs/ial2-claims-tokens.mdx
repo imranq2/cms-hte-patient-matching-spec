@@ -46,7 +46,7 @@ http\://rce.sequoiaproject.org/OIDC/claim/[claim]
 | jti | Unique identifier for the token, used to prevent replay attacks | Required |
 | at\_hash | Hash of the access token for validation purposes | Optional - OIDC |
 | auth\_time | Time when the end-user authentication occurred | Required - CAN |
-| tToken\_policy | Framework + IAL level. Object<br />EG today<br />&#123;'trust\_framework': 'nist\_800\_63a', 'assurance\_level': 'ial2'&#125;<br />future:<br />&#123;'trust\_framework': 'nist\_800\_63a\_4', 'assurance\_level': 'ial2'&#125; | REQUIRED - CAN<br />trust\_framework = nist\_800\_63a<br />assurance\_level in (‘ial2’,’ial3’) |
+| token\_policy | Framework + IAL level. Object<br />EG today<br />&#123;'trust\_framework': 'nist\_800\_63a', 'assurance\_level': 'ial2'&#125;<br />future:<br />&#123;'trust\_framework': 'nist\_800\_63a\_4', 'assurance\_level': 'ial2'&#125; | REQUIRED - CAN<br />trust\_framework = nist\_800\_63a<br />assurance\_level in (‘ial2’,’ial3’) |
 | given\_name | First or given name(s) of the person. Multiple names may be space- separated | Required |
 | middle\_name | Middle name of individual | Required if present |
 | family\_name | Surnames / last names | Required |

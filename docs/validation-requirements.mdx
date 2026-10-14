@@ -8,13 +8,11 @@ hidden: false
 
 ## A. Implementation Testing
 
-Before initial production use, and after any material change to matching logic, normalization rules, placeholder handling, fuzzy-comparison settings, or decision thresholds, an implementation SHALL demonstrate documented performance on the ONC patient matching test dataset.
+Before initial production use, and after any material change to matching logic, normalization rules, placeholder handling, fuzzy-comparison settings, or decision thresholds, an implementation SHALL demonstrate documented performance on the ONC patient matching test dataset ([https://github.com/onc-healthit/patient-matching](https://github.com/onc-healthit/patient-matching)), on a successor dataset, or an approved third party assessment approved through the governance process. At a minimum, validation results SHALL report observed precision, recall, and false-positive rate at the configured operating point. Validation SHALL confirm that the implementation correctly handles matches, non-matches, placeholder values, normalization requirements, uniqueness checks, approved fuzzy comparisons, and other material edge cases.
 
 Where this document describes a u-probability as a 'conservative floor,' it means the lowest plausible value assigned in the absence of precise empirical measurement — an engineering lower bound chosen so the field's true discriminating power is assumed to be at least as strong as the stated value.
 
 The accuracy floor SHALL be established through a follow-on effort before the framework's effective date, with interim reporting-only in the meantime.
-
-([https://github.com/onc-healthit/patient-matching](https://github.com/onc-healthit/patient-matching)), on a successor dataset, or an approved third party assessment approved through the governance process. At a minimum, validation results SHALL report observed precision, recall, and false-positive rate at the configured operating point. Validation SHALL confirm that the implementation correctly handles matches, non-matches, placeholder values, normalization requirements, uniqueness checks, approved fuzzy comparisons, and other material edge cases.
 
 We will include shelters, nursing facilities, correctional institutions, hotels and short-term housing, halfway houses, dormitories, group homes, migrant camps, and multi-generational households as required scenarios in the validation test datasets.
 
