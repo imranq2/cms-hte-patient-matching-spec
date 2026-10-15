@@ -350,7 +350,7 @@
           {
             "title": "Report an Issue",
             "path": "docs/report-an-issue",
-            "icon": "lucide:chart-column"
+            "icon": "lucide:bug"
           },
           {
             "title": "Contribute",

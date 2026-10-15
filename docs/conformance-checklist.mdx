@@ -10,10 +10,10 @@ hidden: false
 
 ## What it covers and what it leaves out
 
-- It lists statements that use SHALL or SHALL NOT, plus the three lowercase "shall" statements in the specification. Where a quotation is shortened to the part that states the requirement, it begins or ends with an ellipsis (…).
+- It lists statements that use SHALL or SHALL NOT, plus the four lowercase "shall" statements in the specification. Where a quotation is shortened to the part that states the requirement, it begins or ends with an ellipsis (…).
 - It does **not** list statements phrased as "must" or "required", which the specification also uses in places. Read the linked pages for those, including the rules in Table 2 itself.
 - It does not replace the Table 2 rules, the household-then-individual process, or the validation and audit sections. Use the [Implementation Guide](/docs/implementation-guide) for how they fit together.
-- The specification says its SHALL language describes requirements that would apply once the framework is adopted, and creates no present obligation during a comment period (Purpose).
+- The specification says its SHALL language describes requirements that would apply once the framework is adopted, and creates no present obligation during a comment period (Purpose). The comment period for v3.4.1 is closed and its effective date, October 1, 2026, has passed.
 
 Use the boxes to track your own progress. They are not saved.
 
@@ -31,6 +31,7 @@ Use the boxes to track your own progress. They are not saved.
 
 ## Table 2 notes (III.C)
 
+- [ ] A bare subscriber base value without dependent suffix SHALL NOT be treated as a Member ID under this row. ([source](/docs/per-field-collision-probabilities))
 - [ ] Member ID means the full individual-level identifier inclusive of any dependent suffix; the bare subscriber base value without a dependent suffix SHALL NOT be used under Member ID rules. ([source](/docs/table-2-category-1-rules))
 - [ ] For all rules in this group, the Payer ID establishes the namespace and matching SHALL be performed only within that namespace. ([source](/docs/table-2-category-1-rules))
 
@@ -127,7 +128,7 @@ Use the boxes to track your own progress. They are not saved.
 
 ## Validation (VI)
 
-- [ ] Before initial production use, and after any material change to matching logic, normalization rules, placeholder handling, fuzzy-comparison settings, or decision thresholds, an implementation SHALL demonstrate documented performance on the ONC patient matching test dataset. ([source](/docs/validation-requirements))
+- [ ] Before initial production use, and after any material change to matching logic, normalization rules, placeholder handling, fuzzy-comparison settings, or decision thresholds, an implementation SHALL demonstrate documented performance on the ONC patient matching test dataset, on a successor dataset, or an approved third party assessment approved through the governance process. ([source](/docs/validation-requirements))
 - [ ] The accuracy floor SHALL be established through a follow-on effort before the framework's effective date, with interim reporting-only in the meantime. ([source](/docs/validation-requirements))
 - [ ] At a minimum, validation results SHALL report observed precision, recall, and false-positive rate at the configured operating point. ([source](/docs/validation-requirements))
 - [ ] Validation SHALL confirm that the implementation correctly handles matches, non-matches, placeholder values, normalization requirements, uniqueness checks, approved fuzzy comparisons, and other material edge cases. ([source](/docs/validation-requirements))

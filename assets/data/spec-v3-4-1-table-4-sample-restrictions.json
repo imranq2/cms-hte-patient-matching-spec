@@ -11,7 +11,7 @@
   "rows": [
     {
       "Candidate combination": "Date of Birth + Street Address + ZIP",
-      "P(collision)": "3.00E-13",
+      "P(collision)": "9.00E-13",
       "Secondary risk category": "Twin risk; shared living space risk",
       "Why the risk is not fully captured by P(collision)": "Twins, siblings in the same household, and residents in shared or institutional settings may share these fields; address standardization can also collapse distinctions if unit information is missing or inconsistent"
     },
@@ -19,11 +19,11 @@
       "Candidate combination": "Email + Date of Birth + City + State",
       "P(collision)": "1.00E-12",
       "Secondary risk category": "Shared contact channel risk",
-      "Why the risk is not fully captured by P(collision)": "Email addresses may be shared by spouses, parents, guardians, or caregivers; City and State add limited incremental discrimination"
+      "Why the risk is not fully captured by P(collision)": "Email addresses may be shared by spouses, parents, guardians, or caregivers; City and State add limited incremental discrimination. The value shown is Email × Date of Birth × City; the full Table 3 product including State is 6e-14"
     },
     {
       "Candidate combination": "First Name + Last Name + Street + Zip",
-      "P(collision)": "3.00E-13",
+      "P(collision)": "9.00E-13",
       "Secondary risk category": "Shared contact channel risk; Generational Name risk",
       "Why the risk is not fully captured by P(collision)": "Parent and child generational names in the same household where suffix was either not disclosed or not transmitted"
     },
