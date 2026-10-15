@@ -1,5 +1,5 @@
 {
-  "name": "Documentation",
+  "name": "Patient Matching",
   "initialRoute": "docs/getting-started",
   "template": "classic",
   "icons": {
@@ -16,7 +16,7 @@
         "group": "Getting Started",
         "pages": [
           {
-            "title": "Welcome to Patient Matching",
+            "title": "Patient Matching Specification",
             "path": "docs/getting-started",
             "icon": "lucide:sparkles"
           },
