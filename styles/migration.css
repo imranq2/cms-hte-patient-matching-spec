@@ -35,3 +35,10 @@ figure.dai-mig-decorative {
 figure.dai-mig-decorative [data-rmiz-content] {
   cursor: default;
 }
+
+/* Site footer: owner attribution. Documentation.AI has no footer setting, so inject via the .dai-footer hook. */
+.dai-footer::before {
+  content: "Specification and site owned by Imran Qureshi, b.well Connected Health.";
+  color: var(--sub-text, inherit);
+  font-size: 14px;
+}
