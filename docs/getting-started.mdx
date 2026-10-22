@@ -12,6 +12,23 @@ The specification defines when a responding entity SHALL return matching patient
 
 This site hosts the specification, explains how its numbers are derived, and gives you the software and test data to check your implementation. The code, data, and documentation behind it are public.
 
+## The specification at a glance
+
+### The problem
+
+Healthcare organizations often cannot find the right patient's records when another organization asks for them. The Executive Summary cites a 2020 eHealth Initiative and NextGate survey in which about 38% of U.S. providers had an adverse event in the prior two years attributable to incorrect patient matching. It reports matching rates between organizations of around 50%, and closer to 40% in real data exchange according to some CMS Health Tech Ecosystem pledgees.
+### Why it matters
+
+A failed match is silent: "no one logs a match that should have happened but didn't". The patient does not get the data, and the clinician does not see the history. [Harm of Non-Return](/docs/harm-of-non-return) documents the cost in patient safety, denied claims, and duplicate records, and notes a disproportionate impact on Black, Latino, homeless, incarcerated, and disabled patients. Returning a record to the wrong person is the opposite risk. It is discrete, detectable, and correctable. The [Risk Framework](/docs/risk-framework) weighs the two.
+
+### How the specification solves it
+
+It replaces organization-specific judgment with one national rule, built on three parts:
+
+1. **Clean the data.** Organizations normalize identity attributes and remove placeholder values before matching ([Normalization](/docs/normalization)).
+2. **Match on combinations proven to be individuating.** Table 2 lists field combinations (for example, first name, date of birth, and phone number) whose conservative probability of collision, the chance that two different people share the same values, is 2e-12 or lower. If a query matches a listed combination and produces a unique candidate, the responding entity returns the records ([Matching Rules](/docs/matching-rules)).
+3. **Test and monitor.** Implementations are validated against standard test datasets and audited on an ongoing basis ([Validation Requirements](/docs/validation-requirements), [Audit and Monitoring](/docs/audit-and-monitoring)).
+
 ## Start with your role
 
 <Columns cols={2}>
